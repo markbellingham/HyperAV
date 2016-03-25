@@ -1,44 +1,41 @@
 <?php
-require_once ("../includes/session.php");
-require_once ("../includes/db_connection.php");
-require_once ("../includes/functions.php");
+	require_once ("../includes/session.php");
+	require_once ("../includes/db_connection.php");
+	require_once ("../includes/functions.php");
 
-$page_title = 'My Orders | HyperAV';
-include ("../includes/layouts/header.php");
+	$page_title = 'Update Order | HyperAV';
+	include ("../includes/layouts/header.php");
 
-if (!isset($_SESSION['staff'])) {
-	redirect_to("index.php");
-}
-
-if (isset($_SESSION['stockcart'])) {
-	$stockcart = $_SESSION['stockcart'];
-} else {
-	$stockcart = array();
-}
-
-$modelNo = $_POST['productID'];
-echo 'You clicked on ' . $modelNo;
-?>
-
-<h3>Updating Stock</h3>
-<?php
-if (count($stockcart) > 0) {
-	// First get the productIDs from the array
-	$cart_keys = array_keys($stockcart);
-	$query = 'SELECT * FROM hyperav_products WHERE ';
-	// Build up a SELECT  statement from all the items in the array
-	for ($i = 0; $i < count($stockcart); $i++) {
-		if ($i != 0) {
-			$query .= ' OR ';
-		}
-		$query .= 'prModelNo = "' . $cart_keys[$i] . '"';
-	
-		$query = 'INSERT INTO hyperav_stockorderdetails
-		(stockID, supplierID, stOrderDate, stDeliveryDate, stOrderQuantity)
-		VALUES('.$stockID.',' . $supplierID.',"' . $stOrDate.'","' . $stDelDate.'",' .$stQty.') ';
-	}
+	if (!isset($_SESSION['staff'])) {
+		redirect_to("index.php");
 	}
 
+	// Check the SESSION for a cart and create one if it is not there
+	if (isset($_SESSION['stockcart'])) {
+		$stockcart = $_SESSION['stockcart'];
+	} else {
+		$stockcart = array();
+	}
+
+	/* If the POST contains parameters for the model number and quantity (and it should do!) the item quantity is updated and 
+	the user is redirected back to the orders page. If there are somehow no parameters, the user is redirected back to the orders page anyway */
+	if (isset($_POST['prModelNo']) && isset($_POST['quantity'])) {
+		$modelNo = $_POST['prModelNo'];
+		$quantity = $_POST['quantity'];
+
+		$stockcart[$modelNo] = $quantity;
+		$_SESSION['stockcart'] = $stockcart;
+		//echo '<p>You clicked on ' . $modelNo . '</p>';
+		//echo '<p>Quantity is ' . $quantity . '</p>';
+		//print_r($stockcart);
+		redirect_to("supplierOrders.php");
+	} else {
+		echo '<p>You clicked on ' . $modelNo . '</p>';
+		echo '<p>Quantity is ' . $quantity . '</p>';
+		print_r($stockcart);
+		//redirect_to("supplierOrders.php");
+
+	}
 
 	include ("../includes/layouts/footer.php");
 ?>

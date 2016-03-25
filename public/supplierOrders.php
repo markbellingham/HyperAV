@@ -48,24 +48,24 @@ if ($results)
 		$grandTotal = 0;
 		//$cart_quantity = array_values($stockcart);
 		echo '<p><h3>Your current order</h3></p>';
-		echo '<table><tr><td></td><td><b>Name</b></td><td><b>Price per item</b></td><td><b>Quantity</b></td><td><b>Total per item</b></td><td></td><td></td></tr>';
+		echo '<table border="1"><tr><td></td><td><b>Name</b></td><td><b>Price per item</b></td><td><b>Quantity</b></td><td><b>Total per item</b></td><td></td><td></td></tr>';
 		while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
 			$i = $row['prModelNo'];
 			echo '<tr><td><img src="images/' . $row['prName'] . '.jpg" id="product_images"></td>
 				<td><a href="selected_product.php?prModelNo=' . $row['prModelNo'] . '">' . $row['prName'] . '</a></td>
 				<td>&pound' . $row['prPrice'] . '</td>
-				<td><input type="number" value="' . $stockcart[$i] . '" style="width: 3em;" min="0"></td>';
+				<form action="updateSupplierOrder.php" method="POST">
+				<td><input type="number" name="quantity" value="' . $stockcart[$i] . '" style="width: 3em;" min="0"></td>';
 				$totalPerItem = (($row['prPrice']) * (int)($stockcart[$i]));
-			echo '<td>&pound' . $totalPerItem . '</td>
-				<td><form action="updateSupplierOrder.php" method="POST">
-				<input type="hidden" name="prModelNo" value="' . $row['prModelNo'] . '">
+			echo '<td>&pound' . number_format($totalPerItem,2) . '</td>
+				<td><input type="hidden" name="prModelNo" value="' . $row['prModelNo'] . '">
 				<input type="submit" value="Update"></form></td>';
 			echo '<td><form action="delete_from_supplier_order.php" method="POST">
 				<input type="hidden" name="prModelNo" value="' . $row['prModelNo'] . '">
 				<input type="submit" value="Delete"></form></td></tr>';
 				$grandTotal += $totalPerItem;
 		}
-		echo '<tfoot><td colspan="4">Total</td><td>&pound' . $grandTotal . '</td><td colspan="2"><a href="confirmStockOrder.php">Confirm Order</a></td></tfoot>';
+		echo '<tfoot><td colspan="4">Total</td><td>&pound' . number_format($grandTotal,2) . '</td><td colspan="2"><a href="confirmStockOrder.php">Confirm Order</a></td></tfoot>';
 		echo '</table>';
 	}
 }

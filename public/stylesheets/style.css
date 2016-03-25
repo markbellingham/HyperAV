@@ -1,0 +1,243 @@
+header h1 {
+	color:#00004d;
+	font-size:250%;
+	font-family: "Palatino Linotype";
+	text-align:center;
+	padding-bottom:5px;
+	margin-bottom:-20px;
+}
+header h2 {
+	color:#000080;
+	font-size:150%;
+	font-style: italic;
+	letter-spacing:-2px;
+	text-align:center;
+}
+
+h3 {
+	
+	
+}
+
+/* Style The Dropdown Button */
+.dropbtn {
+    background-color: #00004d;
+    color: white;
+    padding: 16px;
+    /*position: relative;*/
+	margin-left: 10px;
+	margin-right: 10px;
+    font-size: 16px;
+    border: none;
+	min-width: 160px;
+    cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+	text-decoration: none;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+	text-decoration: none;
+    background-color: #f9f9f9;
+    min-width:auto; /*160px;*/
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 20px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: #4949e1;
+}
+/*
+nav ul {
+	background:#a3c2c2;
+	display: block;
+	margin:0 auto;
+	
+	list-style:none;
+	text-align: center;
+	
+}
+
+nav li {
+	background:00004d;
+	width: 150px;
+	list-style:none;
+	display: inline-block;
+	
+	border-left: solid 1px #000000;
+	
+}
+
+nav li:last-child  {
+	border-right: solid 1px #000000;
+}
+nav a {
+	color:#000000;
+	display:inline-block;
+	padding: 5px;
+	text-decoration: none;
+}
+
+nav li:hover {
+	background:#6f94dc;
+	color:#555555;
+}
+
+nav a:active {
+	background:#B0F8B0;
+	color:#777777;
+}
+*/
+
+.hello {
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+body {
+	background:#FFFFFF;
+	color:#000000;
+	font-family: Arial, "MS Trebuchet", sans-serif;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+#wrapper {
+	min-height: 100%;
+	position: relative;
+}
+
+#header {
+	padding: 10px;
+}
+
+#menu{
+	text-align: center;
+}
+
+#maincontent {
+	width:1200px;
+	margin: 0 auto;
+	min-height: 100%;
+ 	/* if you change this height value, 
+ 	also change height in #footer */
+	padding-bottom: 50px;
+}
+
+#main {
+
+}
+
+#footer {
+	clear: both;
+	position: absolute;
+	width: 100%;
+ 	/* if you change this height value, 
+ 	also change padding-bottom in #maincontent */
+	height: 50px;
+	bottom: 0;
+	left: 0;
+}
+
+#product_images {
+	display: block;
+	max-width: 150px;
+	max-height: 150px;
+	width: auto;
+	height: auto;
+	margin: auto;
+}
+
+#product_full_image {
+	float: left;
+	margin-left: 10px;
+	display: block;
+	max-width: 400px;
+	max-height: 400px;
+	width: auto;
+	height: auto;
+}
+
+#product_information {
+	float: left;
+	margin-left: 100px;
+}
+
+#suggested_items {
+	clear: both;
+	position: relative;
+	margin-top: 50px;
+	margin-left: auto;
+	margin-right: auto;	
+}
+
+#main {
+	width:1200px;
+	margin: 0 auto;
+	min-height: 100%;
+}
+
+
+
+table.products {
+	width: 100%;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+table.products td {
+	padding-left: 10px;
+	padding-right: 10px;
+	border-spacing: 5px;
+	width: 50px;
+}
+table.products td + td + td{width: 350px;}
+table.products td + td + td + td{width: 50px;}
+
+
+
+table.customers, table.customers th, table.customers td{
+	border: 1px solid #CCCCCC;
+	border-spacing: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+table.customers td {
+	width: 50px;
+}
+table.customers td + td + td + td {width: 200px;}
+table.customers td + td + td + td + td {width: 50px;}
+table.customers td + td + td + td + td + td + td {width: 100px;}
+
+tfoot {
+	font-weight: bold;
+}
+
+.label {
+	color: #666666;
+}

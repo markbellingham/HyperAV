@@ -17,8 +17,8 @@
 		$stockcart = array();
 	}
 
-	/* If the POST contains parameters for the model number and quantity (and it should do!) the item quantity is updated and 
-	the user is redirected back to the orders page. If there are somehow no parameters, the user is redirected back to the orders page anyway */
+	/* If the POST contains parameters for the model number and quantity (and it should do!) the item quantity is updated and the user is 
+	redirected back to the supplierOrders page. If there are somehow no parameters, the user is redirected back to the supplierOrders page anyway */
 	if (isset($_POST['prModelNo']) && isset($_POST['quantity'])) {
 		$modelNo = $_POST['prModelNo'];
 		$quantity = $_POST['quantity'];
@@ -30,11 +30,10 @@
 		//print_r($stockcart);
 		redirect_to("supplierOrders.php");
 	} else {
-		echo '<p>You clicked on ' . $modelNo . '</p>';
-		echo '<p>Quantity is ' . $quantity . '</p>';
-		print_r($stockcart);
-		//redirect_to("supplierOrders.php");
-
+		//echo '<p>You clicked on ' . $modelNo . '</p>';
+		//echo '<p>Quantity is ' . $quantity . '</p>';
+		//print_r($stockcart);
+		redirect_to("supplierOrders.php");
 	}
 
 	include ("../includes/layouts/footer.php");

@@ -24,10 +24,20 @@
 			<button class="dropbtn">Staff</button>
 			<div class="dropdown-content">	
 				<ul>
-					<li><a href="login.php">login</a></li>
+					<li><?php
+					if ((isset($_SESSION['first_name'])) && (!strpos($_SERVER['PHP_SELF'], 'logout.php')) ) 
+					{
+						echo '<a href="logout.php">Logout</a>';
+					} 
+					else 
+					{
+						echo '<a href="login.php">Login</a>';
+					}
+					?></li>
 					<li><a href="staffChangeCustomer.php">Change Customer Details</a></li>
 					<li><a href="customersToDelete.php">Remove Customer</a></li>
 					<li><a href="supplierProducts.php">Place Order</a></li>
+					<li><a href="supplierOrders.php">Current Supplier Order</a></li>
 				</ul>
 			</div>
 	</div>		

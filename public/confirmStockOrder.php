@@ -61,11 +61,11 @@ if (count($stockcart) > 0) {
 						<td>' . $stockcart[$i] . '</td>';
 						// Calculate the total cost of each item when multiplied by the quantity
 						$totalPerItem = (($row['prPrice']) * (int)($stockcart[$i]));
-					echo '<td>&pound' . $totalPerItem . '</td></tr>';
+					echo '<td>&pound' . number_format($totalPerItem,2) . '</td></tr>';
 						$grandTotal += $totalPerItem;
 						
 				}
-				echo '<tfoot><td colspan="5"><b>Total</td><td>&pound' . $grandTotal . '</b></td></tfoot>';
+				echo '<tfoot><td colspan="5"><b>Total</td><td>&pound' . number_format($grandTotal,2) . '</b></td></tfoot>';
 				$_SESSION['grandTotal'] = $grandTotal;
 				
 				echo '</table>';

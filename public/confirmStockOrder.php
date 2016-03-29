@@ -22,13 +22,13 @@ if (isset($_SESSION['stockcart'])) {
 if (count($stockcart) > 0) {
 	// First get the productIDs from the array
 	$cart_keys = array_keys($stockcart);
-	$query = 'SELECT * FROM hyperav_products WHERE ';
+	$query = 'SELECT * FROM hyperav_products pr JOIN hyperav_stock st ON pr.prModelNo = st.prModelNo JOIN hyperav_stockorderdetails sod ON st.stockID = sod.stockID JOIN hyperav_supplier su ON sod.supplierID = su.supplierID WHERE ';
 	// Build up a SELECT  statement from all the items in the array
 	for ($i = 0; $i < count($stockcart); $i++) {
 		if ($i != 0) {
 			$query .= ' OR ';
 		}
-		$query .= 'prModelNo = "' . $cart_keys[$i] . '"';
+		$query .= 'pr.prModelNo = "' . $cart_keys[$i] . '"';
 	}
 } else {
 	echo 'Your basket is empty';
@@ -42,6 +42,8 @@ if (count($stockcart) > 0) {
 		$results = @mysqli_query($connection, $query);
 		$num_rows = mysqli_num_rows($results);
 
+		//echo $query;
+
 		// Display the results (if any)
 		if ($results) {
 			if ($num_rows > 0) {
@@ -49,11 +51,12 @@ if (count($stockcart) > 0) {
 				$cart_quantity = array_values($stockcart);
 				echo '<p><h3>Confirm your order</h3></p>';
 				echo '<div style="float: left; margin-left: 10px;">';
-				echo '<table border="1"><tr><td></td><td><b>Name</b></td><td><b>Price per item</b></td><td><b>Quantity</b></td><td><b>Total per item</b></td></tr>';
+				echo '<table border="1"><tr><td></td><td><b>Name</b></td><td><b>Supplier</b></td><td><b>Price per item</b></td><td><b>Quantity</b></td><td><b>Total per item</b></td></tr>';
 				while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
 					$i = $row['prModelNo'];
 					echo '<tr><td><img src="images/' . $row['prName'] . '.jpg" id="product_images"></td>
 						<td><a href="selected_product.php?prModelNo=' . $row['prModelNo'] . '">' . $row['prName'] . '</a></td>
+						<td>' . $row['suName'] . '</td>
 						<td>&pound' . $row['prPrice'] . '</td>
 						<td>' . $stockcart[$i] . '</td>';
 						// Calculate the total cost of each item when multiplied by the quantity
@@ -62,7 +65,7 @@ if (count($stockcart) > 0) {
 						$grandTotal += $totalPerItem;
 						
 				}
-				echo '<tfoot><td colspan="4"><b>Total</td><td>&pound' . $grandTotal . '</b></td></tfoot>';
+				echo '<tfoot><td colspan="5"><b>Total</td><td>&pound' . $grandTotal . '</b></td></tfoot>';
 				$_SESSION['grandTotal'] = $grandTotal;
 				
 				echo '</table>';

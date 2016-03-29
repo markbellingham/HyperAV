@@ -51,7 +51,8 @@
 		JOIN hyperav_stock st  ON pr.prModelNo = st.prModelNo 
 		JOIN hyperav_stockorderdetails stor ON st.stockID =stor.stockID 
 		JOIN hyperav_supplier su ON su.supplierID=stor.supplierID 
-		WHERE su.suName = "' . $_GET['suName'].'"';
+		WHERE su.suName = "' . $_GET['suName'].'"
+		GROUP BY pr.prModelNo';
 		
 	} else {
 		$query = 'SELECT pr.prModelNo, pr.prName, pr.prDescription, pr.prPrice, pr.prCategory, su.suName FROM hyperav_products pr 

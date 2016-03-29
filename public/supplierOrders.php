@@ -41,10 +41,8 @@ $results = @mysqli_query($connection, $query);
 $num_rows = mysqli_num_rows($results);
 
 // Display the results (if any)
-if ($results) 
-{
-	if ($num_rows > 0) 
-	{
+if ($results) {
+	if ($num_rows > 0) {
 		$grandTotal = 0;
 		//$cart_quantity = array_values($stockcart);
 		echo '<p><h3>Your current order</h3></p>';
@@ -71,7 +69,32 @@ if ($results)
 }
 ?>
 
+<div style="margin-left: 700px">
 
+<?php
+if (isset($_SESSION['cuEmail']) && !isset($_SESSION['staff'])) {
+	echo '<p><b>Please choose a location for pickup or delivery</b></p>';
+	$query2 = "SELECT locationID, loName FROM hyperav_location ORDER BY loName ASC";
+	$results2 = @mysqli_query($connection, $query2);
+	$num_rows2 = mysqli_num_rows($results2);
+	if($results2) {
+		if($num_rows2 > 0) {?>
+			<select name="location">
+				<option>Select Location</option>
+				<?php while($option = mysqli_fetch_array($results2, MYSQLI_ASSOC)) { 
+					if ($option['locationID'] == $_SESSION['location']) { ?>
+						<option selected><?php echo $option['loName']; ?></option> <?php
+					} else { ?>
+						<option><?php echo $option['loName']; ?></option> <?php
+					}
+				} ?>
+			</select><?php
+		}
+	}
+}
+?>
+
+</div>
 
 
 <?php

@@ -24,7 +24,7 @@ if (isset($_POST['prModelNo'])) {
 		$_SESSION['stockcart'] = $stockcart;
 	}
 
-	echo '<p>Model No. : ' . $modelNo . ' was added to your order</p>';
+	echo '<p>The following item was added to your order:</p>';
 
 	$query = 'SELECT * FROM hyperav_products WHERE prModelNo = "' . $modelNo . '"';
 	$results = @mysqli_query($connection, $query);
@@ -33,10 +33,10 @@ if (isset($_POST['prModelNo'])) {
 	if ($results) {
 		if ($num_rows > 0) {
 
-			echo '<table><tr><th>Name</th><th>Price</th></tr>';
+			echo '<table><tr><th></th><th>Name</th><th>Price</th></tr>';
 
 			while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
-				echo '<tr><td>' . $row['prName'] . '</td><td>&pound' . $row['prPrice'] . '</td></tr>';
+				echo '<tr><td><img src="images/' . $row['prName'] . '.jpg" id="product_images"></td><td>' . $row['prName'] . '</td><td>&pound' . $row['prPrice'] . '</td></tr>';
 			}
 
 			echo '</table>';

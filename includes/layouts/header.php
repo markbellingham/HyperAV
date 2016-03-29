@@ -69,6 +69,9 @@
 						}
 						?>
 					</li>
+					<li>
+						<a href="show_my_orders.php">Show all my orders</a>
+					</li>
 				</ul>
 			</div>
 	</div>

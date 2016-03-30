@@ -62,55 +62,10 @@ h3 {
 .dropdown-content a:hover {background-color: #f1f1f1}
 
 /* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-    display: block;
-}
+.dropdown:hover .dropdown-content {display: block;}
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
-    background-color: #4949e1;
-}
-/*
-nav ul {
-	background:#a3c2c2;
-	display: block;
-	margin:0 auto;
-	
-	list-style:none;
-	text-align: center;
-	
-}
-
-nav li {
-	background:00004d;
-	width: 150px;
-	list-style:none;
-	display: inline-block;
-	
-	border-left: solid 1px #000000;
-	
-}
-
-nav li:last-child  {
-	border-right: solid 1px #000000;
-}
-nav a {
-	color:#000000;
-	display:inline-block;
-	padding: 5px;
-	text-decoration: none;
-}
-
-nav li:hover {
-	background:#6f94dc;
-	color:#555555;
-}
-
-nav a:active {
-	background:#B0F8B0;
-	color:#777777;
-}
-*/
+.dropdown:hover .dropbtn {background-color: #4949e1;}
 
 .hello {
 	margin-top: 10px;
@@ -131,13 +86,9 @@ body {
 	position: relative;
 }
 
-#header {
-	padding: 10px;
-}
+#header {padding: 10px;}
 
-#menu{
-	text-align: center;
-}
+#menu{text-align: center;}
 
 #maincontent {
 	width:1200px;
@@ -149,7 +100,9 @@ body {
 }
 
 #main {
-
+	width:1200px;
+	margin: 0 auto;
+	min-height: 100%;
 }
 
 #footer {
@@ -195,10 +148,15 @@ body {
 	margin-right: auto;	
 }
 
-#main {
-	width:1200px;
-	margin: 0 auto;
-	min-height: 100%;
+table {
+	width: 100%;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+table td {
+	padding-left: 5px;
+	padding-right: 5px;
 }
 
 
@@ -209,8 +167,8 @@ table.products {
 	margin-right: 0px;
 }
 table.products td {
-	padding-left: 10px;
-	padding-right: 10px;
+	padding-left: 5px;
+	padding-right: 5px;
 	border-spacing: 5px;
 	width: 50px;
 }
@@ -227,17 +185,20 @@ table.customers, table.customers th, table.customers td{
 	padding-left: 5px;
 	padding-right: 5px;
 }
-table.customers td {
-	width: 50px;
-}
+table.customers td {width: 50px;}
 table.customers td + td + td + td {width: 200px;}
 table.customers td + td + td + td + td {width: 50px;}
 table.customers td + td + td + td + td + td + td {width: 100px;}
 
-tfoot {
-	font-weight: bold;
+
+
+tfoot {font-weight: bold;}
+
+table a:link {
+	text-decoration: none;
+	color: #000066;
 }
 
-.label {
-	color: #666666;
-}
+table a:hover {text-decoration: underline;}
+
+.label {color: #666666;}

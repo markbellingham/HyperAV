@@ -12,6 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 			session_start();
 			$_SESSION['customerID'] = $data['customerID'];
 			$_SESSION['first_name'] = $data['cuFName'];
+			$_SESSION['last_name']	= $data['cuLName'];
 			$_SESSION['cuEmail'] 	= $data['cuEmail'];
 			redirect_to("loggedin.php");
 			

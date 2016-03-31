@@ -22,7 +22,8 @@
 	</div>
 	<div class="dropdown">		
 			<button class="dropbtn">Staff</button>
-			<div class="dropdown-content">	
+			<div class="dropdown-content">
+			<?php if (isset($_SESSION['staff'])) { ?>
 				<ul>
 					<li><?php
 					if ((isset($_SESSION['first_name'])) && (!strpos($_SERVER['PHP_SELF'], 'logout.php')) ) 
@@ -38,7 +39,8 @@
 					<li><a href="customersToDelete.php">Remove Customer</a></li>
 					<li><a href="supplierProducts.php">Place Order</a></li>
 					<li><a href="supplierOrders.php">Current Supplier Order</a></li>
-				</ul>
+				</ul> <?php
+			} ?>
 			</div>
 	</div>		
 	<div class="dropdown">				
@@ -77,10 +79,11 @@
 	<div class="dropdown">		
 			<button class="dropbtn">Reports</button>
 			<div class="dropdown-content">
+			<?php if(isset($_SESSION['staff'])) { ?>
 				<ul>
-					<li><a href="reports.php">View Reports</a></li>				
-					
-				</ul>
+					<li><a href="reports.php">View Reports</a></li>					
+				</ul> <?php
+			} ?>
 			</div>
 		</ul>
 	</div>

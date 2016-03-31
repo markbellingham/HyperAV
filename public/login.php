@@ -29,6 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 			session_start();
 			$_SESSION['staffID'] 	= $data['staffID'];
 			$_SESSION['first_name'] = $data['stFName'];
+			$_SESSION['last_name']	= $data['stLName'];
 			$_SESSION['email'] 		= $data['stEmail'];
 			$_SESSION['location']	= $data['locationID'];
 			$_SESSION['staff'] 		= true;

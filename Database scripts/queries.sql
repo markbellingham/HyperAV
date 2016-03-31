@@ -18,3 +18,7 @@ GROUP BY lo.locationID;
 SELECT 	AVG(orTotal) AS "Average Sales"
 FROM 	hyperav_orders o JOIN hyperav_staff st ON o.staffID = st.staffID JOIN hyperav_location lo ON st.locationID = lo.locationID 
 WHERE 	lo.locationID = 4;
+
+
+
+SELECT 	prName, prPrice, odQuantity, orDate, orTotal, orDeliverDate, orPaymentMethod FROM hyperav_orders o JOIN hyperav_orderdetails od ON o.orderID = od.orderID JOIN hyperav_stock st ON od.stockID = st.stockID JOIN hyperav_products pr ON st.prModelNo = pr.prModelNo WHERE o.customerID = 2;

@@ -34,7 +34,34 @@ if (count($stockcart) > 0) {
 	echo 'Your basket is empty';
 } ?>
 
+
+
 <form action="confirmStockOrderSubmit.php" method="POST">
+
+	<p><b>Please choose a location where the stock should be delivered to</b></p>
+
+	<div style="float: left, ">
+		<?php
+		// Shows a drop down box with all the locations to choose from and the 
+		// location where the staff member placing the order is automatically selected
+		$query2 = "SELECT locationID, loName FROM hyperav_location ORDER BY loName ASC";
+		$results2 = @mysqli_query($connection, $query2);
+		$num_rows2 = mysqli_num_rows($results2);
+		if($results2) {
+			if($num_rows2 > 0) { ?>
+				<select name="location">
+					<option>Select Location</option>
+					<?php while($option = mysqli_fetch_array($results2, MYSQLI_ASSOC)) { 
+						if ($option['locationID'] == $_SESSION['location']) { ?>
+							<option selected><?php echo $option['loName']; ?></option><?php
+						} else { ?>
+							<option><?php echo $option['loName']; ?></option>
+				<?php 	} 
+				} ?>
+				</select><?php
+			}
+		} ?>
+	</div>
 
 	<div id="show_cart">
 		<?php
@@ -66,36 +93,13 @@ if (count($stockcart) > 0) {
 						
 				}
 				echo '<tfoot><td colspan="5"><b>Total</td><td>&pound' . number_format($grandTotal,2) . '</b></td></tfoot>';
-				$_SESSION['grandTotal'] = $grandTotal;
+				$_SESSION['stOrderTotal'] = $grandTotal;
 				
 				echo '</table>';
 				echo '</div>';
 			}
 		} ?>
 	</div> <!-- ends show_cart -->
-
-	<p><b>Please choose a location where the stock should be delivered to</b></p>
-
-	<div style="float: left, margin-left: 1800px">
-		<?php
-		$query2 = "SELECT locationID, loName FROM hyperav_location ORDER BY loName ASC";
-		$results2 = @mysqli_query($connection, $query2);
-		$num_rows2 = mysqli_num_rows($results2);
-		if($results2) {
-			if($num_rows2 > 0) { ?>
-				<select name="location">
-					<option>Select Location</option>
-					<?php while($option = mysqli_fetch_array($results2, MYSQLI_ASSOC)) { 
-						if ($option['locationID'] == $_SESSION['location']) { ?>
-							<option selected><?php echo $option['loName']; ?></option><?php
-						} else { ?>
-							<option><?php echo $option['loName']; ?></option>
-				<?php 	} 
-				} ?>
-				</select><?php
-		}
-	} ?>
-	</div>
 
 	<div style="clear: both">
 		<br/>

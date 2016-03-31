@@ -55,11 +55,10 @@
 			</div>
 	</div>
 	<div class="dropdown">				
-			<button class="dropbtn">Sign In</button>
+			<button class="dropbtn">Account</button>
 			<div class="dropdown-content">
 				<ul>
 					<li><a href="register.php">Sign Up</a></li>
-	<!--				<li><a href="login.php">login</a></li>	-->
 					<li><a href="password.php">Change Password</a></li>
 					<li><?php
 						if ((isset($_SESSION['first_name'])) && (!strpos($_SERVER['PHP_SELF'], 'logout.php')) ) 

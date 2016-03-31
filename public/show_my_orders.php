@@ -26,19 +26,35 @@ if (!isset($_SESSION['customerID']) && (isset($_SESSION['staff']))) {
 	$cuEmail = $_SESSION['cuEmail'];
 }
 
+// Need to join several tables in order to get the type of information that would be useful to the customer
 $query = 'SELECT o.orderID, prName, prPrice, odQuantity, orDate, orTotal, orDeliverDate, orPaymentMethod FROM hyperav_orders o JOIN hyperav_orderdetails od ON o.orderID = od.orderID JOIN hyperav_stock st ON od.stockID = st.stockID JOIN hyperav_products pr ON st.prModelNo = pr.prModelNo WHERE o.customerID = ' . $_SESSION['customerID'] . ' ORDER BY o.orDate';
 $results = @mysqli_query($connection, $query);
 $num_rows = mysqli_num_rows($results);
 
 if ($results) {
 	if ($num_rows > 0) {
-		$i = 0;		
+		$i = 0;		// Initialise
 		while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
+			// If the order ID has changed, close the previous table if it exists and create some space
 			if ($i != $row['orderID']) {
 				echo '</table><br/><br/><br/>';
-				echo '<table border="1"><tr><td>Order Number: ' . $row['orderID'] . '</td><td>Order Date: ' . $row['orDate'] . '</td><td>Payment Method: ' . $row['orPaymentMethod'] . '</td><td><b>Order Total: ' . $row['orTotal'] . '</b></td></tr></table><br/>';
-				echo '<table style="border: 1px solid black"><tr style="font-weight: bold"><td></td><td>Product Name</td><td>Price</td><td>Quantity</td><td>Total Per Item</td><td>Delivery Date</td></tr>';
+
+				// Data is shown in two tables. The first shows information that is the same for the whole order
+				echo '<table border="1"><tr>
+					<td>Order Number: ' . $row['orderID'] . '</td>
+					<td>Order Date: ' . $row['orDate'] . '</td>
+					<td>Payment Method: ' . $row['orPaymentMethod'] . '</td>
+					<td><b>Order Total: ' . $row['orTotal'] . '</b></td></tr></table><br/>';
+
+				// The second table shows details of each individual item on that order - first create some headings
+				echo '<table style="border: 1px solid black"><tr style="font-weight: bold"><td></td>
+					<td>Product Name</td>
+					<td>Price</td>
+					<td>Quantity</td>
+					<td>Total Per Item</td>
+					<td>Delivery Date</td></tr>';
 			}
+			// Now show each individual item.
 			$totalPerItem = $row['prPrice'] * $row['odQuantity'];
 			echo '<tr><td><img src="images/' . $row['prName'] . '.jpg" id="product_images"></td><td>' . $row['prName'] . '</td><td>' . $row['prPrice'] . '</td><td>' . $row['odQuantity'] . '</td><td>' . $totalPerItem . '</td><td>' . $row['orDeliverDate'] . '</td></tr>';			
 			$i = $row['orderID'];

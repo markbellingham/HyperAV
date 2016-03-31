@@ -36,10 +36,11 @@ if ($results) {
 		while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
 			if ($i != $row['orderID']) {
 				echo '</table><br/><br/><br/>';
-				echo '<table border="1"><tr><td>Order Date: ' . $row['orDate'] . '</td><td>Payment Method: ' . $row['orPaymentMethod'] . '</td><td><b>Order Total: ' . $row['orTotal'] . '</b></td></tr></table><br/>';
-				echo '<table><tr><td></td><td><b>Product Name</b></td><td><b>Price</b></td><td><b>Quantity</b></td><td><b>Delivery Date</b></td></tr>';
+				echo '<table border="1"><tr><td>Order Number: ' . $row['orderID'] . '</td><td>Order Date: ' . $row['orDate'] . '</td><td>Payment Method: ' . $row['orPaymentMethod'] . '</td><td><b>Order Total: ' . $row['orTotal'] . '</b></td></tr></table><br/>';
+				echo '<table style="border: 1px solid black"><tr style="font-weight: bold"><td></td><td>Product Name</td><td>Price</td><td>Quantity</td><td>Total Per Item</td><td>Delivery Date</td></tr>';
 			}
-			echo '<tr><td><img src="images/' . $row['prName'] . '.jpg" id="product_images"></td><td>' . $row['prName'] . '</td><td>' . $row['prPrice'] . '</td><td>' . $row['odQuantity'] . '</td><td>' . $row['orDeliverDate'] . '</td></tr>';			
+			$totalPerItem = $row['prPrice'] * $row['odQuantity'];
+			echo '<tr><td><img src="images/' . $row['prName'] . '.jpg" id="product_images"></td><td>' . $row['prName'] . '</td><td>' . $row['prPrice'] . '</td><td>' . $row['odQuantity'] . '</td><td>' . $totalPerItem . '</td><td>' . $row['orDeliverDate'] . '</td></tr>';			
 			$i = $row['orderID'];
 		}
 	}

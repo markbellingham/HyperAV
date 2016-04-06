@@ -29,6 +29,7 @@
 					<li><a href="customersToDelete.php">Remove Customer</a></li>
 					<li><a href="supplierProducts.php">Place Order</a></li>
 					<li><a href="supplierOrders.php">Current Supplier Order</a></li>
+					<li><a href="prevSupplierOrders.php">Previous Supplier Orders</a></li>
 				</ul> <?php
 			} ?>
 			</div>

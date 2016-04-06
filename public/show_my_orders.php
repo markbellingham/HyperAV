@@ -5,18 +5,23 @@
 
 	$page_title = 'My Orders | HyperAV';
 	include ("../includes/layouts/header.php");
-?>
+
+if (isset($_SESSION['customerID']) && (!isset($_SESSION['staff']))) { ?>
 
 <h3>Here are all your previous orders <?php echo $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] ?></h3>
 
+<?php 
+} else if (isset($_SESSION['staff'])) { ?>
+<h3>Here you can see the customer orders</h3>
 <?php
+}
 
 // Check if staff or customer is logged in.
 // If staff, ask for the customer's email. If customer, get the email from the SESSION
 // If neither staff nor customer is logged in, redirect to the index page
 if (!isset($_SESSION['customerID']) && (isset($_SESSION['staff']))) {
-	echo 'Please input the customer\'s email';
-	echo '<input type="email" name="cuEmail" required>';
+	echo 'Please input the customer\'s email ';
+	echo '<input type="email" name="cuEmail" required> ';
 	echo '<input type="submit" name="submit" value="Submit">';
 	include ("../includes/layouts/footer.php");
 	exit;

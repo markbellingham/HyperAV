@@ -69,7 +69,10 @@
 		// header( 'refresh:3 url=selected_product.php?prModelNo=' . $modelNo );
 	} else {
 		echo 'Error occurred: ' . mysqli_error($connection);
-	}	
+	}
+
+	mysqli_free_result($result1);
+	mysqli_close($connection);	
 ?>
 
 

@@ -110,5 +110,12 @@ if (count($stockcart) > 0) {
 
 
 <?php
+mysqli_free_result($results);
+mysqli_free_result($results2);
+mysqli_close($connection);
+?>
+
+
+<?php
 	include ("../includes/layouts/footer.php");
 ?>

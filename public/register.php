@@ -80,6 +80,7 @@
 			<p class="error">Registration failed because of a system error:</p>'; 
 		}
 
+	mysqli_free_result($results);
 	mysqli_close($connection);
 	
 	include ('../includes/layouts/footer.php'); 
@@ -92,6 +93,7 @@
 		echo '<p>Please try again.</p>';
 	} 
 
+mysqli_free_result($results);
 mysqli_close($connection);
 ?>
 

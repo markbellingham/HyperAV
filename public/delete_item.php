@@ -36,9 +36,9 @@
 		echo 'There was a database error';
 		// echo '<p>' . mysqli_error($connection) . '</p>';
 	}
-?>
 
+	mysqli_free_result($results);
+	mysqli_close($connection);
 
-<?php
 	include ("../includes/layouts/footer.php");
 ?>

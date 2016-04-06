@@ -68,11 +68,9 @@ if ($results) {
 		echo '<div>';
 	}
 }
-?>
 
+mysqli_free_result($results);
+mysqli_close($connection);
 
-
-
-<?php
-	include ("../includes/layouts/footer.php");
+include ("../includes/layouts/footer.php");
 ?>

@@ -126,6 +126,11 @@ if (isset($_SESSION['cuEmail']) && !isset($_SESSION['staff'])) {
 		}
 	}
 }
+
+mysqli_free_result($results);
+mysqli_free_result($results1);
+mysqli_free_result($results2);
+mysqli_close($connection);
 ?>
 <p><b>Please select payment type</b></p>
 <select name="payment">

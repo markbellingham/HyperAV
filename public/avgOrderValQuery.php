@@ -44,6 +44,6 @@ $results = @mysqli_query($connection, $query);
 		
 	?>
 	
-	<?php
+<?php
 	include ("../includes/layouts/footer.php");
 ?>

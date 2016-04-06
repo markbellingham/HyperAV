@@ -42,6 +42,9 @@ if (isset($_POST['prModelNo'])) {
 		}
 	}
 }
+
+mysqli_free_result($results);
+mysqli_close($connection);
 ?>
 
 <p><a href="orders.php">Show all items on my order</a></p>

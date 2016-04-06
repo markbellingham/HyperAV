@@ -12,15 +12,11 @@
  
 <?php 
 	
-	if (isset($_SESSION['staff'])) { //only displays page if logged in as staff member
+if (isset($_SESSION['staff'])) { //only displays page if logged in as staff member
 	
-	$query1 = "SELECT DISTINCT loName FROM hyperav_location ORDER BY loName ASC"; //gets all locations
-	$results1 = @mysqli_query($connection, $query1);
-	$num_rows1 = mysqli_num_rows($results1);
-	$results2	= @mysqli_query($connection, $query1);
-	$num_rows2 = mysqli_num_rows($results2);
-	$results3	= @mysqli_query($connection, $query1);
-	$num_rows3 = mysqli_num_rows($results2);
+	$query = "SELECT DISTINCT loName FROM hyperav_location ORDER BY loName ASC"; //gets all locations
+	$results = @mysqli_query($connection, $query);
+	$num_rows = mysqli_num_rows($results);
 ?>	
 <div id ="main">
 	<form action="staffBranchQuery.php" method="POST">
@@ -28,8 +24,8 @@
 <p>					
 <?php //1st report
 	echo "List all staff at ";
-	if($results1) {
-		if($num_rows1 > 0) {?>
+	if($results) {
+		if($num_rows > 0) {?>
 			<select name="location">
 				<option>Select Location</option>
 				<?php while($option = mysqli_fetch_array($results1, MYSQLI_ASSOC)) { ?>
@@ -77,9 +73,11 @@ echo "List of customer orders with a total value of"
 <!-- 5th Report -->
 <form action="avgOrderValQuery.php" method="POST">				
 <?php
+	// Reset $results pointer back to the beginning so we can use the same data again
+	mysqli_data_seek($results, 0);
 	echo "List average order value at ";
-	if($results2) {
-		if($num_rows2 > 0) {?>
+	if($results) {
+		if($num_rows > 0) {?>
 			<select name="location">
 				<option>Select Location</option>
 				<?php while($option = mysqli_fetch_array($results2, MYSQLI_ASSOC)) { ?>
@@ -91,11 +89,14 @@ echo "List of customer orders with a total value of"
 ?>	
 <input type="submit" value="Submit"></form>
 </div> <!-- end of main div -->
-<?php	} else {
-			redirect_to("index.php"); //redirects to index.php if not logged in as staff
-		}
-?>
-	
-<?php
+
+<?php	
+} else {
+	redirect_to("index.php"); //redirects to index.php if not logged in as staff
+}
+
+	mysqli_free_result($results);
+	mysqli_close($connection);
+
 	include ("../includes/layouts/footer.php");
 ?>

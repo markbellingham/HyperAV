@@ -7,10 +7,6 @@
 	
 	$page_title = 'Reports';
 	include ("../includes/layouts/header.php");
-?>
-
-<?php
-
 
 
 $query= 'SELECT SUM(orTotal) AS $total, lo.loName 
@@ -22,28 +18,26 @@ $results = @mysqli_query($connection, $query);
 	
 	if ($results) {
 		if ($num_rows > 0) {
-				echo '<table>
-				<tr> <td> <b>Total Sales</b> </td> <td> <b>Location</b> </td> </td> </tr>';
+			echo '<table>
+			<tr> <td> <b>Total Sales</b> </td> <td> <b>Location</b> </td> </td> </tr>';
 
-				while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
-					echo '<tr> <td>' . $row['$total'] .  '</td><td>' . $row['loName'] . '</td></tr>';
-						
-				}
-				echo '</table>';
-
-				mysqli_free_result($results);
-			} else {
-				echo '<p class="error">There are no results.</p>';
+			while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
+				echo '<tr> <td>' . $row['$total'] .  '</td><td>' . $row['loName'] . '</td></tr>';
+					
 			}
+			echo '</table>';
+
+			mysqli_free_result($results);
 		} else {
-			echo '<h3 class="error">System Error</h3>
-			<p class="error">Report could not be retrieved.</p>';
-			
-				}
-		mysqli_close($connection);
+			echo '<p class="error">There are no results.</p>';
+		}
+	} else {
+		echo '<h3 class="error">System Error</h3>
+		<p class="error">Report could not be retrieved.</p>';
 		
-	?>
-	
-	<?php
+	}
+	mysqli_close($connection);
+		
+
 	include ("../includes/layouts/footer.php");
 ?>

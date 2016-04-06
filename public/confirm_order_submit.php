@@ -155,6 +155,12 @@ for ($i = 0; $i < count($cart); $i++) {
 	mysqli_query($connection, $query6);
 }
 
+mysqli_free_result($results1);
+mysqli_free_result($results3);
+mysqli_free_result($results4);
+mysqli_close($connection);
+
 // Provide confirmation message to the user
 echo '<p><center>Your order has been successfully submitted</center></p>';
 // echo $query6;
+?>

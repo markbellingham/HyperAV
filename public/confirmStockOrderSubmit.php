@@ -23,25 +23,6 @@ if (isset($_SESSION['stockcart'])) {
 }
 
 
-
-// Get the selected location name from the form
-// if (($_POST['location']) == "Select Location") {
-// 	redirect_to("confirmStockOrder.php");
-// } else {
-// 	$location = $_POST['location'];
-// 	// Get the locationID from the location name
-// 	$query3 = 'SELECT locationID from hyperav_location WHERE loName = "' . $location . '"';
-// 	$results3 = @mysqli_query($connection, $query3);
-// 	$num_rows3 = mysqli_num_rows($results3);
-// 	if ($results3) {
-// 		if ($num_rows3 == 1) {
-// 			while ($row = mysqli_fetch_array($results3, MYSQLI_ASSOC)) {
-// 				$locationID = $row['locationID'];
-// 			}
-// 		}
-// 	}
-// }
-
 // Get the total
 $stOrderTotal = $_SESSION['stOrderTotal'];
 
@@ -97,6 +78,10 @@ for ($i = 0; $i < count($stockcart); $i++) {
 	}
 }
 
+mysqli_free_result($results);
+mysqli_close($connection);
+
 
 // Provide confirmation message to the user
 echo '<p>Your order has been successfully submitted</p>';
+?>

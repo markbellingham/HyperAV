@@ -99,7 +99,8 @@
 		//DEBUGGING <p class="error">Query:'. $query . '</p>';
 	}
 
-	mysqli_free_result($results);
+	mysqli_free_result($results1);
+	mysqli_free_result($results2);
 	mysqli_close($connection);
 ?>
 

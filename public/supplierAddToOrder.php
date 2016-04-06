@@ -43,6 +43,9 @@ if (isset($_POST['prModelNo'])) {
 		}
 	}
 }
+
+mysqli_free_result($results);
+mysqli_close($connection);
 ?>
 
 <p><a href="supplierOrders.php">Show my order</a></p>

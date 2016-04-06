@@ -21,14 +21,16 @@ if (isset($_SESSION['staff'])) { //only displays page if logged in as staff memb
 <div id ="main">
 	<form action="staffBranchQuery.php" method="POST">
 						
-<p>					
+<p>
+
+
 <?php //1st report
 	echo "List all staff at ";
 	if($results) {
-		if($num_rows > 0) {?>
+		if($num_rows > 0) { ?>
 			<select name="location">
 				<option>Select Location</option>
-				<?php while($option = mysqli_fetch_array($results1, MYSQLI_ASSOC)) { ?>
+				<?php while($option = mysqli_fetch_array($results, MYSQLI_ASSOC)) { ?>
 					<option><?php echo $option['loName']; ?></option>
 			<?php } ?>
 			</select> <?php
@@ -36,6 +38,8 @@ if (isset($_SESSION['staff'])) { //only displays page if logged in as staff memb
 	}
 ?>	
 <input type="submit" value="Submit"></form>
+
+
 
 <!-- 2nd Report -->
 <form action="supplierOrderQuery.php" method="POST">
@@ -45,6 +49,8 @@ if (isset($_SESSION['staff'])) { //only displays page if logged in as staff memb
 ?>	
 
 <input type="submit" value="Submit"></form>
+
+
 
 <!-- 3rd Report -->
 <form action="customerOrdersValueQuery.php" method="POST">
@@ -58,17 +64,19 @@ echo "List of customer orders with a total value of"
 		<option value="'750' AND '999'">&pound750 - &pound999.99</option>
 		<option value="'1000' AND '9999990'">&pound1000+</option>
 	<select>
-
 <input type="submit" value="Submit"></form>
+
+
 
 <!-- 4th Report -->
 <form action="turnoverQuery.php" method="POST">
 <p>
 <?php
 	echo "List total turnover";
-?>	
-
+?>
 <input type="submit" value="Submit"></form>
+
+
 
 <!-- 5th Report -->
 <form action="avgOrderValQuery.php" method="POST">				
@@ -77,10 +85,10 @@ echo "List of customer orders with a total value of"
 	mysqli_data_seek($results, 0);
 	echo "List average order value at ";
 	if($results) {
-		if($num_rows > 0) {?>
+		if($num_rows > 0) { ?>
 			<select name="location">
 				<option>Select Location</option>
-				<?php while($option = mysqli_fetch_array($results2, MYSQLI_ASSOC)) { ?>
+				<?php while($option = mysqli_fetch_array($results, MYSQLI_ASSOC)) { ?>
 					<option><?php echo $option['loName']; ?></option>
 			<?php } ?>
 			</select> <?php
@@ -88,6 +96,29 @@ echo "List of customer orders with a total value of"
 	}
 ?>	
 <input type="submit" value="Submit"></form>
+
+
+
+<!-- 6th Report -->
+<form action="stockQuery.php" method="POST">				
+<?php
+	// Reset $results pointer back to the beginning so we can use the same data again
+	mysqli_data_seek($results, 0);
+	echo "List stock levels at ";
+	if($results) {
+		if($num_rows > 0) { ?>
+			<select name="location">
+				<option>Select Location</option>
+				<?php while($option = mysqli_fetch_array($results, MYSQLI_ASSOC)) { ?>
+					<option><?php echo $option['loName']; ?></option>
+			<?php } ?>
+			</select> <?php
+		}
+	}
+?>	
+<input type="submit" value="Submit"></form>
+
+
 </div> <!-- end of main div -->
 
 <?php	

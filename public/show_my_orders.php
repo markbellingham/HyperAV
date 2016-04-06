@@ -50,11 +50,14 @@ $num_rows = mysqli_num_rows($results);
 
 if ($results) {
 	if ($num_rows > 0) {
-		$i = 0;		// Initialise
+		$i = 0;	$j = 0;	// Initialise
 		while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
 
-			// Say whose orders are being retrieved
-			echo '<h3>Here are the previous orders for ' . $row['first_name'] . ' ' . $row['last_name'] . '</h3>';
+			if ($j == 0) {
+				// Say whose orders are being retrieved
+				echo '<h3>Here are the previous orders for ' . $row['cuFName'] . ' ' . $row['cuLName'] . '</h3>';
+				$j++;
+			}
 
 			// If the order ID has changed, close the previous table if it exists and create some space
 			if ($i != $row['orderID']) {
@@ -65,7 +68,7 @@ if ($results) {
 					<td>Order Number: ' . $row['orderID'] . '</td>
 					<td>Order Date: ' . $row['orDate'] . '</td>
 					<td>Payment Method: ' . $row['orPaymentMethod'] . '</td>
-					<td><b>Order Total: ' . $row['orTotal'] . '</b></td></tr></table><br/>';
+					<td style="text-align: right"><b>Order Total: ' . $row['orTotal'] . '</b></td></tr></table><br/>';
 
 				// The second table shows details of each individual item on that order - first create some headings
 				echo '<table style="border: 1px solid black"><tr style="font-weight: bold"><td></td>

@@ -7,6 +7,7 @@
 
 	if (isset($_SESSION['customerID']) {
 		echo '<p>You are already registered ' . $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] . '</p>';
+		include ("../includes/layouts/footer.php");
 		exit;
 	}
 

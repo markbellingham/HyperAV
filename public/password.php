@@ -3,7 +3,7 @@
 	require_once ("../includes/db_connection.php");
 	require_once ("../includes/functions.php");
 
-	$page_title = 'Products | HyperAV';
+	$page_title = 'Change Password | HyperAV';
 	include ("../includes/layouts/header.php");
 
 // If the user opens this page without being logged in, they are redirected to the login page
@@ -90,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		echo '<p>Please try again.</p>';
 	}
 	mysqli_free_result($results1);
-	mysqli_free_result($results2)
+	mysqli_free_result($results2);
 	mysqli_close($connection);
 
 }

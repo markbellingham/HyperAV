@@ -68,7 +68,7 @@ if ($results) {
 					<td>Order Number: ' . $row['orderID'] . '</td>
 					<td>Order Date: ' . $row['orDate'] . '</td>
 					<td>Payment Method: ' . $row['orPaymentMethod'] . '</td>
-					<td style="text-align: right"><b>Order Total: ' . $row['orTotal'] . '</b></td></tr></table><br/>';
+					<td style="text-align: right"><b>Order Total: £' . $row['orTotal'] . '</b></td></tr></table><br/>';
 
 				// The second table shows details of each individual item on that order - first create some headings
 				echo '<table style="border: 1px solid black"><tr style="font-weight: bold"><td></td>
@@ -80,7 +80,7 @@ if ($results) {
 			}
 			// Now show each individual item.
 			$totalPerItem = $row['prPrice'] * $row['odQuantity'];
-			echo '<tr><td><img src="images/' . $row['prName'] . '.jpg" id="product_images"></td><td>' . $row['prName'] . '</td><td>' . $row['prPrice'] . '</td><td>' . $row['odQuantity'] . '</td><td>' . $totalPerItem . '</td><td>' . $row['orDeliverDate'] . '</td></tr>';			
+			echo '<tr><td><img src="images/' . $row['prName'] . '.jpg" id="product_images"></td><td>' . $row['prName'] . '</td><td>£' . $row['prPrice'] . '</td><td>' . $row['odQuantity'] . '</td><td>£' . number_format($totalPerItem, 2) . '</td><td>' . $row['orDeliverDate'] . '</td></tr>';			
 			$i = $row['orderID'];
 		}
 	} else {

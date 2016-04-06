@@ -11,7 +11,7 @@ include ("../includes/layouts/header.php");
 
 $location = $_POST['location'];
 
-$query = 'SELECT prName, prDescription, prCategory, stQuantity, maName, suName
+$query = 'SELECT pr.prModelNo, prName, prDescription, prCategory, stQuantity, maName, suName
 		FROM hyperav_stock st
 		JOIN hyperav_products pr 			ON pr.prModelNo = st.prModelNo 
 		JOIN hyperav_manufacturer ma 		ON ma.manufacturerID = pr.manufacturerID 
@@ -36,7 +36,10 @@ if ($results) {
 				<td>' . $row['prCategory'] . '</td>
 				<td>' . $row['stQuantity'] . '</td>
 				<td>' . $row['maName'] . '</td>
-				<td>' . $row['suName'] . '</td>';				
+				<td>' . $row['suName'] . '</td>
+				<td><form action="supplierAddToOrder.php" method="POST">
+				<input type="hidden" name="prModelNo" value="' . $row['prModelNo'] . '">
+				<input type="submit" value="Order"></form></td></tr>';				
 		}
 		echo '</table>';
 

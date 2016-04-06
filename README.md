@@ -1,7 +1,7 @@
 # HyperAV
 Year 2 Information Systems Group Project
 
-This is a project that started life as a 2nd Year group project for Information Systems and Database Development. It is a website for a fictituous home cinema retailer called Hyper AV and is built with a MySQL backend and a PHP frontend.
+This is a project that started life as a 2nd Year group project for Information Systems and Database Development. It is a website for a fictituous home cinema retailer called Hyper AV and is built with a MySQL backend and a PHP frontend. I will be completing it with the features and to the standard I wanted for the original if I had the time and resources
 
 If you want to recreate the project for yourself, you will need to create a file called db_connection.php and place it in the 'includes' folder. I removed this file because it contains username and password information to my university's server.
 

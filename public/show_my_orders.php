@@ -5,34 +5,46 @@
 
 	$page_title = 'My Orders | HyperAV';
 	include ("../includes/layouts/header.php");
+?>
 
-if (isset($_SESSION['customerID']) && (!isset($_SESSION['staff']))) { ?>
-
-<h3>Here are all your previous orders <?php echo $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] ?></h3>
-
-<?php 
-} else if (isset($_SESSION['staff'])) { ?>
-<h3>Here you can see the customer orders</h3>
+<!-- <h3>Here are all your previous orders <?php echo $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] ?></h3>
+ -->
 <?php
-}
 
 // Check if staff or customer is logged in.
-// If staff, ask for the customer's email. If customer, get the email from the SESSION
+// If staff, ask for the customer's email.
 // If neither staff nor customer is logged in, redirect to the index page
-if (!isset($_SESSION['customerID']) && (isset($_SESSION['staff']))) {
-	echo 'Please input the customer\'s email ';
-	echo '<input type="email" name="cuEmail" required> ';
+if (!isset($_SESSION['customerID']) && (isset($_SESSION['staff'])) && (!isset($_POST['cuEmail']))) {
+	echo '<form action="show_my_orders.php" method="POST">';
+	echo 'Please input the customer\'s email';
+	echo '<input type="email" name="cuEmail" required>';
 	echo '<input type="submit" name="submit" value="Submit">';
+	echo '</form>';
 	include ("../includes/layouts/footer.php");
 	exit;
 } else if (!isset($_SESSION['customerID']) && (!isset($_SESSION['staff']))) {
 	redirect_to("index.php");
-} else {
+}
+
+// Get the customer's email either from the SESSION or from POST
+if (isset($_SESSION['cuEmail'])) {
 	$cuEmail = $_SESSION['cuEmail'];
+} else if (isset($_POST['cuEmail'])) {
+	$cuEmail = $_POST['cuEmail'];
 }
 
 // Need to join several tables in order to get the type of information that would be useful to the customer
-$query = 'SELECT o.orderID, prName, prPrice, odQuantity, orDate, orTotal, orDeliverDate, orPaymentMethod FROM hyperav_orders o JOIN hyperav_orderdetails od ON o.orderID = od.orderID JOIN hyperav_stock st ON od.stockID = st.stockID JOIN hyperav_products pr ON st.prModelNo = pr.prModelNo WHERE o.customerID = ' . $_SESSION['customerID'] . ' ORDER BY o.orDate';
+$query = 'SELECT cu.cuFName, cu.cuLName, o.orderID, prName, prPrice, odQuantity, orDate, orTotal, orDeliverDate, orPaymentMethod 
+	FROM hyperav_orders o 
+	JOIN hyperav_orderdetails od ON o.orderID = od.orderID 
+	JOIN hyperav_stock st ON od.stockID = st.stockID 
+	JOIN hyperav_products pr ON st.prModelNo = pr.prModelNo 
+	JOIN hyperav_customer cu ON o.customerID = cu.customerID 
+	WHERE cu.cuEmail = "' . $cuEmail . '" 
+	ORDER BY o.orDate';
+
+// echo $query;
+
 $results = @mysqli_query($connection, $query);
 $num_rows = mysqli_num_rows($results);
 
@@ -40,6 +52,10 @@ if ($results) {
 	if ($num_rows > 0) {
 		$i = 0;		// Initialise
 		while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
+
+			// Say whose orders are being retrieved
+			echo '<h3>Here are the previous orders for ' . $row['first_name'] . ' ' . $row['last_name'] . '</h3>';
+
 			// If the order ID has changed, close the previous table if it exists and create some space
 			if ($i != $row['orderID']) {
 				echo '</table><br/><br/><br/>';
@@ -64,6 +80,8 @@ if ($results) {
 			echo '<tr><td><img src="images/' . $row['prName'] . '.jpg" id="product_images"></td><td>' . $row['prName'] . '</td><td>' . $row['prPrice'] . '</td><td>' . $row['odQuantity'] . '</td><td>' . $totalPerItem . '</td><td>' . $row['orDeliverDate'] . '</td></tr>';			
 			$i = $row['orderID'];
 		}
+	} else {
+		echo '<p><center>There are no orders for this customer</center></p>';
 	}
 }
 

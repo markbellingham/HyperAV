@@ -25,16 +25,6 @@
 			<div class="dropdown-content">
 			<?php if (isset($_SESSION['staff'])) { ?>
 				<ul>
-					<li><?php
-					if ((isset($_SESSION['first_name'])) && (!strpos($_SERVER['PHP_SELF'], 'logout.php')) ) 
-					{
-						echo '<a href="logout.php">Logout</a>';
-					} 
-					else 
-					{
-						echo '<a href="login.php">Login</a>';
-					}
-					?></li>
 					<li><a href="staffChangeCustomer.php">Change Customer Details</a></li>
 					<li><a href="customersToDelete.php">Remove Customer</a></li>
 					<li><a href="supplierProducts.php">Place Order</a></li>

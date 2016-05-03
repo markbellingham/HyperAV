@@ -70,25 +70,30 @@ if ($results) {
 		$i = ""; $grandTotal = 0; // Initialise variables
 		while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
 			$totalPerItem = $row['prPrice'] * $row['stOrderQuantity'];
-			$grandTotal += $totalPerItem;
 
 			// The supplier orders are separated by date
 			if ($i != $row['stOrderDate']) {
 				echo '</table><br/><br/>';
 
-				echo '<table border="1"><tr><td>Order Date: ' . $row['stOrderDate'] . '</td><td>Delivery Date: ' . $row['stDeliveryDate'] . '</td><td>Total: £' . number_format($grandTotal, 2) . '</td></tr></table>';
+				echo '<table border="1"><tr><td>Order Date: ' . $row['stOrderDate'] . '</td><td>Delivery Date: ' . $row['stDeliveryDate'] . '</td><td style="text-align: right">Total: £' . number_format($grandTotal, 2) . '</td></tr></table>';
 
-				echo '<table style="border: 1px solid black"><tr style="font-weight: bold"><td>Supplier Name</td><td>Product Name</td><td>Price</td><td>Quantity</td><td>Total Per Item</td></tr>';
+				echo '<table style="border: 1px solid black"><tr style="font-weight: bold">
+					<td>Supplier Name</td>
+					<td>Product Name</td>
+					<td style="text-align: center">Price</td>
+					<td style="text-align: center">Quantity</td>
+					<td style="text-align: center">Total Per Item</td></tr>';
 				$grandTotal = 0; // reset grandTotal
 			}
 
 			echo '<tr><td>' . $row['suName'] . '</td>
 				<td>' . $row['prName'] . '</td>
-				<td>£' . $row['prPrice'] . '</td>
-				<td>' . $row['stOrderQuantity'] . '</td>
-				<td>£' . number_format($totalPerItem, 2) . '</td></tr>';
+				<td style="text-align: right">£' . $row['prPrice'] . '</td>
+				<td style="text-align: center">' . $row['stOrderQuantity'] . '</td>
+				<td style="text-align: right">£' . number_format($totalPerItem, 2) . '</td></tr>';
 
 			$i = $row['stOrderDate'];
+			$grandTotal += $totalPerItem;
 		}
 	} else {
 		// echo 'There are no stock orders from ' . $supplier;

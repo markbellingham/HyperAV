@@ -53,23 +53,45 @@
 		echo '<p>' . mysqli_error($connection) . '</p>';		
 	}
 
-
-	// Now insert all the data into the products table
-	$query2 = 'INSERT INTO hyperav_products (prModelNo, prName, prDescription, prPrice, prCategory, manufacturerID, minStockLevel)
-				VALUES ("'. $modelNo .'","'. $name .'","'. $description .'","'. $price .'","'. $category .'","'. $manufacturerID .'","'. $minStock .'")';
-	
-	/* If the product is successfully added to the database, the user is redirected to the
-	 information page for that product along with a SESSION variable that can be used to change the heading */
-	if (mysqli_query($connection, $query2)) {
+	// Create the INSERT statement using Prepared Statement to protect from SQL injection
+	$query2 = mysqli_prepare($connection, 'INSERT INTO hyperav_products (prModelNo, prName, prDescription, prPrice, prCategory, manufacturerID, minStockLevel) VALUES (?,?,?,?,?,?,?)');
+	if ($query2 === false) {
+		trigger_error('Statement failed! ' . htmlspecialchars(mysqli_error($connection)), E_USER_ERROR);
+	}
+	// Bind the values to the statement
+	$bind = mysqli_stmt_bind_param($query2, "sssdsii", $modelNo, $name, $description, $price, $category, $manufacturerID, $minStock);
+	if ($bind === false) {
+		trigger_error('Bind param failed!', E_USER_ERROR);
+	}
+	// Execute the statement
+	$exec = mysqli_stmt_execute($query2);
+	if ($exec === false) {
+		trigger_error('Statement execute failed ' . htmlspecialchars(mysqli_stmt_error($query2)), E_USER_ERROR);
+	} else {
 		echo '<p>' . $name . ' successfully inserted into the database</p>';
 		//echo '<p>You will now be redirected to its product page.';
 		$_SESSION['message'] = 'added';
 		redirect_to("selected_product.php?prModelNo=" . $modelNo);
-		// sleep(3);
-		// header( 'refresh:3 url=selected_product.php?prModelNo=' . $modelNo );
-	} else {
-		echo 'Error occurred: ' . mysqli_error($connection);
 	}
+
+
+
+	// // Now insert all the data into the products table
+	// $query2 = 'INSERT INTO hyperav_products (prModelNo, prName, prDescription, prPrice, prCategory, manufacturerID, minStockLevel)
+	// 			VALUES ("'. $modelNo .'","'. $name .'","'. $description .'","'. $price .'","'. $category .'","'. $manufacturerID .'","'. $minStock .'")';
+	
+	/* If the product is successfully added to the database, the user is redirected to the
+	 information page for that product along with a SESSION variable that can be used to change the heading */
+	// if (mysqli_query($connection, $query2)) {
+	// 	echo '<p>' . $name . ' successfully inserted into the database</p>';
+	// 	//echo '<p>You will now be redirected to its product page.';
+	// 	$_SESSION['message'] = 'added';
+	// 	redirect_to("selected_product.php?prModelNo=" . $modelNo);
+	// 	// sleep(3);
+	// 	// header( 'refresh:3 url=selected_product.php?prModelNo=' . $modelNo );
+	// } else {
+	// 	echo 'Error occurred: ' . mysqli_error($connection);
+	// }
 
 	mysqli_free_result($result1);
 	mysqli_close($connection);	

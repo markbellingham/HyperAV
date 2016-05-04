@@ -37,6 +37,8 @@ if (!isset($_SESSION['staff']) && ($_POST['location']) == "Select Location") {
 				$locationID = $row['locationID'];
 			}
 		}
+
+		mysqli_free_result($results3);
 	}
 }
 
@@ -79,6 +81,8 @@ if ($results1) {
 		echo '<p>Error: There was a problem with the data</p>';
 		exit;
 	}
+
+	mysqli_free_result($results1);
 } else {
 	echo '<p>Error: There was a problem with the database connection';
 	//DEBUGGING	 echo '<p class="error">'.mysqli_error($connection).'</p>';
@@ -100,13 +104,13 @@ if ($query2 === false) {
 	trigger_error('Statement failed! ' . htmlspecialchars(mysqli_error($connection)), E_USER_ERROR);
 }
 // Bind the values
-$bind = mysqli_stmt_bind_param($query2, "sdssii", $orDate, $orTotal, $orDate, $orPaymentMethod, $customerID, $staffID);
-if ($bind === false) {
+$bind2 = mysqli_stmt_bind_param($query2, "sdssii", $orDate, $orTotal, $orDate, $orPaymentMethod, $customerID, $staffID);
+if ($bind2 === false) {
 	trigger_error('Bind param failed!', E_USER_ERROR);
 }
 // Execute the query
-$exec = mysqli_stmt_execute($query2);
-if ($exec === false) {
+$exec2 = mysqli_stmt_execute($query2);
+if ($exec2 === false) {
 	trigger_error('Statement execute failed! ' . htmlspecialchars(mysqli_stmt_error($query2)), E_USER_ERROR);	
 }
 
@@ -136,18 +140,33 @@ for ($i = 0; $i < count($cart); $i++) {
 				$stQuantity = $row['stQuantity']; // store the current stock quantity so that it can be updated later
 			}
 		}
+
+		mysqli_free_result($results4);
 	}
 
 	// Create an INSERT statement for each item in the cart
-	$query5 = "INSERT INTO hyperav_orderdetails (orderID, stockID, odQuantity) VALUES ($orderID, $stockID, $cart[$ID])";
-	if (mysqli_query($connection, $query5)) {
-		unset($_SESSION['cart']);
-		//echo 'insert into hyperav_orderdetails successful';
-	} else {
+	$query5 = mysqli_prepare($connection, "INSERT INTO hyperav_orderdetails (orderID, stockID, odQuantity) VALUES (?, ?, ?)");
+	if ($query5 === false) { trigger_error('Statement failed! ' . htmlspecialchars(mysqli_error($connection)), E_USER_ERROR); }
+
+	$bind5 = mysqli_stmt_bind_param($query5, "iii", $orderID, $stockID, $cart[$ID]);
+	if ($bind5 === false) { trigger_error('Bind failed!' . E_USER_ERROR); }
+
+	$exec5 = mysqli_stmt_execute($query5);
+	if ($exec5 === false) { 
+		trigger_error('Statement execute failed! ' . htmlspecialchars(mysqli_stmt_error($query5)), E_USER_ERROR);
 		echo '<p>insert into hyperav_orderdetails not successful</p>';
-		// echo '<p>Query5: ' . $query5 . '</p>';
-		// echo '<p>' . mysqli_error($connection) . '</p>';
+	} else {
+		unset($_SESSION['cart']);
 	}
+
+	// if (mysqli_query($connection, $query5)) {
+	// 	unset($_SESSION['cart']);
+	// 	//echo 'insert into hyperav_orderdetails successful';
+	// } else {
+	// 	echo '<p>insert into hyperav_orderdetails not successful</p>';
+	// 	// echo '<p>Query5: ' . $query5 . '</p>';
+	// 	// echo '<p>' . mysqli_error($connection) . '</p>';
+	// }
 
 	// Now reduce the current stock quantity by the amount that was just bought.
 	$stQuantity = $stQuantity - (int)$cart[$ID];
@@ -155,9 +174,6 @@ for ($i = 0; $i < count($cart); $i++) {
 	mysqli_query($connection, $query6);
 }
 
-mysqli_free_result($results1);
-mysqli_free_result($results3);
-mysqli_free_result($results4);
 mysqli_close($connection);
 
 // Provide confirmation message to the user

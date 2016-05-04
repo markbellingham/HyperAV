@@ -41,9 +41,7 @@
 				<ul>
 					<li><a href="products.php">View Products</a></li>
 					<li><a href="orders.php">View Basket</a></li>
-					<li>
-						<a href="show_my_orders.php">Show all my orders</a>
-					</li>
+					<li><a href="show_my_orders.php">Show all my orders</a></li>
 				</ul>
 			</div>
 	</div>

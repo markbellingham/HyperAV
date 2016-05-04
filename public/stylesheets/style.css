@@ -14,17 +14,11 @@ header h2 {
 	text-align:center;
 }
 
-h3 {
-	
-	
-}
-
 /* Style The Dropdown Button */
 .dropbtn {
     background-color: #00004d;
     color: white;
     padding: 16px;
-    /*position: relative;*/
 	margin-left: 10px;
 	margin-right: 10px;
     font-size: 16px;
@@ -45,15 +39,17 @@ h3 {
     display: none;
     position: absolute;
 	text-decoration: none;
+	margin-left: 10px;
+	margin-right: 10px;
     background-color: #f9f9f9;
-    min-width:auto; /*160px;*/
+    min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
 /* Links inside the dropdown */
 .dropdown-content a {
     color: black;
-    padding: 12px 20px;
+    padding: 5px 3px;
     text-decoration: none;
     display: block;
 }
@@ -66,6 +62,18 @@ h3 {
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {background-color: #4949e1;}
+
+ul{
+    list-style-type: none;
+    padding-left: 10px;
+}
+
+#menu {
+/*    border: 1px solid black;*/
+    margin-left: auto;
+    margin-right: auto;
+    width: 61%;
+}
 
 .hello {
 	margin-top: 10px;
@@ -87,8 +95,6 @@ body {
 }
 
 #header {padding: 10px;}
-
-#menu{text-align: center;}
 
 #maincontent {
 	width:1200px;

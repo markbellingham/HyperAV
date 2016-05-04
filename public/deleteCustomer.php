@@ -13,26 +13,25 @@
 	$page_title = $id . ' | HyperAV';
 	include ("../includes/layouts/header.php");
 
-	$query = 'DELETE FROM hyperav_customer WHERE customerID = ' . $id;
-	$results = @mysqli_query($connection, $query);
-	$num_rows = mysqli_affected_rows($connection);
+	// Create the DELETE query using mysqli prepared statements
+	$query = mysqli_prepare($connection, 'DELETE FROM hyperav_customer WHERE customerID = ?');
+	if ($query === false) { trigger_error('Statement failed! ' . htmlspecialchars(mysqli_error($connection)), E_USER_ERROR); }
 
-	if ($results) {
-		if ($num_rows == 1) {
-			echo 'Customer Id ' . $id . ' has been removed from the database';
-			$_SESSION['message'] = "deleted";
-			$_SESSION['id'] = $id;
-			redirect_to("customersToDelete.php");
-		} else {
-			echo '<p>The customer was not deleted</p>';
-			//echo '<p>' . mysqli_error($connection) . '</p>';
-		}
+	// Bind the values to the query
+	$bind = mysqli_stmt_bind_param($query, "i", $id);
+	if ($bind === false) { trigger_error('Bind parameters failed ' . E_USER_ERROR); }
+
+	// Execute the query. It if works, redirect the user back to the Customers page with a message
+	$exec = mysqli_stmt_execute($query);
+	if ($exec === false) {
+		trigger_error('Statement execution failed ' . htmlspecialchars(mysqli_error($query)), E_USER_ERROR);
 	} else {
-		echo 'There was a database error';
-		//echo '<p>' . mysqli_error($connection) . '</p>';
+		echo 'Customer Id ' . $id . ' has been removed from the database';
+		$_SESSION['message'] = "deleted";
+		$_SESSION['id'] = $id;
+		redirect_to("customersToDelete.php");
 	}
 
-	mysqli_free_result($results);
 	mysqli_close($connection);
 
 	include ("../includes/layouts/footer.php");

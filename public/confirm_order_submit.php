@@ -159,15 +159,6 @@ for ($i = 0; $i < count($cart); $i++) {
 		unset($_SESSION['cart']);
 	}
 
-	// if (mysqli_query($connection, $query5)) {
-	// 	unset($_SESSION['cart']);
-	// 	//echo 'insert into hyperav_orderdetails successful';
-	// } else {
-	// 	echo '<p>insert into hyperav_orderdetails not successful</p>';
-	// 	// echo '<p>Query5: ' . $query5 . '</p>';
-	// 	// echo '<p>' . mysqli_error($connection) . '</p>';
-	// }
-
 	// Now reduce the current stock quantity by the amount that was just bought.
 	$stQuantity = $stQuantity - (int)$cart[$ID];
 	$query6 = 'UPDATE hyperav_stock SET stQuantity = ' . $stQuantity . ' WHERE stockID = ' . $stockID;
@@ -179,4 +170,9 @@ mysqli_close($connection);
 // Provide confirmation message to the user
 echo '<p><center>Your order has been successfully submitted</center></p>';
 // echo $query6;
+
+// Remove the customer email from the SESSION so the staff member can process another customer's order
+if (isset($_SESSION['staff'])) {
+	unset($_SESSION['cuEmail']);
+}
 ?>

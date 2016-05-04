@@ -75,31 +75,51 @@
 			$errors[] = 'You forgot to enter your password.';
 		}
 
+
+
 		if (empty($errors)) {
-			$query = "INSERT INTO hyperav_customer (cuFName, cuLName, cuAddress1, cuAddress2, cuTown, cuPostcode, cuTelephone,cuEmail,cuPassword) 
-					VALUES ('$cuFName','$cuLName','$cuAddress1','$cuAddress2','$cuTown','$cuPostcode', '$cuTelephone','$cuEmail',SHA1('$cuPassword'))";
-			$results = @mysqli_query($connection,$query);
 
-			if ($results) {
-				echo '<h3>Thank you!</h3> <p>You have successfully registered.</p>';
-				// mysqli_free_result($results);	
-			} else { 			
-				echo '<h3 class = "error">System Error</h3>
-				<p class = "error">Registration failed because of a system error:</p>'; 
+			$query = mysqli_prepare($connection, "INSERT INTO hyperav_customer (cuFName, cuLName, cuAddress1, cuAddress2, cuTown, cuPostcode, cuTelephone,cuEmail,cuPassword) VALUES (?,?,?,?,?,?,?,?,?)");
+			if ($query === false) { trigger_error('Statement failed ' . htmlspecialchars(mysqli_error($connection)), E_USER_ERROR); }
+
+			$bind = mysqli_stmt_bind_param($query, "sssssssss", $cuFName, $cuLName, $cuAddress1, $cuAddress2, $cuTown, $cuPostcode, $cuTelephone, $cuEmail, SHA1($cuPassword));
+			if ($bind === false) { trigger_error('Binding failed ' . E_USER_ERROR); }
+
+			$exec = mysqli_stmt_execute($query);
+			if ($exec === false) {
+				trigger_error('Statement execution failed ' . htmlspecialchars(mysqli_error($query)), E_USER_ERROR);
+			} else {
+				echo '<h3>Thank you!</h3> <p>You have successfully registered, ' . $cuFName . ' ' . $cuLName . '.</p>';
+
+				mysqli_close($connection);			
+				include ('../includes/layouts/footer.php'); 
+				exit();
 			}
 
-		mysqli_close($connection);
-		
-		include ('../includes/layouts/footer.php'); 
-		exit();
 
-		} else {
-			echo '<h3 class = "error">Error</h3><p class = "error">The following error(s) occurred:</p>';
-			foreach ($errors as $message) { 
-				echo "<p class = 'error'>$message</p>";
-			}
-			echo '<p>Please try again.</p>';
-		} 
+		// 	$query = "INSERT INTO hyperav_customer (cuFName, cuLName, cuAddress1, cuAddress2, cuTown, cuPostcode, cuTelephone,cuEmail,cuPassword) 
+		// 			VALUES ('$cuFName','$cuLName','$cuAddress1','$cuAddress2','$cuTown','$cuPostcode', '$cuTelephone','$cuEmail',SHA1('$cuPassword'))";
+		// 	$results = @mysqli_query($connection,$query);
+
+		// 	if ($results) {
+		// 		echo '<h3>Thank you!</h3> <p>You have successfully registered.</p>';
+		// 	} else { 			
+		// 		echo '<h3 class = "error">System Error</h3>
+		// 		<p class = "error">Registration failed because of a system error:</p>'; 
+		// 	}
+
+		// 	mysqli_close($connection);
+			
+		// 	include ('../includes/layouts/footer.php'); 
+		// 	exit();
+
+		// } else {
+		// 	echo '<h3 class = "error">Error</h3><p class = "error">The following error(s) occurred:</p>';
+		// 	foreach ($errors as $message) { 
+		// 		echo "<p class = 'error'>$message</p>";
+		// 	}
+		// 	echo '<p>Please try again.</p>';
+		 } 
 	}
 ?>
 

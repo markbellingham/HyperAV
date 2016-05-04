@@ -30,28 +30,22 @@
 	// echo '<p>' . $minStock . '</p>';
 	// echo '<p>' . $maxStock . '</p>';
 
-	$query = 'UPDATE hyperav_products SET prName ="' . $name . '", prDescription = "' . $description . '", prPrice = ' . $price . ', prCategory = "' . $category . '", minStockLevel = ' . $minStock . ' WHERE prModelNo = "' . $modelNo . '"';
-	$results = @mysqli_query($connection, $query);
-	$num_rows = mysqli_affected_rows($connection);
+	$query = mysqli_prepare($connection, 'UPDATE hyperav_products SET prName = ?, prDescription = ?, prPrice = ?, prCategory = ?, minStockLevel = ? WHERE prModelNo = ?');
+	if ($query === false) { trigger_error('Statement failed! ' . htmlspecialchars(mysqli_error($connection)), E_USER_ERROR); }
 
-	// echo '<p>' . $query . '</p>';
+	$bind = mysqli_stmt_bind_param($query, "ssdsis", $name, $description, $price, $category, $minStock, $modelNo);
+	if ($bind === false) { trigger_error('Bind parameters failed ' . E_USER_ERROR); }
 
-	if ($results) {
-		if($num_rows > 0) {
-			/* If the product information is successfully updated, the user is redirected to the information page for that product and
-			 a flag is set so that the heading can say that the product was edited */
-			$_SESSION['message'] = 'edited';
-			redirect_to("selected_product.php?prModelNo=" . $modelNo);
-		} else {
-			echo '<p>Product information for ' . $name . ' could not be updated</p>';
-			// echo '<p>' . mysqli_error($connection) . '</p>';
-		}
+	$exec = mysqli_stmt_execute($query);
+	if ($exec === false) { 
+		trigger_error('Statement execute failed! ' . htmlspecialchars(mysqli_stmt_error($query)), E_USER_ERROR); 
 	} else {
-		echo '<p>There was an error with the database</p>';
-		// echo '<p>' . mysqli_error($connection) . '</p>';
+		/* If the product information is successfully updated, the user is redirected to the information page for that product and
+		 a flag is set so that the heading can say that the product was edited */
+		$_SESSION['message'] = 'edited';
+		redirect_to("selected_product.php?prModelNo=" . $modelNo);
 	}
 
-	mysqli_free_result($results);
 	mysqli_close($connection);
 
 	include ("../includes/layouts/footer.php");

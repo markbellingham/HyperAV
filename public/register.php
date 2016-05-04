@@ -5,7 +5,7 @@
 	$page_title = 'Customer Registration';
 	include('../includes/layouts/header.php');
 
-	if (isset($_SESSION['customerID']) {
+	if (isset($_SESSION['customerID'])) {
 		echo '<p>You are already registered ' . $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] . '</p>';
 		include ("../includes/layouts/footer.php");
 		exit;
@@ -81,17 +81,18 @@
 			$results = @mysqli_query($connection,$query);
 
 			if ($results) {
-				echo '<h3>Thank you!</h3> <p>You have successfully registered.</p>';	
+				echo '<h3>Thank you!</h3> <p>You have successfully registered.</p>';
+				// mysqli_free_result($results);	
 			} else { 			
 				echo '<h3 class = "error">System Error</h3>
 				<p class = "error">Registration failed because of a system error:</p>'; 
 			}
 
-		mysqli_free_result($results);
 		mysqli_close($connection);
 		
 		include ('../includes/layouts/footer.php'); 
 		exit();
+
 		} else {
 			echo '<h3 class = "error">Error</h3><p class = "error">The following error(s) occurred:</p>';
 			foreach ($errors as $message) { 

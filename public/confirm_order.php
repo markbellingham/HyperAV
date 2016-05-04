@@ -63,6 +63,8 @@ if ($results) {
 		$_SESSION['grandTotal'] = $grandTotal;
 		echo '</table>';
 		echo '</div>';
+
+		mysqli_free_result($results);
 	}
 }
 
@@ -93,6 +95,8 @@ if (isset($_SESSION['cuEmail'])) {
 			echo '<p>Please confirm the customer\'s email address:</p>';
 			echo '<input type="email" name="cuEmail" required>';
 		}
+
+		mysqli_free_result($results1);
 	} else {
 		// If there wasa a problem with the database query itself, we end up here.
 		echo '<h3 class="error">System Error</h3>
@@ -124,12 +128,14 @@ if (isset($_SESSION['cuEmail']) && !isset($_SESSION['staff'])) {
 			<?php } ?>
 			</select><?php
 		}
+
+		mysqli_free_result($results2);
 	}
 }
 
-mysqli_free_result($results);
-mysqli_free_result($results1);
-mysqli_free_result($results2);
+
+
+
 mysqli_close($connection);
 ?>
 <p><b>Please select payment type</b></p>

@@ -133,9 +133,6 @@ if (isset($_SESSION['cuEmail']) && !isset($_SESSION['staff'])) {
 	}
 }
 
-
-
-
 mysqli_close($connection);
 ?>
 <p><b>Please select payment type</b></p>

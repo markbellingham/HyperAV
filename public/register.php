@@ -95,31 +95,7 @@
 				include ('../includes/layouts/footer.php'); 
 				exit();
 			}
-
-
-		// 	$query = "INSERT INTO hyperav_customer (cuFName, cuLName, cuAddress1, cuAddress2, cuTown, cuPostcode, cuTelephone,cuEmail,cuPassword) 
-		// 			VALUES ('$cuFName','$cuLName','$cuAddress1','$cuAddress2','$cuTown','$cuPostcode', '$cuTelephone','$cuEmail',SHA1('$cuPassword'))";
-		// 	$results = @mysqli_query($connection,$query);
-
-		// 	if ($results) {
-		// 		echo '<h3>Thank you!</h3> <p>You have successfully registered.</p>';
-		// 	} else { 			
-		// 		echo '<h3 class = "error">System Error</h3>
-		// 		<p class = "error">Registration failed because of a system error:</p>'; 
-		// 	}
-
-		// 	mysqli_close($connection);
-			
-		// 	include ('../includes/layouts/footer.php'); 
-		// 	exit();
-
-		// } else {
-		// 	echo '<h3 class = "error">Error</h3><p class = "error">The following error(s) occurred:</p>';
-		// 	foreach ($errors as $message) { 
-		// 		echo "<p class = 'error'>$message</p>";
-		// 	}
-		// 	echo '<p>Please try again.</p>';
-		 } 
+		} 
 	}
 ?>
 

@@ -44,8 +44,7 @@
 	if ($exec === false) {
 		trigger_error('Statement execute failed! ' . htmlspecialchars(mysqli_stmt_error($query)), E_USER_ERROR);
 	} else {
-		echo '<p>customer information for ' . $fname . ' ' . $lname . ' has been updated</p>';
-		$_SESSION['message'] = 'edited';
+		echo '<p>Customer information for ' . $fname . ' ' . $lname . ' has been updated.</p>';
 	}
 
 	mysqli_close($connection);

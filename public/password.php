@@ -58,23 +58,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		if (SHA1($_POST['pass']) == $current_password) {
 
 			if ($_SESSION['staff']) {
-				$query2 = "UPDATE hyperav_staff SET stPassword = SHA1('$newpass') WHERE staffID = {$_SESSION['staffID']}";
-			} else {
-				$query2 = "UPDATE hyperav_customer SET cuPassword = SHA1('$newpass') WHERE customerID = {$_SESSION['customerID']}";
-			}
+				//$query2 = "UPDATE hyperav_staff SET stPassword = SHA1('$newpass') WHERE staffID = {$_SESSION['staffID']}";
 
-			$results2 = @mysqli_query($connection, $query2);
+				// Get the staff ID from the SESSION
+				$staffID = (int)$_SESSION['staffID'];
 
-			if (mysqli_affected_rows($connection) == 1) {
-				echo '<h3>Thank you!</h3>
-				<p>Your password has been changed.</p>';
+				// Create the query using prepared statement.
+				$query2 = mysqli_prepare($connection, "UPDATE hyperav_staff SET stPassword = SHA1('$newpass') WHERE staffID = ?");
+				if ($query2 === false) { trigger_error('Statement failed! ' . htmlspecialchars(mysqli_error($connection)), E_USER_ERROR); }
+
+				$bind2 = mysqli_stmt_bind_param($query2, "i", $staffID);
+				if ($bind2 === false) { trigger_error('Bind parameters failed! ' . E_USER_ERROR); }
+
+				$exec2 = mysqli_stmt_execute($query2);
+				if ($exec2 === false) {
+					trigger_error('Statement execution failed! ' . htmlspecialchars(mysqli_error($query)), E_USER_ERROR);
+				} else {
+					echo '<h3>Thank you!</h3>
+					<p>Your password has been changed.</p>';
+				}
+
 			} else {
-				echo '<h3 class="error">System Error</h3>
-				<p class="error">Your password could not be changed due to a system error.</p>';
-				// DEBUGGING <P class="error">mysqli_error($connection) . '</p>
-				// DEBUGGING <P class="error">Query: ' . $query . '</p>';
+				//$query2 = "UPDATE hyperav_customer SET cuPassword = SHA1('$newpass') WHERE customerID = {$_SESSION['customerID']}";
+
+				// Get the customer ID from the SESSION
+				$customerID = (int)$_SESSION['customerID'];
+
+				// Create the query using prepared statement.
+				$query2 = mysqli_prepare($connection, "UPDATE hyperav_customer SET cuPassword = SHA1('$newpass') WHERE customerID = ?");
+				if ($query2 === false) { trigger_error('Statement failed! ' . htmlspecialchars(mysqli_error($connection)), E_USER_ERROR); }
+
+				$bind2 = mysqli_stmt_bind_param($query2, "i", $customerID);
+				if ($bind2 === false) { trigger_error('Bind parameters failed! ' . E_USER_ERROR); }
+
+				$exec2 = mysqli_stmt_execute($query2);
+				if ($exec2 === false) {
+					trigger_error('Statement execution failed! ' . htmlspecialchars(mysqli_error($query)), E_USER_ERROR);
+				} else {
+					echo '<h3>Thank you!</h3>
+					<p>Your password has been changed.</p>';
+				}
 			}
 		} else {
+			// End up here if the user's current password is not entered correctly
 			echo '<p class="error">Your old password is not correct</p>';
 			// DEBUGGING <P class="error">mysqli_error($connection) . '</p>
 			// DEBUGGING <P class="error">Query: ' . $query . '</p>';

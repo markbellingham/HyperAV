@@ -63,7 +63,7 @@
 				{ ?>					
 					<form name="update" method="POST" action="updateCustomer.php">
 						<?php $id=$row['customerID']; ?>
-						<table cellspacing="30" style="margin-left:200">
+						<table cellspacing="30" style="margin-left:100">
 							<input type="hidden" 	name="customerID" 	value="<?php echo $row['customerID'] ?>" />
 
 							<tr><td align="right"><p class="label">First Name:</td><td>

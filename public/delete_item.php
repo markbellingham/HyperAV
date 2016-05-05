@@ -16,28 +16,25 @@
 
 	// echo '<p>' . $ModelNo . '</p>';
 
-	$query = 'DELETE FROM hyperav_products WHERE prModelNo = "' . $modelNo . '"';
-	$results = @mysqli_query($connection, $query);
-	$num_rows = mysqli_affected_rows($connection);
+	// Create statement using prepared statement
+	$query = mysqli_prepare($connection, "DELETE FROM hyperav_products WHERE prModelNo = ?");
+	if ($query === false) { trigger_error('Statement failed! ' . htmlspecialchars(mysqli_error($connection)), E_USER_ERROR); }
 
-	/* If the product was successfully deleted, the user is redirected back to 
-	 the products page and a flag is set so that that page can inform the user */
-	if ($results) {
-		if ($num_rows == 1) {
-			echo 'Item ' . $modelNo . ' has been removed from the database';
-			$_SESSION['message'] = "deleted";
-			$_SESSION['modelNo'] = $modelNo;
-			redirect_to("products.php");
-		} else {
-			echo '<p>The product was not deleted</p>';
-			// echo '<p>' . mysqli_error($connection) . '</p>';
-		}
+	// Bind the parameter
+	$bind = mysqli_stmt_bind_param($query, "s", $modelNo);
+	if ($bind === false) { trigger_error('Binding parameters failed! ' . E_USER_ERROR); }
+
+	// Execute the query. If successful, redirect to the Products page and send a message to display to show that the item was deleted
+	$exec = mysqli_stmt_execute($query);
+	if ($exec === false) {
+		trigger_error('Statement execution failed! ' . htmlspecialchars(mysqli_error($query)), E_USER_ERROR);
 	} else {
-		echo 'There was a database error';
-		// echo '<p>' . mysqli_error($connection) . '</p>';
+		echo 'Item ' . $modelNo . ' has been removed from the database';
+		$_SESSION['message'] = "deleted";
+		$_SESSION['modelNo'] = $modelNo;
+		redirect_to("products.php");
 	}
 
-	mysqli_free_result($results);
 	mysqli_close($connection);
 
 	include ("../includes/layouts/footer.php");

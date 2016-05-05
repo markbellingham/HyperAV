@@ -39,13 +39,13 @@
 			<tr><th>Customer Id</th><th>First Name</th><th>Last Name</th><th>Address1</th><th>Address2</th><th>Town</th><th>PostCode</th><th>Telephone</th><th>Email</th><th></th></tr>';
 
 			while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
-				echo '<tr><td>' .$row['customerID']. '</td>
+				echo '<tr><td>' . $row['customerID']. '</td>
 						<td>' . $row['cuFName']. ' </td>
 						<td>' . $row['cuLName'] . '</td>
 						<td>' . $row['cuAddress1'] . '</td>
 						<td>' . $row['cuAddress2'] . '</td>
 						<td>' . $row['cuTown'] . '</td>
-						<td>' .$row['cuPostcode'] . '</td>
+						<td>' . $row['cuPostcode'] . '</td>
 						<td>' . $row['cuTelephone'] . '</td>
 						<td>' . $row['cuEmail'] . '</td><td>
 					<form action="deleteCustomer.php" method="POST">

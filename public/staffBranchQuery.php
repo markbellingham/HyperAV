@@ -20,7 +20,7 @@ $num_rows = mysqli_num_rows($results);
 if ($results) {
 	if ($num_rows > 0) {
 		echo '<table>
-		<tr> <td> <b>First Name</b> </td> <td> <b>Last Name</b> </td> </td> </tr>';
+		<tr> <th> <b>First Name</b> </th> <th> <b>Last Name</b> </th> </tr>';
 
 		while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
 			echo '<tr> <td>' . $row['stFName'] .  '</td><td>' . $row['stLName'] . '</td></tr>';

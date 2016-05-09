@@ -75,14 +75,14 @@ if ($results) {
 			if ($i != $row['stOrderDate']) {
 				echo '</table><br/><br/>';
 
-				echo '<table border="1"><tr><td>Order Date: ' . $row['stOrderDate'] . '</td><td>Delivery Date: ' . $row['stDeliveryDate'] . '</td><td style="text-align: right">Total: £' . number_format($grandTotal, 2) . '</td></tr></table>';
+				echo '<table border="1"><tr><th>Order Date: ' . $row['stOrderDate'] . '</th><th>Delivery Date: ' . $row['stDeliveryDate'] . '</th><th style="text-align: right">Total: £' . number_format($grandTotal, 2) . '</th></tr></table>';
 
 				echo '<table style="border: 1px solid black"><tr style="font-weight: bold">
-					<td>Supplier Name</td>
-					<td>Product Name</td>
-					<td style="text-align: center">Price</td>
-					<td style="text-align: center">Quantity</td>
-					<td style="text-align: center">Total Per Item</td></tr>';
+					<th>Supplier Name</th>
+					<th>Product Name</th>
+					<th style="text-align: center">Price</th>
+					<th style="text-align: center">Quantity</th>
+					<th style="text-align: center">Total Per Item</th></tr>';
 				$grandTotal = 0; // reset grandTotal
 			}
 

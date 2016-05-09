@@ -22,7 +22,7 @@ $results = @mysqli_query($connection, $query);
 	if ($results) {
 		if ($num_rows > 0) {
 			echo '<table>
-			<tr> <td> <b>Supplier Name</b> </td> <td> <b>Product Name</b> </td> <td> <b>Order Quantity</b> </td> </td> </tr>';
+			<tr> <th> <b>Supplier Name</b> </th> <th> <b>Product Name</b> </th> <th> <b>Order Quantity</b> </th> </th> </tr>';
 
 			while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
 				echo '<tr> <td>' . $row['suName'] .  '</td><td>' . $row['prName'] . '</td><td align="right">' . $row['stOrderQuantity'] . '</td></tr>';

@@ -19,7 +19,7 @@ $results = @mysqli_query($connection, $query);
 	if ($results) {
 		if ($num_rows > 0) {
 			echo '<table>
-			<tr> <td> <b>Total Sales</b> </td> <td> <b>Location</b> </td> </td> </tr>';
+			<tr> <th> <b>Total Sales</b> </th> <th> <b>Location</b> </th> </tr>';
 
 			while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
 				echo '<tr> <td>' . $row['$total'] .  '</td><td>' . $row['loName'] . '</td></tr>';

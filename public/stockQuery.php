@@ -28,7 +28,7 @@ if ($results) {
 	if ($num_rows > 0) {
 		echo '<table>
 		<tr><td colspan="6"><b>Stock report for ' . $location . '</b></td></td></tr>
-		<tr style="font-weight: bold"><td>Product Name</td><td>Description</td><td>Category</td><td>Stock Quantity</td><td>Manufacturer</td><td>Supplier</td></tr>';
+		<tr style="font-weight: bold"><th>Product Name</th><th>Description</th><th>Category</th><th>Stock Quantity</th><th>Manufacturer</th><th>Supplier</th></tr>';
 
 		while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
 			echo '<tr><td>' . $row['prName'] . '</td>

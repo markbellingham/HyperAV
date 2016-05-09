@@ -78,7 +78,7 @@ if (count($stockcart) > 0) {
 				$cart_quantity = array_values($stockcart);
 				echo '<p><h3>Confirm your order</h3></p>';
 				echo '<div style="float: left; margin-left: 10px;">';
-				echo '<table border="1"><tr><td></td><td><b>Name</b></td><td><b>Supplier</b></td><td><b>Price per item</b></td><td><b>Quantity</b></td><td><b>Total per item</b></td></tr>';
+				echo '<table border="1"><tr><th></th><th><b>Name</b></th><th><b>Supplier</b></th><th><b>Price per item</b></th><th><b>Quantity</b></th><th><b>Total per item</b></th></tr>';
 				while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
 					$i = $row['prModelNo'];
 					echo '<tr><td><img src="images/' . $row['prName'] . '.jpg" id="product_images"></td>

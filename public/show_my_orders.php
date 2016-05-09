@@ -65,18 +65,18 @@ if ($results) {
 
 				// Data is shown in two tables. The first shows information that is the same for the whole order
 				echo '<table border="1"><tr>
-					<td>Order Number: ' . $row['orderID'] . '</td>
-					<td>Order Date: ' . $row['orDate'] . '</td>
-					<td>Payment Method: ' . $row['orPaymentMethod'] . '</td>
-					<td style="text-align: right"><b>Order Total: £' . $row['orTotal'] . '</b></td></tr></table><br/>';
+					<th>Order Number: ' . $row['orderID'] . '</th>
+					<th>Order Date: ' . $row['orDate'] . '</th>
+					<th>Payment Method: ' . $row['orPaymentMethod'] . '</th>
+					<th style="text-align: right"><b>Order Total: £' . $row['orTotal'] . '</b></th></tr></table><br/>';
 
 				// The second table shows details of each individual item on that order - first create some headings
 				echo '<table style="border: 1px solid black"><tr style="font-weight: bold"><td></td>
-					<td>Product Name</td>
-					<td>Price</td>
-					<td>Quantity</td>
-					<td>Total Per Item</td>
-					<td>Delivery Date</td></tr>';
+					<th>Product Name</th>
+					<th>Price</th>
+					<th>Quantity</th>
+					<th>Total Per Item</th>
+					<th>Delivery Date</th></tr>';
 			}
 			// Now show each individual item.
 			$totalPerItem = $row['prPrice'] * $row['odQuantity'];

@@ -47,7 +47,7 @@ if ($results) {
 		$grandTotal = 0;
 		echo '<p><h3>Confirm your order</h3></p>';
 		echo '<div style="float: left; margin-left: 10px;">';
-		echo '<table class="results"><tr><td></td><td><b>Name</b></td><td><b>Price per item</b></td><td><b>Quantity</b></td><td><b>Total per item</b></td><td></td></tr>';
+		echo '<table class="results"><tr><th></th><th><b>Name</b></th><th><b>Price per item</b></th><th><b>Quantity</b></th><th><b>Total per item</b></th><th></th></tr>';
 		while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
 			$ID = $row['prModelNo'];
 			echo '<tr><td><img src="images/' . $row['prName'] . '.jpg" id="product_images"></td>

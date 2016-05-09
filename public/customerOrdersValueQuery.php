@@ -20,7 +20,7 @@ $results = @mysqli_query($connection, $query);
 	if ($results) {
 		if ($num_rows > 0) {
 			echo '<table>
-			<tr> <td> <b>First Name</b> </td> <td> <b>Last Name</b> </td> <td> <b>Order Date</b> </td> <td> <b>Order Total</b> </td>  </tr>';
+			<tr> <th> <b>First Name</b> </th> <th> <b>Last Name</b> </th> <th> <b>Order Date</b> </th> <th> <b>Order Total</b> </th>  </tr>';
 
 			while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
 				echo '<tr> <td>' . $row['cuFName'] .  '</td><td>' . $row['cuLName'] . '</td><td>' . $row['orDate'] . '</td><td align="right">' . $row['orTotal'] .  '</td></tr>';

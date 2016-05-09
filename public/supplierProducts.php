@@ -71,7 +71,7 @@
 
 			// If there are results, they are displayed in a table
 			echo '<table class="products">
-			<tr><td></td><td><b>Name</b></td><td><b>Description</b></td><td><b>Price</b></td><td><b>Category</b></td><td><b>Supplier Name</b></td><td></td></tr>';
+			<tr><th></th><th><b>Name</b></th><th><b>Description</b></th><th><b>Price</b></th><th><b>Category</b></th><th><b>Supplier Name</b></th><th></th></tr>';
 
 			while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
 				echo '<tr><td><img src="images/' . $row['prName'] . '.jpg" id="product_images"></td>

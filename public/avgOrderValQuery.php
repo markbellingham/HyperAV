@@ -23,7 +23,7 @@ $results = @mysqli_query($connection, $query);
 	if ($results) {
 		if ($num_rows > 0) {
 				echo '<table>
-				<tr> <td> <b>Location</b> </td> <td> <b>Average Sales</b> </td>  </td> </tr>';
+				<tr> <th> <b>Location</b> </th> <th> <b>Average Sales</b> </th> </tr>';
 
 				while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
 					echo '<tr> <td>' . $location .  '</td><td>'  . number_format($row['$total'],2)  . '</td><td>';

@@ -5,6 +5,17 @@
 	<link rel="stylesheet" href="stylesheets/style.css" type="text/css" />
 </head>
 <body>
+<div id="basket">
+<?php
+	// Gets the cart from the SESSION or initialises it if it is not there
+	if (isset($_SESSION['cart'])) {
+		$cart = $_SESSION['cart'];
+	} else {
+		$cart = array();
+	}
+	echo 'You have <span id="cartCount">' . count($cart) . '</span> items in your basket';
+?>
+</div> <!-- ends basket -->
 <div id="wrapper">
 	<header>
 		<h1>HyperAV Home Cinema</h1>

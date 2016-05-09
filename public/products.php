@@ -13,6 +13,9 @@
 		if ($_SESSION['message'] == "deleted") {
 			echo '<h3>' . $_SESSION['modelNo'] . ' was deleted from the database</h3>';
 			unset($_SESSION['message']);
+		} else if ($_SESSION['message'] == "added") {
+			echo '<h3>' . $_SESSION['prName'] . ' was added to your order</h3>';
+			unset($_SESSION['message'], $_SESSION['prName']);
 		}
 	}
 

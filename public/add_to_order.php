@@ -34,11 +34,17 @@ if (isset($_POST['prModelNo'])) {
 		if ($num_rows > 0) {
 			echo '<table><tr><th></th><th>Name</th><th>Price</th></tr>';
 			while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
-				echo '<p><tr><td><img src="images/' . $row['prName'] . '.jpg" id="product_images"></td>';
-				echo '<td>' . $row['prName'] . '</td><td>&pound' . $row['prPrice'] . '</td></tr></p>';
+				echo '<p><tr>
+					<td><img src="images/' . $row['prName'] . '.jpg" id="product_images"></td>
+					<td>' . $row['prName'] . '</td><td>&pound' . $row['prPrice'] . '</td></tr></p>';
+					$name = $row['prName'];
 			}
 
 			echo '</table>';
+
+			$_SESSION['message'] 	= "added";
+			$_SESSION['prName']		= $name;
+			redirect_to("products.php");
 		}
 	}
 }

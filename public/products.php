@@ -6,9 +6,8 @@
 	$page_title = 'Products | HyperAV';
 	include ("../includes/layouts/header.php");
 
-	/* If the user came from the delete_item.php page, there will be a message in the SESSION and
-	the page will tell the user which item was deleted.
-	Then it deletes the SESSION variable so that the message does not reappear. */
+	/*The add_to_order and delete_item pages set a message about what happened.
+	If present, the message is displayed here and the SESSION variables are unset */
 	if (isset($_SESSION['message'])) {
 		if ($_SESSION['message'] == "deleted") {
 			echo '<h3>' . $_SESSION['modelNo'] . ' was deleted from the database</h3>';

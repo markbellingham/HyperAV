@@ -42,6 +42,7 @@ if (isset($_POST['prModelNo'])) {
 
 			echo '</table>';
 
+			// Set message in the SESSION of what was added to the order and redirect back to products.php
 			$_SESSION['message'] 	= "added";
 			$_SESSION['prName']		= $name;
 			redirect_to("products.php");

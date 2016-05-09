@@ -23,7 +23,7 @@ $results = @mysqli_query($connection, $query);
 			<tr> <th> <b>First Name</b> </th> <th> <b>Last Name</b> </th> <th> <b>Order Date</b> </th> <th> <b>Order Total</b> </th>  </tr>';
 
 			while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
-				echo '<tr> <td>' . $row['cuFName'] .  '</td><td>' . $row['cuLName'] . '</td><td>' . $row['orDate'] . '</td><td align="right">' . $row['orTotal'] .  '</td></tr>';
+				echo '<tr> <td>' . $row['cuFName'] .  '</td><td>' . $row['cuLName'] . '</td><td>' . $row['orDate'] . '</td><td align="right">£' . $row['orTotal'] .  '</td></tr>';
 					
 			}
 			echo '</table>';
@@ -39,7 +39,7 @@ $results = @mysqli_query($connection, $query);
 		echo mysqli_error($connection);
 		echo $query;
 	}
-mysqli_free_result($results);
+
 mysqli_close($connection);		
 ?>
 	

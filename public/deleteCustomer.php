@@ -9,6 +9,8 @@
 
 	// Get the customer number from the POST request
 	$id = $_POST['customerID'];
+	$cuFName = $_POST['cuFName'];
+	$cuLName = $_POST['cuLName'];
 
 	$page_title = $id . ' | HyperAV';
 	include ("../includes/layouts/header.php");
@@ -28,7 +30,7 @@
 	} else {
 		echo 'Customer Id ' . $id . ' has been removed from the database';
 		$_SESSION['message'] = "deleted";
-		$_SESSION['id'] = $id;
+		$_SESSION['name'] = $cuFName . " " . $cuLName;
 		redirect_to("customersToDelete.php");
 	}
 

@@ -15,7 +15,7 @@
 	// Then it deletes the SESSION variable so that the message does not reappear.
 	if (isset($_SESSION['message'])) {
 		if ($_SESSION['message'] == "deleted") {
-			echo '<h3>' . $_SESSION['id'] . ' was deleted from the database</h3>';
+			echo '<h3>' . $_SESSION['name'] . ' was deleted from the database</h3>';
 			unset($_SESSION['message']);
 		}
 	}
@@ -50,6 +50,8 @@
 						<td>' . $row['cuEmail'] . '</td><td>
 					<form action="deleteCustomer.php" method="POST">
 					<input type="hidden" name="customerID" value=' . $row['customerID'] . '>
+					<input type="hidden" name="cuFName" value=' . $row['cuFName'] . '>
+					<input type="hidden" name="cuLName" value=' . $row['cuLName'] . '>
 					<input type="submit" value="Remove Customer"></form></td></tr>';
 			}
 			echo '</table>';

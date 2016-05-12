@@ -186,6 +186,13 @@ th {
     color: #ffffff;
 }
 
+table.sortable th {
+	cursor: pointer;
+}
+table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after { 
+    content: " \25B4\25BE" 
+}
+
 table.products td { width: 50px; }
 table.products td + td + td{ width: 350px; }
 table.products td + td + td + td{ width: 50px; }

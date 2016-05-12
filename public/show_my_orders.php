@@ -61,7 +61,7 @@ if ($results) {
 
 			// If the order ID has changed, close the previous table if it exists and create some space
 			if ($i != $row['orderID']) {
-				echo '</table><br/><br/><br/>';
+				echo '</table class="sortable"><br/><br/><br/>';
 
 				// Data is shown in two tables. The first shows information that is the same for the whole order
 				echo '<table border="1"><tr>

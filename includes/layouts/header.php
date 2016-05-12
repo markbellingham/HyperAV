@@ -3,6 +3,7 @@
 <head>
 	<title><?php echo $page_title; ?></title>
 	<link rel="stylesheet" href="stylesheets/style.css" type="text/css" />
+	<script src="../includes/sorttable.js"></script>
 </head>
 <body>
 <div id="basket">

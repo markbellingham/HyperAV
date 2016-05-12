@@ -65,10 +65,10 @@ if ($results) {
 
 				// Data is shown in two tables. The first shows information that is the same for the whole order
 				echo '<table border="1"><tr>
-					<th>Order Number: ' . $row['orderID'] . '</th>
-					<th>Order Date: ' . $row['orDate'] . '</th>
-					<th>Payment Method: ' . $row['orPaymentMethod'] . '</th>
-					<th style="text-align: right"><b>Order Total: £' . $row['orTotal'] . '</b></th></tr></table><br/>';
+					<th class="sorttable_nosort">Order Number: ' . $row['orderID'] . '</th>
+					<th class="sorttable_nosort">Order Date: ' . $row['orDate'] . '</th>
+					<th class="sorttable_nosort">Payment Method: ' . $row['orPaymentMethod'] . '</th>
+					<th style="text-align: right" class="sorttable_nosort"><b>Order Total: £' . $row['orTotal'] . '</b></th></tr></table><br/>';
 
 				// The second table shows details of each individual item on that order - first create some headings
 				echo '<table style="border: 1px solid black"><tr style="font-weight: bold"><td></td>

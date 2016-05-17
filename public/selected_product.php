@@ -38,13 +38,15 @@
 					}
 				} else {
 					echo '<h3>Product information for ' . $row['prName'] . '</h3>';
+					echo '<p>' . $row['prDescription'] . '</p>';
 				}
 				echo '<div><img src="images/' . $row['prName'] . '.jpg" id="product_full_image" ></div>';
-				echo '<div id="product_information"><table><tr><td>' . $row['prName'] . '</td></tr>';
-				echo '<tr><td>' . $row['prDescription'] . '</td></tr>';
-				echo '<tr><td>&pound' . $row['prPrice'] . '</td><td><form action="add_to_order.php" method="POST">
-															<input type="hidden" name="prModelNo" value=' . $row['prModelNo'] . '>
-															<input type="submit" value="Buy"></form></td>';
+				echo '<div id="product_information"><table id="product_information"><tr>
+					<td colspan="3"><div id="description">' . $row['prDescr_Long'] . '</div></td></tr>
+					<tr><td>&pound' . $row['prPrice'] . '</td>
+					<td><form action="add_to_order.php" method="POST">
+					<input type="hidden" name="prModelNo" value=' . $row['prModelNo'] . '>
+					<input type="submit" value="Buy"></form></td>';
 				// The edit product button is only visible if a staff member is logged in
 				if (isset($_SESSION['staff'])) {
 					echo '<td><form action="edit_item.php" method="GET">

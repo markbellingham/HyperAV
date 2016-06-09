@@ -36,9 +36,10 @@
 			while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
 				// The product details are displayed in editable text boxes
 				echo '<div><img src="images/' . $row['prName'] . '.jpg" id="product_full_image" ></div>';
-				echo '<div id="product_information"><table><form action="edit_item_submit.php" method="POST" >';
+				echo '<div id="product_information"><table border="0"><form action="edit_item_submit.php" method="POST" >';
 				echo '<tr><td><input type="text" name="prName" value="' . $row['prName'] . '"></td></tr>';
-				echo '<tr><td><textarea name="description" rows="5" cols="50">' . $row['prDescription'] . '</textarea></td></tr>';
+				echo '<tr><td><input type="text" name="description" value="' . $row['prDescription'] . '"></td></tr>';
+				echo '<tr><td><textarea name="descr_long" rows="15" cols="80">' . $row['prDescr_Long'] . '</textarea></td></tr>';
 				echo '<tr><td>&pound<input type="text" name="price" value="' . $row['prPrice'] . '" size="1"></td></tr>';
 				echo '<tr><td>';
 				/* The category dropdown box is populated from the categories already in the database. 

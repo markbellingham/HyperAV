@@ -12,6 +12,7 @@
 	$modelNo 		= $_POST['prModelNo'];
 	$name 			= $_POST['prName'];
 	$description 	= $_POST['description'];
+	$descr_long 	= $_POST['descr_long'];
 	$price 			= $_POST['price'];
 	$category 		= $_POST['category'];
 	$maName 		= $_POST['maName'];
@@ -30,10 +31,10 @@
 	// echo '<p>' . $minStock . '</p>';
 	// echo '<p>' . $maxStock . '</p>';
 
-	$query = mysqli_prepare($connection, 'UPDATE hyperav_products SET prName = ?, prDescription = ?, prPrice = ?, prCategory = ?, minStockLevel = ? WHERE prModelNo = ?');
+	$query = mysqli_prepare($connection, 'UPDATE hyperav_products SET prName = ?, prDescription = ?, prDescr_Long = ?, prPrice = ?, prCategory = ?, minStockLevel = ? WHERE prModelNo = ?');
 	if ($query === false) { trigger_error('Statement failed! ' . htmlspecialchars(mysqli_error($connection)), E_USER_ERROR); }
 
-	$bind = mysqli_stmt_bind_param($query, "ssdsis", $name, $description, $price, $category, $minStock, $modelNo);
+	$bind = mysqli_stmt_bind_param($query, "sssdsis", $name, $description, $descr_long, $price, $category, $minStock, $modelNo);
 	if ($bind === false) { trigger_error('Bind parameters failed ' . E_USER_ERROR); }
 
 	$exec = mysqli_stmt_execute($query);

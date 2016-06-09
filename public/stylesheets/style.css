@@ -217,7 +217,10 @@ table.customers td + td + td + td { width: 200px; }
 table.customers td + td + td + td + td { width: 50px; }
 table.customers td + td + td + td + td + td + td { width: 100px; }
 
-
+#no_border th, td { 
+	border-collapse: collapse;
+	border: 0px;
+}
 
 tfoot { font-weight: bold; }
 

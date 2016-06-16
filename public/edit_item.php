@@ -59,6 +59,7 @@
 							 } ?>
 						</select><?php
 					}
+					mysqli_free_result($results1);
 				}
 				echo '</td></tr><tr><td>';
 				// Like the category, the manufacturer dropdown box is populated from those already in the database.
@@ -77,6 +78,7 @@
 						 	} ?>
 						</select><?php
 					}
+					mysqli_free_result($results2);
 				}
 				echo '</td></tr>';
 				echo '<tr><td>Minimum Stock: <input type="number" name="minStock" min="0" max="10000" value="' . $row['minStockLevel'] . '"></td></tr>';
@@ -99,9 +101,6 @@
 		//DEBUGGING echo '<p class="error">'.mysqli_error($conn).'</p>
 		//DEBUGGING <p class="error">Query:'. $query . '</p>';
 	}
-
-	mysqli_free_result($results1);
-	mysqli_free_result($results2);
 	mysqli_close($connection);
 ?>
 

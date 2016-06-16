@@ -94,7 +94,7 @@
 			echo '</tr></table>';
 		} else {
 			echo '<p class="error">No related products exist.</p>';
-			echo $query2;
+			// DEBUGGING echo $query2;
 		}
 	} else {
 		echo '<h3 class="error">System Error</h3>

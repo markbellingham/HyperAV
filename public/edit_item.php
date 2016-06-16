@@ -94,11 +94,14 @@
 
 		} else {
 			echo '<p class="error">This product does not exist.</p>';
+			// DEBUGGING echo '<p class="error">' . mysqli_error($connection) . '</p>
+			// DEBUGGING	<p class="error">Query:'. $query . '</p>';
+			// DEBUGGING var_dump($results);
 		}
 	} else {
 		echo '<h3 class="error">System Error</h3>
 		<p class="error">Product data could not be retrieved.</p>';
-		//DEBUGGING echo '<p class="error">'.mysqli_error($conn).'</p>
+		//DEBUGGING echo '<p class="error">'.mysqli_error($connection).'</p>
 		//DEBUGGING <p class="error">Query:'. $query . '</p>';
 	}
 	mysqli_close($connection);

@@ -41,8 +41,12 @@
 					echo '<p>' . $row['prDescription'] . '</p>';
 				}
 				echo '<div><img src="images/' . $row['prName'] . '.jpg" id="product_full_image" ></div>';
-				echo '<div id="product_information"><table id="product_information"><tr>
-					<td colspan="3"><div id="description">' . $row['prDescr_Long'] . '</div></td></tr>
+				echo '<div id="product_information_div" class="tran2"><table id="product_information_table" border="1">
+					<tr><td colspan="3">
+					<a href="#" class="hide">[hide]</a>
+					<a href="#" class="show">[show]</a>
+					<div id="description_long" class="tran15">
+					' . $row['prDescr_Long'] . '</div></td></tr> <!--ends description_long-->
 					<tr><td>&pound' . $row['prPrice'] . '</td>
 					<td><form action="add_to_order.php" method="POST">
 					<input type="hidden" name="prModelNo" value=' . $row['prModelNo'] . '>
@@ -53,7 +57,7 @@
 						<input type="hidden" name="prModelNo" value=' . $row['prModelNo'] . '>
 						<input type="submit" value="Edit"></form></td></tr>';
 				}
-				echo '</table></div>';
+				echo '</table></div>'; // ends product_information
 				$category = $row['prCategory'];
 			}
 

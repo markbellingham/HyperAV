@@ -79,7 +79,7 @@
 
 		if (empty($errors)) {
 
-			$query = mysqli_prepare($connection, "INSERT INTO hyperav_customer (cuFName, cuLName, cuAddress1, cuAddress2, cuTown, cuPostcode, cuTelephone,cuEmail,cuPassword) VALUES (?,?,?,?,?,?,?,?,?)");
+			$query = mysqli_prepare($connection, "INSERT INTO hyperAV_customer (cuFName, cuLName, cuAddress1, cuAddress2, cuTown, cuPostcode, cuTelephone,cuEmail,cuPassword) VALUES (?,?,?,?,?,?,?,?,?)");
 			if ($query === false) { trigger_error('Statement failed ' . htmlspecialchars(mysqli_error($connection)), E_USER_ERROR); }
 
 			$bind = mysqli_stmt_bind_param($query, "sssssssss", $cuFName, $cuLName, $cuAddress1, $cuAddress2, $cuTown, $cuPostcode, $cuTelephone, $cuEmail, SHA1($cuPassword));

@@ -19,7 +19,7 @@ if (isset($_SESSION['cart'])) {
 if (count($cart) > 0) {
 	// First get the productIDs from the array
 	$cart_keys = array_keys($cart);
-	$query = 'SELECT * FROM hyperav_products WHERE ';
+	$query = 'SELECT * FROM hyperAV_products WHERE ';
 	// Build up a SELECT  statement from all the items in the array
 	for ($i = 0; $i < count($cart); $i++) {
 		if ($i != 0) {

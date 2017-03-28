@@ -25,7 +25,7 @@
 			
 			<!-- Code to create the dropdown box for selecting the category -->
 			<tr><td></td><td><?php
-			$query1 = "SELECT DISTINCT prCategory FROM hyperav_products ORDER BY prCategory ASC";
+			$query1 = "SELECT DISTINCT prCategory FROM hyperAV_products ORDER BY prCategory ASC";
 			$results1 = @mysqli_query($connection, $query1);
 			$num_rows1 = mysqli_num_rows($results1);
 			if($results1) {
@@ -42,7 +42,7 @@
 			
 			<!-- Code to create the dropdown box for selecting the manufacturer -->
 			<tr><td></td><td><?php
-			$query2 = "SELECT maName FROM hyperav_manufacturer ORDER BY maName ASC";
+			$query2 = "SELECT maName FROM hyperAV_manufacturer ORDER BY maName ASC";
 			$results2 = @mysqli_query($connection, $query2);
 			$num_rows2 = mysqli_num_rows($results2);
 			if($results2) {

@@ -31,7 +31,7 @@
 	// echo '<p>' . $minStock . '</p>';
 	// echo '<p>' . $maxStock . '</p>';
 
-	$query = mysqli_prepare($connection, 'UPDATE hyperav_products SET prName = ?, prDescription = ?, prDescr_Long = ?, prPrice = ?, prCategory = ?, minStockLevel = ? WHERE prModelNo = ?');
+	$query = mysqli_prepare($connection, 'UPDATE hyperAV_products SET prName = ?, prDescription = ?, prDescr_Long = ?, prPrice = ?, prCategory = ?, minStockLevel = ? WHERE prModelNo = ?');
 	if ($query === false) { trigger_error('Statement failed! ' . htmlspecialchars(mysqli_error($connection)), E_USER_ERROR); }
 
 	$bind = mysqli_stmt_bind_param($query, "sssdsis", $name, $description, $descr_long, $price, $category, $minStock, $modelNo);

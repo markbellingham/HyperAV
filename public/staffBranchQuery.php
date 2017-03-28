@@ -11,8 +11,8 @@
 $location = $_POST['location'];
 
 $query= 'SELECT * 
-FROM 	hyperav_staff join hyperav_location ON hyperav_location.locationid = hyperav_staff.locationid
-WHERE 	hyperav_location.loName = "' . $location . '"';
+FROM 	hyperAV_staff join hyperAV_location ON hyperAV_location.locationid = hyperAV_staff.locationid
+WHERE 	hyperAV_location.loName = "' . $location . '"';
 
 $results = @mysqli_query($connection, $query);
 $num_rows = mysqli_num_rows($results);

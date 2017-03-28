@@ -10,7 +10,7 @@
 
 
 $query= 'SELECT SUM(orTotal) AS $total, lo.loName 
-FROM 	hyperav_orders o JOIN hyperav_staff st ON o.staffID = st.staffID JOIN hyperav_location lo ON st.locationID = lo.locationID 
+FROM 	hyperAV_orders o JOIN hyperAV_staff st ON o.staffID = st.staffID JOIN hyperAV_location lo ON st.locationID = lo.locationID 
 GROUP BY lo.locationID';
 
 $results = @mysqli_query($connection, $query);

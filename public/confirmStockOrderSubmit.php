@@ -43,7 +43,7 @@ for ($i = 0; $i < count($stockcart); $i++) {
 	$ID = $productIDs[$i]; 			// Store the product id in a variable to use later
 	$stQuantity = $stockcart[$ID];	// Get the cart quantity for each product in the cart
 
-	$query = 'SELECT * FROM hyperav_products pr JOIN hyperav_stock st ON pr.prModelNo = st.prModelNo JOIN hyperav_stockorderdetails sod ON st.stockID = sod.stockID JOIN hyperav_supplier su ON sod.supplierID = su.supplierID WHERE pr.prModelNo = "' . $ID . '"';
+	$query = 'SELECT * FROM hyperAV_products pr JOIN hyperAV_stock st ON pr.prModelNo = st.prModelNo JOIN hyperAV_stockorderdetails sod ON st.stockID = sod.stockID JOIN hyperAV_supplier su ON sod.supplierID = su.supplierID WHERE pr.prModelNo = "' . $ID . '"';
 	$results = @mysqli_query($connection, $query);
 	$num_rows = mysqli_num_rows($results);
 
@@ -56,7 +56,7 @@ for ($i = 0; $i < count($stockcart); $i++) {
 				$supplierID = $row['supplierID'];
 
 				// Prepare the insert statement
-				$query2 = mysqli_prepare($connection, "INSERT INTO hyperav_stockorderdetails (stockID, supplierID, stOrderDate, stDeliveryDate, stOrderQuantity) VALUES (?, ?, ?, ?, ?)");
+				$query2 = mysqli_prepare($connection, "INSERT INTO hyperAV_stockorderdetails (stockID, supplierID, stOrderDate, stDeliveryDate, stOrderQuantity) VALUES (?, ?, ?, ?, ?)");
 				if ($query2 === false) {
 					trigger_error('Statement failed! ' . htmlspecialchars(mysqli_error($connection)), E_USER_ERROR);
 				}

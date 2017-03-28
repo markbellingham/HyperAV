@@ -21,7 +21,7 @@ if (isset($_SESSION['stockcart'])) {
 if (count($stockcart) > 0) {
 	// First get the productIDs from the array
 	$cart_keys = array_keys($stockcart);
-	$query = 'SELECT * FROM hyperav_products WHERE ';
+	$query = 'SELECT * FROM hyperAV_products WHERE ';
 	// Build up a SELECT  statement from all the items in the array
 	for ($i = 0; $i < count($stockcart); $i++) {
 		if ($i != 0) {
@@ -74,7 +74,7 @@ if ($results) {
 <?php
 if (isset($_SESSION['cuEmail']) && !isset($_SESSION['staff'])) {
 	echo '<p><b>Please choose a location for pickup or delivery</b></p>';
-	$query2 = "SELECT locationID, loName FROM hyperav_location ORDER BY loName ASC";
+	$query2 = "SELECT locationID, loName FROM hyperAV_location ORDER BY loName ASC";
 	$results2 = @mysqli_query($connection, $query2);
 	$num_rows2 = mysqli_num_rows($results2);
 	if($results2) {

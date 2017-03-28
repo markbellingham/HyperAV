@@ -11,7 +11,7 @@ include ("../includes/layouts/header.php");
 $total = $_POST['totalValue'];
 
 $query= 'SELECT *
-FROM 	hyperav_orders o  JOIN hyperav_customer cu ON o.customerID = cu.customerID 
+FROM 	hyperAV_orders o  JOIN hyperAV_customer cu ON o.customerID = cu.customerID 
 WHERE 	o.ortotal BETWEEN ' . $total;
 
 $results = @mysqli_query($connection, $query);

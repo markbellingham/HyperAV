@@ -21,7 +21,7 @@
 	if one of the suppliers is selected, it reloads the page with the selected option as a GET request
 	so that the page only shows the selected supplier  -->
 <?php 
-	$query1 = "SELECT DISTINCT suName FROM hyperav_supplier ORDER BY suName ASC";
+	$query1 = "SELECT DISTINCT suName FROM hyperAV_supplier ORDER BY suName ASC";
 	$results1 = @mysqli_query($connection, $query1);
 	$num_rows1 = mysqli_num_rows($results1);
 	if($results1) {
@@ -45,18 +45,18 @@
 <?php
 if ($supplier != "" && $supplier != "Select Supplier") {
 	$query = 'SELECT suName, pr.prModelNo, prName, prPrice, stOrderDate, stDeliveryDate, stOrderQuantity
-			FROM hyperav_supplier su
-			JOIN hyperav_stockorderdetails sod ON su.supplierID = sod.supplierID
-			JOIN hyperav_stock st ON st.stockID = sod.stockID
-			JOIN hyperav_products pr ON pr.prModelNo = st.prModelNo 
+			FROM hyperAV_supplier su
+			JOIN hyperAV_stockorderdetails sod ON su.supplierID = sod.supplierID
+			JOIN hyperAV_stock st ON st.stockID = sod.stockID
+			JOIN hyperAV_products pr ON pr.prModelNo = st.prModelNo 
 			WHERE suName = "' . $supplier . '" 
 			ORDER BY stOrderDate DESC, suName';
 } else {
 	$query = 'SELECT suName, pr.prModelNo, prName, prPrice, stOrderDate, stDeliveryDate, stOrderQuantity
-			FROM hyperav_supplier su
-			JOIN hyperav_stockorderdetails sod ON su.supplierID = sod.supplierID
-			JOIN hyperav_stock st ON st.stockID = sod.stockID
-			JOIN hyperav_products pr ON pr.prModelNo = st.prModelNo
+			FROM hyperAV_supplier su
+			JOIN hyperAV_stockorderdetails sod ON su.supplierID = sod.supplierID
+			JOIN hyperAV_stock st ON st.stockID = sod.stockID
+			JOIN hyperAV_products pr ON pr.prModelNo = st.prModelNo
 			ORDER BY stOrderDate DESC, suName';
 }
 

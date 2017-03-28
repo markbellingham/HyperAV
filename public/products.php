@@ -32,7 +32,7 @@
 	if one of the categories is selected, it reloads the page with the selected option as a GET request
 	so that the page only shows the selected category  -->
 <?php 
-	$query1 = "SELECT DISTINCT prCategory FROM hyperav_products ORDER BY prCategory ASC";
+	$query1 = "SELECT DISTINCT prCategory FROM hyperAV_products ORDER BY prCategory ASC";
 	$results1 = @mysqli_query($connection, $query1);
 	$num_rows1 = mysqli_num_rows($results1);
 	if($results1) {
@@ -64,9 +64,9 @@
 	/* Checks if we have come from the category drop down selector
 	in which case the page only shows products from that category, otherwise it shows them all */
 	if ($category != "" && $category != "Select Category") {
-		$query = 'SELECT * FROM hyperav_products WHERE prCategory = "' . $category . '"';
+		$query = 'SELECT * FROM hyperAV_products WHERE prCategory = "' . $category . '"';
 	} else {
-		$query = "SELECT * FROM hyperav_products";
+		$query = "SELECT * FROM hyperAV_products";
 	}
 
 	//echo $query;

@@ -26,7 +26,7 @@
 
 <?php
 	// To find all the relevant details for the item, two tables need to be joined together
-	$query = 'SELECT * FROM hyperav_products pr JOIN hyperav_manufacturer ma ON pr.manufacturerID = ma.manufacturerID WHERE pr.prModelNo = "' . $ModelNo . '"';
+	$query = 'SELECT * FROM hyperAV_products pr JOIN hyperAV_manufacturer ma ON pr.manufacturerID = ma.manufacturerID WHERE pr.prModelNo = "' . $ModelNo . '"';
 	$results = @mysqli_query($connection, $query);
 	$num_rows = mysqli_num_rows($results);
 
@@ -44,7 +44,7 @@
 				echo '<tr><td>';
 				/* The category dropdown box is populated from the categories already in the database. 
 				 To create a new category the database will need to be edited from the command line. This reduces the risk of spelling errors. */
-				$query1 = "SELECT DISTINCT prCategory FROM hyperav_products ORDER BY prCategory ASC";
+				$query1 = "SELECT DISTINCT prCategory FROM hyperAV_products ORDER BY prCategory ASC";
 				$results1 = @mysqli_query($connection, $query1);
 				$num_rows1 = mysqli_num_rows($results1);
 				if($results1) {
@@ -63,7 +63,7 @@
 				}
 				echo '</td></tr><tr><td>';
 				// Like the category, the manufacturer dropdown box is populated from those already in the database.
-				$query2 = "SELECT maName FROM hyperav_manufacturer ORDER BY maName ASC";
+				$query2 = "SELECT maName FROM hyperAV_manufacturer ORDER BY maName ASC";
 				$results2 = @mysqli_query($connection, $query2);
 				$num_rows2 = mysqli_num_rows($results2);
 				if($results2) {

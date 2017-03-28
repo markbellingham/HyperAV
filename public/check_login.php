@@ -15,7 +15,7 @@ function check_customer_login($connection, $emailin = '', $passin = '', $staff="
 	
 	if (empty($errors)&& ($staff=="0"))
 	{ 
-		$query = "SELECT * FROM hyperav_customer WHERE 
+		$query = "SELECT * FROM hyperAV_customer WHERE 
 		cuEmail='$email' AND cuPassword=SHA1('$pass')";		
 		$results = @mysqli_query ($connection, $query);
 	
@@ -44,7 +44,7 @@ function check_staff_login($connection, $emailin = '', $passin = '', $staff="1")
 	
 	if(empty($errors)&& ($staff=="1"))
 	{ 
-		$query = "SELECT * FROM hyperav_staff WHERE 
+		$query = "SELECT * FROM hyperAV_staff WHERE 
 		stEmail='$email' AND stPassword=SHA1('$pass')";		
 		$results = @mysqli_query ($connection, $query);
 		if (mysqli_num_rows($results) == 1) 

@@ -20,7 +20,7 @@
 	$error = 'ERROR: Please fill in all required fields!';
  }
  
-	$query = 'SELECT * FROM hyperav_customer WHERE cuLName = "' . $last . '" AND cuPostcode="' . $post . '";';
+	$query = 'SELECT * FROM hyperAV_customer WHERE cuLName = "' . $last . '" AND cuPostcode="' . $post . '";';
 	$results=@mysqli_query($connection,$query);
 	$num_rows = mysqli_num_rows($results);
 	

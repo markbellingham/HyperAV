@@ -22,7 +22,7 @@ if (isset($_SESSION['stockcart'])) {
 if (count($stockcart) > 0) {
 	// First get the productIDs from the array
 	$cart_keys = array_keys($stockcart);
-	$query = 'SELECT * FROM hyperav_products pr JOIN hyperav_stock st ON pr.prModelNo = st.prModelNo JOIN hyperav_stockorderdetails sod ON st.stockID = sod.stockID JOIN hyperav_supplier su ON sod.supplierID = su.supplierID WHERE ';
+	$query = 'SELECT * FROM hyperAV_products pr JOIN hyperAV_stock st ON pr.prModelNo = st.prModelNo JOIN hyperAV_stockorderdetails sod ON st.stockID = sod.stockID JOIN hyperAV_supplier su ON sod.supplierID = su.supplierID WHERE ';
 	// Build up a SELECT  statement from all the items in the array
 	for ($i = 0; $i < count($stockcart); $i++) {
 		if ($i != 0) {
@@ -44,7 +44,7 @@ if (count($stockcart) > 0) {
 		<?php
 		// Shows a drop down box with all the locations to choose from and the 
 		// location where the staff member placing the order is automatically selected
-		$query2 = "SELECT locationID, loName FROM hyperav_location ORDER BY loName ASC";
+		$query2 = "SELECT locationID, loName FROM hyperAV_location ORDER BY loName ASC";
 		$results2 = @mysqli_query($connection, $query2);
 		$num_rows2 = mysqli_num_rows($results2);
 		if($results2) {

@@ -34,7 +34,7 @@
 	// echo '<p>' . $minStock . '</p>';
 	
 	// First get the manufacturer ID from the manufacturer table
-	$query1 = 'SELECT manufacturerID FROM hyperav_manufacturer WHERE maName = "' . $manufacturer . '"';
+	$query1 = 'SELECT manufacturerID FROM hyperAV_manufacturer WHERE maName = "' . $manufacturer . '"';
 	$result1 = @mysqli_query($connection, $query1);
 	$num_rows = mysqli_num_rows($result1);
 
@@ -54,7 +54,7 @@
 	}
 
 	// Create the INSERT statement using Prepared Statement to protect from SQL injection
-	$query2 = mysqli_prepare($connection, 'INSERT INTO hyperav_products (prModelNo, prName, prDescription, prPrice, prCategory, manufacturerID, minStockLevel) VALUES (?,?,?,?,?,?,?)');
+	$query2 = mysqli_prepare($connection, 'INSERT INTO hyperAV_products (prModelNo, prName, prDescription, prPrice, prCategory, manufacturerID, minStockLevel) VALUES (?,?,?,?,?,?,?)');
 	if ($query2 === false) {
 		trigger_error('Statement failed! ' . htmlspecialchars(mysqli_error($connection)), E_USER_ERROR);
 	}
@@ -77,7 +77,7 @@
 
 
 	// // Now insert all the data into the products table
-	// $query2 = 'INSERT INTO hyperav_products (prModelNo, prName, prDescription, prPrice, prCategory, manufacturerID, minStockLevel)
+	// $query2 = 'INSERT INTO hyperAV_products (prModelNo, prName, prDescription, prPrice, prCategory, manufacturerID, minStockLevel)
 	// 			VALUES ("'. $modelNo .'","'. $name .'","'. $description .'","'. $price .'","'. $category .'","'. $manufacturerID .'","'. $minStock .'")';
 	
 	/* If the product is successfully added to the database, the user is redirected to the

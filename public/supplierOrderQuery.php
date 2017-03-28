@@ -13,7 +13,7 @@
 }
 
 $query= 'SELECT * 
-FROM 	hyperav_stockorderdetails sod JOIN hyperav_stock st ON sod.stockID = st.stockID JOIN hyperav_products pr ON st.prModelNo = pr.prModelNo JOIN hyperav_supplier su ON sod.supplierID = su.supplierID
+FROM 	hyperAV_stockorderdetails sod JOIN hyperAV_stock st ON sod.stockID = st.stockID JOIN hyperAV_products pr ON st.prModelNo = pr.prModelNo JOIN hyperAV_supplier su ON sod.supplierID = su.supplierID
 WHERE 	sod.stDeliveryDate IS NULL';
 
 $results = @mysqli_query($connection, $query);

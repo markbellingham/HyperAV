@@ -26,7 +26,7 @@
 
 <?php 
 	
-	$query = "SELECT * FROM hyperav_customer";
+	$query = "SELECT * FROM hyperAV_customer";
 	
 	$results = @mysqli_query($connection, $query);
 	$num_rows = mysqli_num_rows($results);

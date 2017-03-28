@@ -23,7 +23,7 @@ if (isset($_SESSION['cart'])) {
 if (count($cart) > 0) {
 	// First get the productIDs from the array
 	$cart_keys = array_keys($cart);
-	$query = 'SELECT * FROM hyperav_products WHERE ';
+	$query = 'SELECT * FROM hyperAV_products WHERE ';
 	// Build up a SELECT  statement from all the items in the array
 	for ($i = 0; $i < count($cart); $i++) {
 		if ($i != 0) {
@@ -73,7 +73,7 @@ if ($results) {
 echo '<div style="float: left; margin-left: 50px;">';
 if (isset($_SESSION['cuEmail'])) {
 	// Get the customer information from the database
-	$query1 = 'SELECT * FROM hyperav_customer WHERE cuEmail = "' . $_SESSION['cuEmail'] . '"';
+	$query1 = 'SELECT * FROM hyperAV_customer WHERE cuEmail = "' . $_SESSION['cuEmail'] . '"';
 	$results1 = @mysqli_query($connection, $query1);
 	$num_rows1 = mysqli_num_rows($results1);
 
@@ -116,7 +116,7 @@ if (isset($_SESSION['cuEmail'])) {
 echo '<br />';
 if (isset($_SESSION['cuEmail']) && !isset($_SESSION['staff'])) {
 	echo '<p><b>Please choose a location for pickup or delivery</b></p>';
-	$query2 = "SELECT DISTINCT loName FROM hyperav_location ORDER BY loName ASC";
+	$query2 = "SELECT DISTINCT loName FROM hyperAV_location ORDER BY loName ASC";
 	$results2 = @mysqli_query($connection, $query2);
 	$num_rows2 = mysqli_num_rows($results2);
 	if($results2) {

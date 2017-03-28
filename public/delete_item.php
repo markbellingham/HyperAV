@@ -17,7 +17,7 @@
 	// echo '<p>' . $ModelNo . '</p>';
 
 	// Create statement using prepared statement
-	$query = mysqli_prepare($connection, "DELETE FROM hyperav_products WHERE prModelNo = ?");
+	$query = mysqli_prepare($connection, "DELETE FROM hyperAV_products WHERE prModelNo = ?");
 	if ($query === false) { trigger_error('Statement failed! ' . htmlspecialchars(mysqli_error($connection)), E_USER_ERROR); }
 
 	// Bind the parameter

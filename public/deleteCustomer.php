@@ -16,7 +16,7 @@
 	include ("../includes/layouts/header.php");
 
 	// Create the DELETE query using mysqli prepared statements
-	$query = mysqli_prepare($connection, 'DELETE FROM hyperav_customer WHERE customerID = ?');
+	$query = mysqli_prepare($connection, 'DELETE FROM hyperAV_customer WHERE customerID = ?');
 	if ($query === false) { trigger_error('Statement failed! ' . htmlspecialchars(mysqli_error($connection)), E_USER_ERROR); }
 
 	// Bind the values to the query

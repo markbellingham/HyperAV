@@ -14,7 +14,7 @@
 	
 if (isset($_SESSION['staff'])) { //only displays page if logged in as staff member
 	
-	$query = "SELECT DISTINCT loName FROM hyperav_location ORDER BY loName ASC"; //gets all locations
+	$query = "SELECT DISTINCT loName FROM hyperAV_location ORDER BY loName ASC"; //gets all locations
 	$results = @mysqli_query($connection, $query);
 	$num_rows = mysqli_num_rows($results);
 ?>	

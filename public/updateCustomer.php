@@ -32,7 +32,7 @@
 	 // echo '<p>' . $cuEmail . '</p>';
 	
 	// Create the query statement using prepared statement
-	$query = mysqli_prepare($connection, 'UPDATE hyperav_customer SET cuFName = ?, cuLName = ?, cuAddress1 = ?, cuAddress2 = ?, cuTown = ?, cuPostcode = ?, cuTelephone = ?, cuEmail = ? WHERE customerID = ?');
+	$query = mysqli_prepare($connection, 'UPDATE hyperAV_customer SET cuFName = ?, cuLName = ?, cuAddress1 = ?, cuAddress2 = ?, cuTown = ?, cuPostcode = ?, cuTelephone = ?, cuEmail = ? WHERE customerID = ?');
 	if ($query === false) { trigger_error('Statement failed! ' . htmlspecialchars(mysqli_error($connection)), E_USER_ERROR); }
 
 	// Bind the variables to the query

@@ -15,7 +15,7 @@
 
 <h3>Customer Information </h3>
 <?php
-	$query = 'SELECT * FROM hyperav_customer WHERE cuFName = "' . $_SESSION['first_name'] . '" AND cuEmail="' . $_SESSION['email'] . '";';
+	$query = 'SELECT * FROM hyperAV_customer WHERE cuFName = "' . $_SESSION['first_name'] . '" AND cuEmail="' . $_SESSION['email'] . '";';
 	$result=@mysqli_query($connection,$query);
 	$num_rows = mysqli_num_rows($result);
 	

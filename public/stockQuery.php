@@ -12,12 +12,12 @@ include ("../includes/layouts/header.php");
 $location = $_POST['location'];
 
 $query = 'SELECT pr.prModelNo, prName, prDescription, prCategory, stQuantity, maName, suName
-		FROM hyperav_stock st
-		JOIN hyperav_products pr 			ON pr.prModelNo = st.prModelNo 
-		JOIN hyperav_manufacturer ma 		ON ma.manufacturerID = pr.manufacturerID 
-		JOIN hyperav_location lo 			ON lo.locationID = st.locationID 
-		JOIN hyperav_stockorderdetails sod 	ON sod.stockID = st.stockID 
-		JOIN hyperav_supplier su 			ON su.supplierID = sod.supplierID 
+		FROM hyperAV_stock st
+		JOIN hyperAV_products pr 			ON pr.prModelNo = st.prModelNo 
+		JOIN hyperAV_manufacturer ma 		ON ma.manufacturerID = pr.manufacturerID 
+		JOIN hyperAV_location lo 			ON lo.locationID = st.locationID 
+		JOIN hyperAV_stockorderdetails sod 	ON sod.stockID = st.stockID 
+		JOIN hyperAV_supplier su 			ON su.supplierID = sod.supplierID 
 		WHERE lo.loName = "' . $location . '"
 		ORDER BY prCategory';
 

@@ -19,7 +19,7 @@
 <!-- <h3>Product Information for <?php echo $ModelNo ?></h3> -->
 <div id="main">
 <?php
-	$query = 'SELECT * FROM hyperav_products WHERE prModelNo = "' . $ModelNo . '"';
+	$query = 'SELECT * FROM hyperAV_products WHERE prModelNo = "' . $ModelNo . '"';
 	$results = @mysqli_query($connection, $query);
 	$num_rows = mysqli_num_rows($results);
 
@@ -74,7 +74,7 @@
 
 	/* The page displays a row of related items across the bottom of the page.
 	Related items are those from the same category. It is limited to 9 results to minimise horizontal scrolling */
-	$query2 = 'SELECT * FROM hyperav_products WHERE prCategory = "' . $category . '" LIMIT 9';
+	$query2 = 'SELECT * FROM hyperAV_products WHERE prCategory = "' . $category . '" LIMIT 9';
 	$results2 = @mysqli_query($connection, $query2);
 	$num_rows2 = mysqli_num_rows($results2);
 

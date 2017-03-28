@@ -28,7 +28,7 @@ if (!isset($_SESSION['staff']) && ($_POST['location']) == "Select Location") {
 } else {
 	$location = $_POST['location'];
 	// Get the locationID from the location name
-	$query3 = 'SELECT locationID from hyperav_location WHERE loName = "' . $location . '"';
+	$query3 = 'SELECT locationID from hyperAV_location WHERE loName = "' . $location . '"';
 	$results3 = @mysqli_query($connection, $query3);
 	$num_rows3 = mysqli_num_rows($results3);
 	if ($results3) {
@@ -69,7 +69,7 @@ $orTotal = $_SESSION['grandTotal'];
 $orPaymentMethod = $_POST['payment'];
 
 // Get the customer ID from the database
-$query1 = 'SELECT customerID FROM hyperav_customer WHERE cuEmail = "' . $email . '"';
+$query1 = 'SELECT customerID FROM hyperAV_customer WHERE cuEmail = "' . $email . '"';
 $results1 = @mysqli_query($connection, $query1);
 $num_rows1 = mysqli_num_rows($results1);
 if ($results1) {
@@ -99,7 +99,7 @@ if (isset($_SESSION['staff'])) {
 
 /* INSERT basic order information such as customerID, order date and payment method into the orders table
  The INSERT statement is created using Prepared Statement because there is a possibility of a NULL value in the staffID field. */
-$query2 = mysqli_prepare($connection, "INSERT INTO hyperav_orders (orDate, orTotal, orDeliverDate, orPaymentMethod, customerID, staffID) VALUES (?, ?, ?, ?, ?, ?)");
+$query2 = mysqli_prepare($connection, "INSERT INTO hyperAV_orders (orDate, orTotal, orDeliverDate, orPaymentMethod, customerID, staffID) VALUES (?, ?, ?, ?, ?, ?)");
 if ($query2 === false) {
 	trigger_error('Statement failed! ' . htmlspecialchars(mysqli_error($connection)), E_USER_ERROR);
 }
@@ -130,7 +130,7 @@ $productIDs = array_keys($cart);
 for ($i = 0; $i < count($cart); $i++) {
 	$ID = $productIDs[$i]; // Store the id in a variable to use later
 	// Get the stockID that corresponds to each model number and the location
-	$query4 = 'SELECT * FROM hyperav_stock WHERE prModelNo = "' . $ID . '" AND locationID = "' . $locationID . '"';
+	$query4 = 'SELECT * FROM hyperAV_stock WHERE prModelNo = "' . $ID . '" AND locationID = "' . $locationID . '"';
 	$results4 = @mysqli_query($connection, $query4);
 	$num_rows4 = mysqli_num_rows($results4);
 	if ($results4) {
@@ -145,7 +145,7 @@ for ($i = 0; $i < count($cart); $i++) {
 	}
 
 	// Create an INSERT statement for each item in the cart
-	$query5 = mysqli_prepare($connection, "INSERT INTO hyperav_orderdetails (orderID, stockID, odQuantity) VALUES (?, ?, ?)");
+	$query5 = mysqli_prepare($connection, "INSERT INTO hyperAV_orderdetails (orderID, stockID, odQuantity) VALUES (?, ?, ?)");
 	if ($query5 === false) { trigger_error('Statement failed! ' . htmlspecialchars(mysqli_error($connection)), E_USER_ERROR); }
 
 	$bind5 = mysqli_stmt_bind_param($query5, "iii", $orderID, $stockID, $cart[$ID]);
@@ -154,14 +154,14 @@ for ($i = 0; $i < count($cart); $i++) {
 	$exec5 = mysqli_stmt_execute($query5);
 	if ($exec5 === false) { 
 		trigger_error('Statement execute failed! ' . htmlspecialchars(mysqli_stmt_error($query5)), E_USER_ERROR);
-		echo '<p>insert into hyperav_orderdetails not successful</p>';
+		echo '<p>insert into hyperAV_orderdetails not successful</p>';
 	} else {
 		unset($_SESSION['cart']);
 	}
 
 	// Now reduce the current stock quantity by the amount that was just bought.
 	$stQuantity = $stQuantity - (int)$cart[$ID];
-	$query6 = 'UPDATE hyperav_stock SET stQuantity = ' . $stQuantity . ' WHERE stockID = ' . $stockID;
+	$query6 = 'UPDATE hyperAV_stock SET stQuantity = ' . $stQuantity . ' WHERE stockID = ' . $stockID;
 	mysqli_query($connection, $query6);
 }
 

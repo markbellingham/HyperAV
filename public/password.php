@@ -42,9 +42,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		// First get their current password from the database so it can be checked with the one entered in the form
 		// Checking the ID against the ID in the SESSION because to change their password, the user must be logged in and can only change their own password
 		if ($_SESSION['staff']) {
-			$query1 = "SELECT stPassword FROM hyperav_staff WHERE staffID = {$_SESSION['staffID']}";
+			$query1 = "SELECT stPassword FROM hyperAV_staff WHERE staffID = {$_SESSION['staffID']}";
 		} else {
-			$query1 = "SELECT cuPassword FROM hyperav_customer WHERE customerID = {$_SESSION['customerID']}";
+			$query1 = "SELECT cuPassword FROM hyperAV_customer WHERE customerID = {$_SESSION['customerID']}";
 		}
 		$results1 = @mysqli_query($connection, $query1);
 		$row = mysqli_fetch_array($results1, MYSQLI_ASSOC);
@@ -58,13 +58,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		if (SHA1($_POST['pass']) == $current_password) {
 
 			if ($_SESSION['staff']) {
-				//$query2 = "UPDATE hyperav_staff SET stPassword = SHA1('$newpass') WHERE staffID = {$_SESSION['staffID']}";
+				//$query2 = "UPDATE hyperAV_staff SET stPassword = SHA1('$newpass') WHERE staffID = {$_SESSION['staffID']}";
 
 				// Get the staff ID from the SESSION
 				$staffID = (int)$_SESSION['staffID'];
 
 				// Create the query using prepared statement.
-				$query2 = mysqli_prepare($connection, "UPDATE hyperav_staff SET stPassword = SHA1('$newpass') WHERE staffID = ?");
+				$query2 = mysqli_prepare($connection, "UPDATE hyperAV_staff SET stPassword = SHA1('$newpass') WHERE staffID = ?");
 				if ($query2 === false) { trigger_error('Statement failed! ' . htmlspecialchars(mysqli_error($connection)), E_USER_ERROR); }
 
 				$bind2 = mysqli_stmt_bind_param($query2, "i", $staffID);
@@ -79,13 +79,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				}
 
 			} else {
-				//$query2 = "UPDATE hyperav_customer SET cuPassword = SHA1('$newpass') WHERE customerID = {$_SESSION['customerID']}";
+				//$query2 = "UPDATE hyperAV_customer SET cuPassword = SHA1('$newpass') WHERE customerID = {$_SESSION['customerID']}";
 
 				// Get the customer ID from the SESSION
 				$customerID = (int)$_SESSION['customerID'];
 
 				// Create the query using prepared statement.
-				$query2 = mysqli_prepare($connection, "UPDATE hyperav_customer SET cuPassword = SHA1('$newpass') WHERE customerID = ?");
+				$query2 = mysqli_prepare($connection, "UPDATE hyperAV_customer SET cuPassword = SHA1('$newpass') WHERE customerID = ?");
 				if ($query2 === false) { trigger_error('Statement failed! ' . htmlspecialchars(mysqli_error($connection)), E_USER_ERROR); }
 
 				$bind2 = mysqli_stmt_bind_param($query2, "i", $customerID);

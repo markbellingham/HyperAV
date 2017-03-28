@@ -24,7 +24,7 @@
 	If one of the suppliers is selected, it reloads the page with the selected option as a GET request
 	so that the page only shows the selected supplier's products  -->
 <?php 
-	$query1 = "SELECT suName FROM hyperav_supplier ORDER BY suName";
+	$query1 = "SELECT suName FROM hyperAV_supplier ORDER BY suName";
 	$results1 = @mysqli_query($connection, $query1);
 	$num_rows1 = mysqli_num_rows($results1);
 	if($results1) {
@@ -47,18 +47,18 @@
 
 	// Checks if we have come from the supplier drop down selector
 	if(isset($_GET['suName']) && ($_GET['suName'] != "Select Supplier")) {
-		$query = 'SELECT DISTINCT pr.prModelNo, pr.prName, pr.prDescription, pr.prPrice, pr.prCategory, su.suName FROM hyperav_products pr 
-		JOIN hyperav_stock st  ON pr.prModelNo = st.prModelNo 
-		JOIN hyperav_stockorderdetails stor ON st.stockID =stor.stockID 
-		JOIN hyperav_supplier su ON su.supplierID=stor.supplierID 
+		$query = 'SELECT DISTINCT pr.prModelNo, pr.prName, pr.prDescription, pr.prPrice, pr.prCategory, su.suName FROM hyperAV_products pr 
+		JOIN hyperAV_stock st  ON pr.prModelNo = st.prModelNo 
+		JOIN hyperAV_stockorderdetails stor ON st.stockID =stor.stockID 
+		JOIN hyperAV_supplier su ON su.supplierID=stor.supplierID 
 		WHERE su.suName = "' . $_GET['suName'] . '" 
 		ORDER BY pr.prName';
 		
 	} else {
-		$query = 'SELECT DISTINCT pr.prModelNo, pr.prName, pr.prDescription, pr.prPrice, pr.prCategory, su.suName FROM hyperav_products pr 
-		JOIN hyperav_stock st  ON pr.prModelNo = st.prModelNo 
-		JOIN hyperav_stockorderdetails stor ON st.stockID =stor.stockID 
-		JOIN hyperav_supplier su ON su.supplierID=stor.supplierID 
+		$query = 'SELECT DISTINCT pr.prModelNo, pr.prName, pr.prDescription, pr.prPrice, pr.prCategory, su.suName FROM hyperAV_products pr 
+		JOIN hyperAV_stock st  ON pr.prModelNo = st.prModelNo 
+		JOIN hyperAV_stockorderdetails stor ON st.stockID =stor.stockID 
+		JOIN hyperAV_supplier su ON su.supplierID=stor.supplierID 
 		ORDER BY pr.prName';	
 	}
 

@@ -26,7 +26,7 @@ if (isset($_POST['prModelNo'])) {
 
 	echo '<p>The following item was added to your order:</p>';
 
-	$query = 'SELECT * FROM hyperav_products WHERE prModelNo = "' . $modelNo . '"';
+	$query = 'SELECT * FROM hyperAV_products WHERE prModelNo = "' . $modelNo . '"';
 	$results = @mysqli_query($connection, $query);
 	$num_rows = mysqli_num_rows($results);
 

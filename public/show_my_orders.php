@@ -35,11 +35,11 @@ if (isset($_SESSION['cuEmail'])) {
 
 // Need to join several tables in order to get the type of information that would be useful to the customer
 $query = 'SELECT cu.cuFName, cu.cuLName, o.orderID, prName, prPrice, odQuantity, orDate, orTotal, orDeliverDate, orPaymentMethod 
-	FROM hyperav_orders o 
-	JOIN hyperav_orderdetails od ON o.orderID = od.orderID 
-	JOIN hyperav_stock st ON od.stockID = st.stockID 
-	JOIN hyperav_products pr ON st.prModelNo = pr.prModelNo 
-	JOIN hyperav_customer cu ON o.customerID = cu.customerID 
+	FROM hyperAV_orders o 
+	JOIN hyperAV_orderdetails od ON o.orderID = od.orderID 
+	JOIN hyperAV_stock st ON od.stockID = st.stockID 
+	JOIN hyperAV_products pr ON st.prModelNo = pr.prModelNo 
+	JOIN hyperAV_customer cu ON o.customerID = cu.customerID 
 	WHERE cu.cuEmail = "' . $cuEmail . '" 
 	ORDER BY o.orDate';
 

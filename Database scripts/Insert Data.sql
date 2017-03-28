@@ -32,23 +32,23 @@ VALUES
 INSERT INTO hyperAV_staff 
 	(stFName, stLName, stAddress1, stAddress2, stTown, stPostcode, stTelephone, stEmail, stPassword, stJobRole, locationID)
 VALUES 
-	('Hulk', 'Hogan', '4 Mauldeth Rd', '', 'Stockport', 'SK4 3NW', '0161 496 0342', 'hulk.hogan@hyperav.co.uk', '08426e3c339878b1e66d1e0b977d05353750c6f4', 'Managing Director', 1),
-	('Steve', 'Austin', '47 Old Rd', '', 'Stockport', 'SK4 1TD', '0161 496 0066', 'steve.austin@hyperav.co.uk', '83e715ed38e1d861ac13b651bf15bd1b24e60d5c', 'Buyer', 1),
-	('Vince', 'McMahon', '38 Bluestone Dr', '', 'Stockport', 'SK4 3PY', '07700 900741', 'vince.mcmahon@hyperav.co.uk', 'a9ce51789ef830b12d3779ac7acff82441051455', 'Stock Controller', 2),
-	('Andre', 'Giant', '849 Ashton Old Rd', '', 'Manchester', 'M11 2NL', '0161 496 0877', 'andre.giant@hyperav.co.uk', 'ce8fb61ca792822e3d0d2cce8c2ac006144ec534', 'Warehouse', 2),
-	('Jesse', 'Ventura', '31 Walsden St', '', 'Manchester', 'M11 4WJ', '0161 496 0578', 'jesse.ventura@hyperav.co.uk', '55899b50ee18e5094bc717ad008f4c0e32a65b80', 'Warehouse', 3),
-	('John', 'Cena', '71 Moorside Rd', '', 'Stockport', 'SK4 4DS', '07700 900020', 'john.cena@hyperav.co.uk', '681cbb6826c468e8167e9e0c6cfa5648a04c196c', 'Sales Assistant', 3),
-	('Roddy', 'Piper', '43 Lea Rd', '', 'Stockport', 'SK4 4JT', '07700 900074', 'roddy.piper@hyperav.co.uk', '93afdb999a8e72eaea3fb5688994807b60fddc11', 'Sales Assistant', 4),
-	('Ric', 'Flair', '439 Mill St', '', 'Manchester', 'M11 2BL', '0161 496 0514', 'ric.flair@hyperav.co.uk', '1fc008055278792d6e8c8a4894a1353a5150e169', 'Sales Assistant', 4),
-	('Stacy', 'Keibler', '10 Walshaw St', '', 'Manchester', 'M11 3AP', '0161 496 0589', 'stacy.keibler@hyperav.co.uk', '02b097ce8d66e09253f487e60c4583f2571250bc', 'Sales Assistant', 5),
-	('Shawn', 'Michaels', '29 Hollingbourne Rd', '', 'Liverpool', 'L11 3AJ', '0151 496 0047', 'shawn.michaels@hyperav.co.uk', '63454ab966a1ea74ea3b44fb42253c91f7499bd9', 'Sales Assistant', 5),
-	('Bret', 'Hart', '8 Rushmere Rd', '', 'Liverpool', 'L11 2XP', '0151 496 0552', 'bret.hart@hyperav.co.uk', '9e05c954ce681f483f27bb97c54a41032bec3a2e', 'Sales Assistant', 6),
-	('Randy', 'Savage', '11 Kilford Cl', '', 'Warrington', 'WA5 9SR', '07700 900596', 'randy.savage@hyperav.co.uk', 'f161c7eff0d952898997cb3bd8658731c0092fe5', 'Sales Assistant', 6),
-	('Bruno', 'Sammartino', '80 Pendine Cl', '', 'Warrington', 'WA5 9RQ', '07700 900874', 'bruno.sammartino@hyperav.co.uk', '0bd31275f75aec6d2b1feca7f826bf4a0373d777', 'Sales Assistant', 7),
-	('Ricky', 'Steamboat', '6A Jardine St', '', 'Sheffield', 'S9 1NA', '0114 496 0722', 'ricky.steamboat@hyperav.co.uk', 'be2ad898846cee26635f9a588fc4752f4c314123', 'Sales Assistant', 7),
-	('Kurt', 'Angle', '467 Staniforth Rd', '', 'Sheffield', 'S9 3FR', '0114 496 0103', 'kurt.angle@hyperav.co.uk', 'ad8716e30f8f3c20294522bebaaf848125efb20f', 'Sales Assistant', 5),
-	('Buddy', 'Rogers', '43 Westfield Rd', '', 'Leeds', 'LS3 1NQ', '0113 496 0324', 'buddy.rogers@hyperav.co.uk', '58768414411231a6683573e34a79768188198743', 'Sales Assistant', 6),
-	('Chris', 'Jericho', '48 Washington St', '', 'Leeds', 'LS3 1NR', '0113 496 0934', 'chris.jericho@hyperav.co.uk', '90462767102cabb94325ee3c27667b06ee5675f2', 'Sales Assistant', 6);
+	('Hulk', 'Hogan', '4 Mauldeth Rd', '', 'Stockport', 'SK4 3NW', '0161 496 0342', 'hulk.hogan@hyperAV.co.uk', '08426e3c339878b1e66d1e0b977d05353750c6f4', 'Managing Director', 1),
+	('Steve', 'Austin', '47 Old Rd', '', 'Stockport', 'SK4 1TD', '0161 496 0066', 'steve.austin@hyperAV.co.uk', '83e715ed38e1d861ac13b651bf15bd1b24e60d5c', 'Buyer', 1),
+	('Vince', 'McMahon', '38 Bluestone Dr', '', 'Stockport', 'SK4 3PY', '07700 900741', 'vince.mcmahon@hyperAV.co.uk', 'a9ce51789ef830b12d3779ac7acff82441051455', 'Stock Controller', 2),
+	('Andre', 'Giant', '849 Ashton Old Rd', '', 'Manchester', 'M11 2NL', '0161 496 0877', 'andre.giant@hyperAV.co.uk', 'ce8fb61ca792822e3d0d2cce8c2ac006144ec534', 'Warehouse', 2),
+	('Jesse', 'Ventura', '31 Walsden St', '', 'Manchester', 'M11 4WJ', '0161 496 0578', 'jesse.ventura@hyperAV.co.uk', '55899b50ee18e5094bc717ad008f4c0e32a65b80', 'Warehouse', 3),
+	('John', 'Cena', '71 Moorside Rd', '', 'Stockport', 'SK4 4DS', '07700 900020', 'john.cena@hyperAV.co.uk', '681cbb6826c468e8167e9e0c6cfa5648a04c196c', 'Sales Assistant', 3),
+	('Roddy', 'Piper', '43 Lea Rd', '', 'Stockport', 'SK4 4JT', '07700 900074', 'roddy.piper@hyperAV.co.uk', '93afdb999a8e72eaea3fb5688994807b60fddc11', 'Sales Assistant', 4),
+	('Ric', 'Flair', '439 Mill St', '', 'Manchester', 'M11 2BL', '0161 496 0514', 'ric.flair@hyperAV.co.uk', '1fc008055278792d6e8c8a4894a1353a5150e169', 'Sales Assistant', 4),
+	('Stacy', 'Keibler', '10 Walshaw St', '', 'Manchester', 'M11 3AP', '0161 496 0589', 'stacy.keibler@hyperAV.co.uk', '02b097ce8d66e09253f487e60c4583f2571250bc', 'Sales Assistant', 5),
+	('Shawn', 'Michaels', '29 Hollingbourne Rd', '', 'Liverpool', 'L11 3AJ', '0151 496 0047', 'shawn.michaels@hyperAV.co.uk', '63454ab966a1ea74ea3b44fb42253c91f7499bd9', 'Sales Assistant', 5),
+	('Bret', 'Hart', '8 Rushmere Rd', '', 'Liverpool', 'L11 2XP', '0151 496 0552', 'bret.hart@hyperAV.co.uk', '9e05c954ce681f483f27bb97c54a41032bec3a2e', 'Sales Assistant', 6),
+	('Randy', 'Savage', '11 Kilford Cl', '', 'Warrington', 'WA5 9SR', '07700 900596', 'randy.savage@hyperAV.co.uk', 'f161c7eff0d952898997cb3bd8658731c0092fe5', 'Sales Assistant', 6),
+	('Bruno', 'Sammartino', '80 Pendine Cl', '', 'Warrington', 'WA5 9RQ', '07700 900874', 'bruno.sammartino@hyperAV.co.uk', '0bd31275f75aec6d2b1feca7f826bf4a0373d777', 'Sales Assistant', 7),
+	('Ricky', 'Steamboat', '6A Jardine St', '', 'Sheffield', 'S9 1NA', '0114 496 0722', 'ricky.steamboat@hyperAV.co.uk', 'be2ad898846cee26635f9a588fc4752f4c314123', 'Sales Assistant', 7),
+	('Kurt', 'Angle', '467 Staniforth Rd', '', 'Sheffield', 'S9 3FR', '0114 496 0103', 'kurt.angle@hyperAV.co.uk', 'ad8716e30f8f3c20294522bebaaf848125efb20f', 'Sales Assistant', 5),
+	('Buddy', 'Rogers', '43 Westfield Rd', '', 'Leeds', 'LS3 1NQ', '0113 496 0324', 'buddy.rogers@hyperAV.co.uk', '58768414411231a6683573e34a79768188198743', 'Sales Assistant', 6),
+	('Chris', 'Jericho', '48 Washington St', '', 'Leeds', 'LS3 1NR', '0113 496 0934', 'chris.jericho@hyperAV.co.uk', '90462767102cabb94325ee3c27667b06ee5675f2', 'Sales Assistant', 6);
 
 INSERT INTO hyperAV_orders
 	(orDate,orTotal,orDeliverDate,orPaymentMethod,customerId,staffId)
@@ -152,7 +152,7 @@ VALUES
 	('YAS93','Yamaha YAS93','Yamaha 120Watts Soundbar Dolby Digital/DTS',169.95,'Soundbar',14,1,null),
 	('YAS201','Yamaha YAS201','Yamaha 160Watts Soundbar slim sound bar with subwoofer',219.00,'Soundbar',14,1,null);
 
-INSERT INTO hyperav_stock
+INSERT INTO hyperAV_stock
 	(prModelNo, locationID, stQuantity)
 VALUES
 	('100', 2, 20),
@@ -450,7 +450,7 @@ VALUES
 	('YAS93', 6, 5),
 	('YAS93', 7, 2);
 	
-	INSERT INTO hyperav_orderdetails
+	INSERT INTO hyperAV_orderDetails
 	(orderID, stockID, odQuantity)
 VALUES
 	(1, 1, 3),

@@ -1,5 +1,5 @@
-drop table hyperAV_stockorderdetails;
-drop table hyperAV_orderdetails;
+drop table hyperAV_stockOrderDetails;
+drop table hyperAV_orderDetails;
 drop table hyperAV_stock;
 drop table hyperAV_products;
 drop table hyperAV_supplier;
@@ -100,6 +100,7 @@ CREATE TABLE hyperAV_products (
 prModelNo VARCHAR(15) NOT NULL,
 prName VARCHAR(25) NOT NULL,
 prDescription VARCHAR(100) NOT NULL,
+prDescr_Long VARCHAR(5000),
 prPrice DECIMAL(6,2) NOT NULL,
 prCategory VARCHAR(30) NOT NULL,
 manufacturerID INT(10) NOT NULL,
@@ -119,7 +120,7 @@ CONSTRAINT prModelNo_FK FOREIGN KEY (prModelNo) REFERENCES hyperAV_products (prM
 CONSTRAINT locationID_FK FOREIGN KEY (locationID) REFERENCES hyperAV_location (locationID)ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE hyperAV_orderdetails (
+CREATE TABLE hyperAV_orderDetails (
 orderID INT(10) NOT NULL,
 stockID INT(10) NOT NULL,
 odQuantity INT(3) NOT NULL,
@@ -129,7 +130,7 @@ CONSTRAINT odQuantGTZero CHECK (odQuantity > 0),
 CONSTRAINT oIDsID_PK PRIMARY KEY (orderID, stockID)
 );
 
-CREATE TABLE hyperAV_stockorderdetails
+CREATE TABLE hyperAV_stockOrderDetails
 (stockID int(10) NOT NULL,
 supplierID INT(10) NOT NULL,
 stOrderDate Date NOT NULL,

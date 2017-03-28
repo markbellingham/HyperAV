@@ -1,3 +1,3 @@
-UPDATE hyperav_products 
+UPDATE hyperAV_products 
 SET prDescr_Long = "Compact way to enjoy great audio The J250 offers a great audio experience in a compact format. The perfect companion for you 32' TV, it creates a great sound whatever you're watching. Two built-in speakers provide a crisp, high and well-balances mid-range, while another two built-in woofers take care of the bass. Enjoy the biggest sound for your TV Complement the images you see on screen with realistic, dramatic natural sound. 3D Sound Plus gets you more immersed into your movies and shows, delivering cinematic surround sound that will make you feel like you are part of the action. The Wireless way to upgrade your TV sound Get the freedom to connect your Soundbar to your Samsung TV automatically without wires, and enjoy superb powerful sound that brings programmes, movies and music to life. TV has never sounded so good."
 WHERE prModelNo = "HWJ250XU"; 

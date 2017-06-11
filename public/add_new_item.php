@@ -2,6 +2,7 @@
 	require_once ("../includes/session.php");
 	require_once ("../includes/db_connection.php");
 	require_once ("../includes/functions.php");
+	require_once ("../includes/db_functions.php");
 
 	/* If the user somehow tries to load this page when not logged in as staff
 	 they are redirected to the products page */
@@ -23,38 +24,14 @@
 			<tr><td>Description:</td><td><textarea name="description" rows="5" cols="50"></textarea></td></tr>
 			<tr><td>Price:</td><td>&pound<input type="text" name="price"></td></tr>
 			
-			<!-- Code to create the dropdown box for selecting the category -->
+			<!-- Create the dropdown box for selecting the category -->
 			<tr><td></td><td><?php
-			$query1 = "SELECT DISTINCT prCategory FROM hyperAV_products ORDER BY prCategory ASC";
-			$results1 = @mysqli_query($connection, $query1);
-			$num_rows1 = mysqli_num_rows($results1);
-			if($results1) {
-				if($num_rows1 > 0) {?>
-					<select name="category">
-						<option>Select Category</option>
-						<?php while($option = mysqli_fetch_array($results1, MYSQLI_ASSOC)) { ?>
-							<option><?php echo $option['prCategory']; ?></option>
-					<?php } ?>
-					</select><?php
-				}
-			}
+			dropdown_box("prCategory", "hyperAV_products");
 			?></td></tr>
 			
-			<!-- Code to create the dropdown box for selecting the manufacturer -->
+			<!-- Create the dropdown box for selecting the manufacturer -->
 			<tr><td></td><td><?php
-			$query2 = "SELECT maName FROM hyperAV_manufacturer ORDER BY maName ASC";
-			$results2 = @mysqli_query($connection, $query2);
-			$num_rows2 = mysqli_num_rows($results2);
-			if($results2) {
-				if($num_rows2 > 0) {?>
-					<select name="manufacturer">
-						<option>Select Manufacturer</option>
-						<?php while($option = mysqli_fetch_array($results2, MYSQLI_ASSOC)) { ?>
-							<option><?php echo $option['maName']; ?></option>
-					<?php } ?>
-					</select><?php
-				}
-			}
+			dropdown_box("maName", "hyperAV_manufacturer");
 			?></td></tr>
 			<tr><td>Minimum Stock Level:</td><td><input type="number" name="minStock" min="0" max="10000" value="0"></td></tr>
 			<tr><td></td><td><input type="submit" value="Submit"></td></tr>
@@ -62,11 +39,11 @@
 	</table>
 </div> <!-- Ends "add_new_item" -->
 
-<?php
+<!-- <?php
 	mysqli_free_result($results1);
 	mysqli_free_result($results2);
 	mysqli_close($connection);
-?>
+?> -->
 
 <?php
 	include ("../includes/layouts/footer.php");

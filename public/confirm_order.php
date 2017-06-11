@@ -2,6 +2,7 @@
 require_once ("../includes/session.php");
 require_once ("../includes/db_connection.php");
 require_once ("../includes/functions.php");
+require_once ("../includes/db_functions.php");
 
 $page_title = 'Confirm Order | HyperAV';
 include ("../includes/layouts/header.php");
@@ -116,6 +117,8 @@ if (isset($_SESSION['cuEmail'])) {
 echo '<br />';
 if (isset($_SESSION['cuEmail']) && !isset($_SESSION['staff'])) {
 	echo '<p><b>Please choose a location for pickup or delivery</b></p>';
+	dropdown_box("loName", "hyperAV_location");
+	/*
 	$query2 = "SELECT DISTINCT loName FROM hyperAV_location ORDER BY loName ASC";
 	$results2 = @mysqli_query($connection, $query2);
 	$num_rows2 = mysqli_num_rows($results2);
@@ -131,6 +134,7 @@ if (isset($_SESSION['cuEmail']) && !isset($_SESSION['staff'])) {
 
 		mysqli_free_result($results2);
 	}
+	*/
 }
 
 mysqli_close($connection);

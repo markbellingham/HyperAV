@@ -11,13 +11,13 @@
 
 <?php
 
-$location = $_POST['location'];
+	$location = $_POST['location'];
 
-$query= 'SELECT AVG(orTotal) AS $total
-FROM 	hyperAV_orders o JOIN hyperAV_staff st ON o.staffID = st.staffID JOIN hyperAV_location lo ON st.locationID = lo.locationID 
-WHERE 	lo.loName = "' . $location . '"';
+	$query= 'SELECT AVG(orTotal) AS $total
+	FROM 	hyperAV_orders o JOIN hyperAV_staff st ON o.staffID = st.staffID JOIN hyperAV_location lo ON st.locationID = lo.locationID 
+	WHERE 	lo.loName = "' . $location . '"';
 
-$results = @mysqli_query($connection, $query);
+	$results = @mysqli_query($connection, $query);
 	$num_rows = mysqli_num_rows($results);
 	
 	if ($results) {
@@ -38,8 +38,7 @@ $results = @mysqli_query($connection, $query);
 		} else {
 			echo '<h3 class="error">System Error</h3>
 			<p class="error">Report could not be retrieved.</p>';
-			
-				}
+		}
 		mysqli_close($connection);
 		
 	?>

@@ -74,25 +74,6 @@
 		redirect_to("selected_product.php?prModelNo=" . $modelNo);
 	}
 
-
-
-	// // Now insert all the data into the products table
-	// $query2 = 'INSERT INTO hyperAV_products (prModelNo, prName, prDescription, prPrice, prCategory, manufacturerID, minStockLevel)
-	// 			VALUES ("'. $modelNo .'","'. $name .'","'. $description .'","'. $price .'","'. $category .'","'. $manufacturerID .'","'. $minStock .'")';
-	
-	/* If the product is successfully added to the database, the user is redirected to the
-	 information page for that product along with a SESSION variable that can be used to change the heading */
-	// if (mysqli_query($connection, $query2)) {
-	// 	echo '<p>' . $name . ' successfully inserted into the database</p>';
-	// 	//echo '<p>You will now be redirected to its product page.';
-	// 	$_SESSION['message'] = 'added';
-	// 	redirect_to("selected_product.php?prModelNo=" . $modelNo);
-	// 	// sleep(3);
-	// 	// header( 'refresh:3 url=selected_product.php?prModelNo=' . $modelNo );
-	// } else {
-	// 	echo 'Error occurred: ' . mysqli_error($connection);
-	// }
-
 	mysqli_free_result($result1);
 	mysqli_close($connection);	
 ?>

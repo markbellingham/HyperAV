@@ -39,12 +39,6 @@
 	</table>
 </div> <!-- Ends "add_new_item" -->
 
-<!-- <?php
-	mysqli_free_result($results1);
-	mysqli_free_result($results2);
-	mysqli_close($connection);
-?> -->
-
 <?php
 	include ("../includes/layouts/footer.php");
 ?>

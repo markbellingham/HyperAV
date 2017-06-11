@@ -120,7 +120,6 @@ if (isset($_SESSION['cuEmail']) && !isset($_SESSION['staff'])) {
 	dropdown_box("loName", "hyperAV_location");
 }
 
-mysqli_close($connection);
 ?>
 <p><b>Please select payment type</b></p>
 <select name="payment">

@@ -118,23 +118,6 @@ echo '<br />';
 if (isset($_SESSION['cuEmail']) && !isset($_SESSION['staff'])) {
 	echo '<p><b>Please choose a location for pickup or delivery</b></p>';
 	dropdown_box("loName", "hyperAV_location");
-	/*
-	$query2 = "SELECT DISTINCT loName FROM hyperAV_location ORDER BY loName ASC";
-	$results2 = @mysqli_query($connection, $query2);
-	$num_rows2 = mysqli_num_rows($results2);
-	if($results2) {
-		if($num_rows2 > 0) {?>
-			<select name="location">
-				<option>Select Location</option>
-				<?php while($option = mysqli_fetch_array($results2, MYSQLI_ASSOC)) { ?>
-					<option><?php echo $option['loName']; ?></option>
-			<?php } ?>
-			</select><?php
-		}
-
-		mysqli_free_result($results2);
-	}
-	*/
 }
 
 mysqli_close($connection);

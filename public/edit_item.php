@@ -2,6 +2,7 @@
 	require_once ("../includes/session.php");
 	require_once ("../includes/db_connection.php");
 	require_once ("../includes/functions.php");
+	require_once ("../includes/db_functions.php");
 
 	// If the user somehow tries to load this page when not logged in as staff
 	// they are redirected to the products page
@@ -44,42 +45,12 @@
 				echo '<tr><td>';
 				/* The category dropdown box is populated from the categories already in the database. 
 				 To create a new category the database will need to be edited from the command line. This reduces the risk of spelling errors. */
-				$query1 = "SELECT DISTINCT prCategory FROM hyperAV_products ORDER BY prCategory ASC";
-				$results1 = @mysqli_query($connection, $query1);
-				$num_rows1 = mysqli_num_rows($results1);
-				if($results1) {
-					if($num_rows1 > 0) {?>
-						<select name="category">
-							<?php while($option = mysqli_fetch_array($results1, MYSQLI_ASSOC)) { 
-								if ($row['prCategory'] == $option['prCategory']) { ?>
-									<option selected><?php echo $option['prCategory']; ?></option> <?php
-								} else { ?>
-									<option><?php echo $option['prCategory']; ?></option> <?php
-								}
-							 } ?>
-						</select><?php
-					}
-					mysqli_free_result($results1);
-				}
+				dropdown_box("prCategory", "hyperAV_products");
 				echo '</td></tr><tr><td>';
+
 				// Like the category, the manufacturer dropdown box is populated from those already in the database.
-				$query2 = "SELECT maName FROM hyperAV_manufacturer ORDER BY maName ASC";
-				$results2 = @mysqli_query($connection, $query2);
-				$num_rows2 = mysqli_num_rows($results2);
-				if($results2) {
-					if($num_rows2 > 0) {?>
-						<select name="maName">
-							<?php while($option = mysqli_fetch_array($results2, MYSQLI_ASSOC)) {
-								if ($row['maName'] == $option['maName']) { ?>
-									<option selected><?php echo $option['maName']; ?></option> <?php
-								} else { ?>
-									<option><?php echo $option['maName']; ?></option> <?php
-								}
-						 	} ?>
-						</select><?php
-					}
-					mysqli_free_result($results2);
-				}
+				dropdown_box("maName", "hyperAV_manufacturer");
+
 				echo '</td></tr>';
 				echo '<tr><td>Minimum Stock: <input type="number" name="minStock" min="0" max="10000" value="' . $row['minStockLevel'] . '"></td></tr>';
 				echo '<tr><td>Maximum Stock: <input type="number" name="maxStock" min="0" max="20000" value="' . $row['maxStockLevel'] . '"></td></tr>';

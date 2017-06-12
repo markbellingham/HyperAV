@@ -21,12 +21,12 @@ if (isset($_SESSION['cart'])) {
 
 /* Get the selected location name or redirect back to confirm_order.php
  Effectively the page only submits if the location is selected or can be retrieved from the staff details */
-if (!isset($_SESSION['staff']) && ($_POST['location']) == "Select Location") {
+if (!isset($_SESSION['staff']) && ($_POST['loName']) == "Select") {
 	redirect_to("confirm_order.php");
 } else if (isset($_SESSION['staff'])) {
 	$locationID = $_SESSION['location'];
 } else {
-	$location = $_POST['location'];
+	$location = $_POST['loName'];
 	// Get the locationID from the location name
 	$query3 = 'SELECT locationID from hyperAV_location WHERE loName = "' . $location . '"';
 	$results3 = @mysqli_query($connection, $query3);
@@ -145,7 +145,7 @@ for ($i = 0; $i < count($cart); $i++) {
 	}
 
 	// Create an INSERT statement for each item in the cart
-	$query5 = mysqli_prepare($connection, "INSERT INTO hyperAV_orderdetails (orderID, stockID, odQuantity) VALUES (?, ?, ?)");
+	$query5 = mysqli_prepare($connection, "INSERT INTO hyperAV_orderDetails (orderID, stockID, odQuantity) VALUES (?, ?, ?)");
 	if ($query5 === false) { trigger_error('Statement failed! ' . htmlspecialchars(mysqli_error($connection)), E_USER_ERROR); }
 
 	$bind5 = mysqli_stmt_bind_param($query5, "iii", $orderID, $stockID, $cart[$ID]);
@@ -154,7 +154,7 @@ for ($i = 0; $i < count($cart); $i++) {
 	$exec5 = mysqli_stmt_execute($query5);
 	if ($exec5 === false) { 
 		trigger_error('Statement execute failed! ' . htmlspecialchars(mysqli_stmt_error($query5)), E_USER_ERROR);
-		echo '<p>insert into hyperAV_orderdetails not successful</p>';
+		echo '<p>insert into hyperAV_orderDetails not successful</p>';
 	} else {
 		unset($_SESSION['cart']);
 	}

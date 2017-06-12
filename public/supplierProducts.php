@@ -49,7 +49,7 @@
 	if(isset($_GET['suName']) && ($_GET['suName'] != "Select Supplier")) {
 		$query = 'SELECT DISTINCT pr.prModelNo, pr.prName, pr.prDescription, pr.prPrice, pr.prCategory, su.suName FROM hyperAV_products pr 
 		JOIN hyperAV_stock st  ON pr.prModelNo = st.prModelNo 
-		JOIN hyperAV_stockorderdetails stor ON st.stockID =stor.stockID 
+		JOIN hyperAV_stockOrderDetails stor ON st.stockID =stor.stockID 
 		JOIN hyperAV_supplier su ON su.supplierID=stor.supplierID 
 		WHERE su.suName = "' . $_GET['suName'] . '" 
 		ORDER BY pr.prName';
@@ -57,12 +57,12 @@
 	} else {
 		$query = 'SELECT DISTINCT pr.prModelNo, pr.prName, pr.prDescription, pr.prPrice, pr.prCategory, su.suName FROM hyperAV_products pr 
 		JOIN hyperAV_stock st  ON pr.prModelNo = st.prModelNo 
-		JOIN hyperAV_stockorderdetails stor ON st.stockID =stor.stockID 
+		JOIN hyperAV_stockOrderDetails stor ON st.stockID =stor.stockID 
 		JOIN hyperAV_supplier su ON su.supplierID=stor.supplierID 
 		ORDER BY pr.prName';	
 	}
 
-	//echo $query;
+	// echo $query;
 
 	$results = @mysqli_query($connection, $query);
 	$num_rows = mysqli_num_rows($results);

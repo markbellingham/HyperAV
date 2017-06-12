@@ -54,8 +54,6 @@ if (count($stockcart) > 0) {
 		$results = @mysqli_query($connection, $query);
 		$num_rows = mysqli_num_rows($results);
 
-		//echo $query;
-
 		// Display the results (if any)
 		if ($results) {
 			if ($num_rows > 0) {

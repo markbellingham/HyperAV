@@ -2,6 +2,7 @@
 require_once ("../includes/session.php");
 require_once ("../includes/db_connection.php");
 require_once ("../includes/functions.php");
+require_once ("../includes/db_functions.php");
 
 $page_title = 'Confirm Order | HyperAV';
 include ("../includes/layouts/header.php");
@@ -22,7 +23,7 @@ if (isset($_SESSION['stockcart'])) {
 if (count($stockcart) > 0) {
 	// First get the productIDs from the array
 	$cart_keys = array_keys($stockcart);
-	$query = 'SELECT * FROM hyperAV_products pr JOIN hyperAV_stock st ON pr.prModelNo = st.prModelNo JOIN hyperAV_stockorderdetails sod ON st.stockID = sod.stockID JOIN hyperAV_supplier su ON sod.supplierID = su.supplierID WHERE ';
+	$query = 'SELECT * FROM hyperAV_products pr JOIN hyperAV_stock st ON pr.prModelNo = st.prModelNo JOIN hyperAV_stockOrderDetails sod ON st.stockID = sod.stockID JOIN hyperAV_supplier su ON sod.supplierID = su.supplierID WHERE ';
 	// Build up a SELECT  statement from all the items in the array
 	for ($i = 0; $i < count($stockcart); $i++) {
 		if ($i != 0) {
@@ -41,30 +42,14 @@ if (count($stockcart) > 0) {
 	<p><b>Please choose a location where the stock should be delivered to</b></p>
 
 	<div style="float: left, ">
-		<?php
-		// Shows a drop down box with all the locations to choose from and the 
-		// location where the staff member placing the order is automatically selected
-		$query2 = "SELECT locationID, loName FROM hyperAV_location ORDER BY loName ASC";
-		$results2 = @mysqli_query($connection, $query2);
-		$num_rows2 = mysqli_num_rows($results2);
-		if($results2) {
-			if($num_rows2 > 0) { ?>
-				<select name="location">
-					<option>Select Location</option>
-					<?php while($option = mysqli_fetch_array($results2, MYSQLI_ASSOC)) { 
-						if ($option['locationID'] == $_SESSION['location']) { ?>
-							<option selected><?php echo $option['loName']; ?></option><?php
-						} else { ?>
-							<option><?php echo $option['loName']; ?></option>
-				<?php 	} 
-				} ?>
-				</select><?php
-			}
-		} ?>
+	<?php
+		dropdown_box("loName", "hyperAV_location");
+	?>
 	</div>
 
 	<div id="show_cart">
 		<?php
+		// echo $query;
 		// Send the query to the database
 		$results = @mysqli_query($connection, $query);
 		$num_rows = mysqli_num_rows($results);
@@ -110,9 +95,9 @@ if (count($stockcart) > 0) {
 
 
 <?php
-mysqli_free_result($results);
-mysqli_free_result($results2);
-mysqli_close($connection);
+// mysqli_free_result($results);
+// mysqli_free_result($results2);
+// mysqli_close($connection);
 ?>
 
 

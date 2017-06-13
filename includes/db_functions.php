@@ -18,7 +18,7 @@
 	}
 
 	function dropdown_js_reload($column, $table) {
-		global $connection, $category;
+		global $connection, $url_parameter;
 
 		$query = "SELECT DISTINCT {$column} FROM {$table} ORDER BY {$column} ASC";
 		$results = @mysqli_query($connection, $query);
@@ -29,7 +29,7 @@
 					<select name = <?php echo $column ?> onchange = "this.form.submit()">
 						<option>Select</option>
 						<?php while ($option = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
-							if ($option[$column] === $category) { ?>
+							if ($option[$column] === $url_parameter) { ?>
 								<option selected><?php echo $option[$column]; ?></option><?php
 							} else { ?>
 								<option><?php echo $option[$column]; ?></option><?php

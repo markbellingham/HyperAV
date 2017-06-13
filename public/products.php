@@ -20,9 +20,9 @@
 	}
 
 	if (isset($_GET['prCategory'])) {
-		$category = $_GET['prCategory'];
+		$url_parameter = $_GET['prCategory'];
 	} else {
-		$category = "";
+		$url_parameter = "";
 	}
 ?>
 
@@ -46,8 +46,8 @@
 
 	/* Checks if we have come from the category drop down selector
 	in which case the page only shows products from that category, otherwise it shows them all */
-	if ($category != "" && $category != "Select Category") {
-		$query = 'SELECT * FROM hyperAV_products WHERE prCategory = "' . $category . '"';
+	if ($url_parameter != "" && $url_parameter != "Select") {
+		$query = 'SELECT * FROM hyperAV_products WHERE prCategory = "' . $url_parameter . '"';
 	} else {
 		$query = "SELECT * FROM hyperAV_products";
 	}

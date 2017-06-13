@@ -23,27 +23,6 @@
 	so that the page only shows the selected supplier  -->
 <?php
 	dropdown_js_reload("suName", "hyperAV_supplier");
-	/*
-	$query1 = "SELECT DISTINCT suName FROM hyperAV_supplier ORDER BY suName ASC";
-	$results1 = @mysqli_query($connection, $query1);
-	$num_rows1 = mysqli_num_rows($results1);
-	if($results1) {
-		if($num_rows1 > 0) { ?>
-		<form action="prevSupplierOrders.php" method="GET">
-			<select name="supplier" onchange="this.form.submit()">
-				<option>Select Supplier</option>
-				<?php while ($option = mysqli_fetch_array($results1, MYSQLI_ASSOC)) {
-					if ($option['suName'] === $parameter) { ?>
-						<option selected><?php echo $option['suName']; ?></option><?php
-					} else { ?>
-						<option><?php echo $option['suName']; ?></option><?php
-					} 
-				} ?>
-			</select>
-		</form><?php
-		}
-	}
-	*/
 ?>
 
 <?php

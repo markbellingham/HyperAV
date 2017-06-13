@@ -2,6 +2,7 @@
 	require_once ("../includes/session.php");
 	require_once ("../includes/db_connection.php");
 	require_once ("../includes/functions.php");
+	require_once ("../includes/db_functions.php");
 
 	$page_title = 'Products | HyperAV';
 	include ("../includes/layouts/header.php");
@@ -18,8 +19,8 @@
 		}
 	}
 
-	if (isset($_GET['category'])) {
-		$category = $_GET['category'];
+	if (isset($_GET['prCategory'])) {
+		$category = $_GET['prCategory'];
 	} else {
 		$category = "";
 	}
@@ -32,25 +33,7 @@
 	if one of the categories is selected, it reloads the page with the selected option as a GET request
 	so that the page only shows the selected category  -->
 <?php 
-	$query1 = "SELECT DISTINCT prCategory FROM hyperAV_products ORDER BY prCategory ASC";
-	$results1 = @mysqli_query($connection, $query1);
-	$num_rows1 = mysqli_num_rows($results1);
-	if($results1) {
-		if($num_rows1 > 0) { ?>
-		<form action="products.php" method="GET">
-			<select name=category onchange="this.form.submit()">
-				<option>Select Category</option>
-				<?php while ($option = mysqli_fetch_array($results1, MYSQLI_ASSOC)) {
-					if ($option['prCategory'] === $category) { ?>
-						<option selected><?php echo $option['prCategory']; ?></option><?php
-					} else { ?>
-						<option><?php echo $option['prCategory']; ?></option><?php
-					} 
-				} ?>
-			</select>
-		</form><?php
-		}
-	}
+	dropdown_js_reload("prCategory", "hyperAV_products");
 ?>
 
 <!-- <noscript><INPUT type="submit" value="Select" name=category></noscript> -->
@@ -102,7 +85,7 @@
 
 	// Clean up variables and close the connection
 	mysqli_free_result($results);
-	mysqli_free_result($results1);
+	// mysqli_free_result($results1);
 	mysqli_close($connection);
 ?>
 </div><!-- ends main -->

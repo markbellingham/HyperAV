@@ -1,4 +1,7 @@
 <?php
+
+	// Creates a dropdown list populated from the db using supplied parameters for 
+	// column and table, which can then be used in a form
 	function dropdown_box($column, $table) {
 		global $connection;
 
@@ -17,6 +20,8 @@
 		}
 	}
 
+	// Creates a dropdown list populated from the db using supplied parameters for 
+	// column and table, and then reloads the page filtered with the selected option
 	function dropdown_js_reload($column, $table) {
 		global $connection, $url_parameter;
 

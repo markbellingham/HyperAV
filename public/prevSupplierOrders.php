@@ -2,6 +2,7 @@
 	require_once ("../includes/session.php");
 	require_once ("../includes/db_connection.php");
 	require_once ("../includes/functions.php");
+	require_once ("../includes/db_functions.php");
 
 	$page_title = 'Supplier Orders | HyperAV';
 	include ("../includes/layouts/header.php");
@@ -10,17 +11,19 @@
 		redirect_to("index.php");
 	}
 
-	if (isset($_GET['supplier'])) {
-		$supplier = $_GET['supplier'];
+	if (isset($_GET['suName'])) {
+		$url_parameter = $_GET['suName'];
 	} else {
-		$supplier = "";
+		$url_parameter = "";
 	}
 ?>
 
 <!-- Populates the drop-down box where the staff member can select from the different suppliers
 	if one of the suppliers is selected, it reloads the page with the selected option as a GET request
 	so that the page only shows the selected supplier  -->
-<?php 
+<?php
+	dropdown_js_reload("suName", "hyperAV_supplier");
+	/*
 	$query1 = "SELECT DISTINCT suName FROM hyperAV_supplier ORDER BY suName ASC";
 	$results1 = @mysqli_query($connection, $query1);
 	$num_rows1 = mysqli_num_rows($results1);
@@ -30,7 +33,7 @@
 			<select name="supplier" onchange="this.form.submit()">
 				<option>Select Supplier</option>
 				<?php while ($option = mysqli_fetch_array($results1, MYSQLI_ASSOC)) {
-					if ($option['suName'] === $supplier) { ?>
+					if ($option['suName'] === $parameter) { ?>
 						<option selected><?php echo $option['suName']; ?></option><?php
 					} else { ?>
 						<option><?php echo $option['suName']; ?></option><?php
@@ -40,21 +43,22 @@
 		</form><?php
 		}
 	}
+	*/
 ?>
 
 <?php
-if ($supplier != "" && $supplier != "Select Supplier") {
+if ($url_parameter != "" && $url_parameter != "Select Supplier") {
 	$query = 'SELECT suName, pr.prModelNo, prName, prPrice, stOrderDate, stDeliveryDate, stOrderQuantity
 			FROM hyperAV_supplier su
-			JOIN hyperAV_stockorderdetails sod ON su.supplierID = sod.supplierID
+			JOIN hyperAV_stockOrderDetails sod ON su.supplierID = sod.supplierID
 			JOIN hyperAV_stock st ON st.stockID = sod.stockID
 			JOIN hyperAV_products pr ON pr.prModelNo = st.prModelNo 
-			WHERE suName = "' . $supplier . '" 
+			WHERE suName = "' . $url_parameter . '" 
 			ORDER BY stOrderDate DESC, suName';
 } else {
 	$query = 'SELECT suName, pr.prModelNo, prName, prPrice, stOrderDate, stDeliveryDate, stOrderQuantity
 			FROM hyperAV_supplier su
-			JOIN hyperAV_stockorderdetails sod ON su.supplierID = sod.supplierID
+			JOIN hyperAV_stockOrderDetails sod ON su.supplierID = sod.supplierID
 			JOIN hyperAV_stock st ON st.stockID = sod.stockID
 			JOIN hyperAV_products pr ON pr.prModelNo = st.prModelNo
 			ORDER BY stOrderDate DESC, suName';
@@ -101,7 +105,7 @@ if ($results) {
 }
 
 mysqli_free_result($results);
-mysqli_free_result($results1);
+// mysqli_free_result($results1);
 mysqli_close($connection);
 ?>
 

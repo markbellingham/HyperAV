@@ -2,6 +2,7 @@
 	require_once ("../includes/session.php");
 	require_once ("../includes/db_connection.php");
 	require_once ("../includes/functions.php");
+	require_once ("../includes/db_functions.php");
 
 	$page_title = 'Supplier Products | HyperAV';
 	include ("../includes/layouts/header.php");
@@ -24,26 +25,7 @@
 	If one of the suppliers is selected, it reloads the page with the selected option as a GET request
 	so that the page only shows the selected supplier's products  -->
 <?php 
-	$query1 = "SELECT suName FROM hyperAV_supplier ORDER BY suName";
-	$results1 = @mysqli_query($connection, $query1);
-	$num_rows1 = mysqli_num_rows($results1);
-	if($results1) {
-		if($num_rows1 > 0) {?>
-		<form action="supplierProducts.php" method="GET">
-			<select name=suName onchange="this.form.submit()">
-				<option>Select Supplier</option>
-				<?php while($option = mysqli_fetch_array($results1, MYSQLI_ASSOC)) {
-					if ($option['suName'] == $suName) { ?>
-						<option selected><?php echo $option['suName'] ?></option> <?php
-					} else { ?>
-						<option><?php echo $option['suName']; ?></option><?php
-					}
-			 	} ?>
-			
-			</select><noscript><INPUT type="submit" value="Select" name=suName></noscript> 
-		</form><?php
-		}
-	}
+	dropdown_js_reload("suName", "hyperAV_supplier");
 
 	// Checks if we have come from the supplier drop down selector
 	if(isset($_GET['suName']) && ($_GET['suName'] != "Select Supplier")) {
@@ -99,11 +81,7 @@
 
 	// Clean up variables and close the connection
 	mysqli_free_result($results);
-	mysqli_free_result($results1);
 	mysqli_close($connection);
-?>
 
-
-<?php
 	include ("../includes/layouts/footer.php");
 ?>

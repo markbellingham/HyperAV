@@ -1,39 +1,36 @@
 <?php
-require_once ("../includes/session.php");
-require_once ("../includes/db_connection.php");
-require_once ("../includes/functions.php");
-require_once ("../includes/db_functions.php");
+	require_once ("../includes/session.php");
+	require_once ("../includes/db_connection.php");
+	require_once ("../includes/functions.php");
+	require_once ("../includes/db_functions.php");
 
-$page_title = 'Confirm Order | HyperAV';
-include ("../includes/layouts/header.php");
+	$page_title = 'Confirm Order | HyperAV';
+	include ("../includes/layouts/header.php");
 
-if (!isset($_SESSION['staff'])) {
-	redirect_to("index.php");
-}
-
-// Gets the cart from the SESSION
-if (isset($_SESSION['stockcart'])) {
-	$stockcart = $_SESSION['stockcart'];
-} else {
-	// If the staff somehow got here without making an order, they are redirected to the products page
-	redirect_to("supplierOrders.php");
-}
-
-// Create SQL statement from the $cart array
-if (count($stockcart) > 0) {
-	// First get the productIDs from the array
-	$cart_keys = array_keys($stockcart);
-	$query = 'SELECT * FROM hyperAV_products pr JOIN hyperAV_stock st ON pr.prModelNo = st.prModelNo JOIN hyperAV_stockOrderDetails sod ON st.stockID = sod.stockID JOIN hyperAV_supplier su ON sod.supplierID = su.supplierID WHERE ';
-	// Build up a SELECT  statement from all the items in the array
-	for ($i = 0; $i < count($stockcart); $i++) {
-		if ($i != 0) {
-			$query .= ' OR ';
-		}
-		$query .= 'pr.prModelNo = "' . $cart_keys[$i] . '"';
+	if (!isset($_SESSION['staff'])) {
+		redirect_to("index.php");
 	}
-} else {
-	echo 'Your basket is empty';
-} ?>
+
+	// Gets the cart from the SESSION
+	$stockcart = get_SESSION_value_or_redirect("stockcart", "supplierOrders.php");
+
+
+	// Create SQL statement from the $cart array
+	if (count($stockcart) > 0) {
+		// First get the productIDs from the array
+		$cart_keys = array_keys($stockcart);
+		$query = 'SELECT * FROM hyperAV_products pr JOIN hyperAV_stock st ON pr.prModelNo = st.prModelNo JOIN hyperAV_stockOrderDetails sod ON st.stockID = sod.stockID JOIN hyperAV_supplier su ON sod.supplierID = su.supplierID WHERE ';
+		// Build up a SELECT  statement from all the items in the array
+		for ($i = 0; $i < count($stockcart); $i++) {
+			if ($i != 0) {
+				$query .= ' OR ';
+			}
+			$query .= 'pr.prModelNo = "' . $cart_keys[$i] . '"';
+		}
+	} else {
+		echo 'Your basket is empty';
+	} 
+?>
 
 
 

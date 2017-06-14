@@ -15,12 +15,7 @@ if (!isset($_SESSION['staff'])) {
 }
 
 // Gets the cart from the SESSION
-if (isset($_SESSION['stockcart'])) {
-	$stockcart = $_SESSION['stockcart'];
-} else {
-	// If the user somehow got here without making an order, they are redirected to the products page
-	redirect_to("supplierProducts.php");
-}
+$stockcart = get_SESSION_value_or_redirect("stockcart", "supplierProducts.php");
 
 
 // Get the total

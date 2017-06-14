@@ -12,13 +12,8 @@ if(!isset($_SESSION['cuEmail']) && !isset($_SESSION['staff'])) {
 	redirect_to("login_page.php");
 }
 
-// Gets the cart from the SESSION
-if (isset($_SESSION['cart'])) {
-	$cart = $_SESSION['cart'];
-} else {
-	// If the user somehow got here without making an order, they are redirected to the products page
-	redirect_to("products.php");
-}
+get_SESSION_value_or_redirect("cart", "products.php");
+
 
 // Create SQL statement from the $cart array
 if (count($cart) > 0) {

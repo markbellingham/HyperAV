@@ -12,12 +12,7 @@ if(!isset($_SESSION['cuEmail']) && !isset($_SESSION['staff'])) {
 }
 
 // Gets the cart from the SESSION
-if (isset($_SESSION['cart'])) {
-	$cart = $_SESSION['cart'];
-} else {
-	// If the user somehow got here without making an order, they are redirected to the products page
-	redirect_to("products.php");
-}
+get_SESSION_value_or_redirect("cart", "products.php");
 
 /* Get the selected location name or redirect back to confirm_order.php
  Effectively the page only submits if the location is selected or can be retrieved from the staff details */

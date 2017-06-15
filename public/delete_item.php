@@ -5,11 +5,8 @@
 
 	/* Get the product model number from the POST request if it is set
 	 If the use somehow gets to this page without clicking the delete button they are redirected. */
-	if (isset($_POST['prModelNo'])) {
-		$modelNo = $_POST['prModelNo'];
-	} else {
-		redirect_to("products.php");
-	}
+	$modelNo = get_POST_value_or_redirect("prModelNo", "products.php");
+
 
 	$page_title = $modelNo . ' | HyperAV';
 	include ("../includes/layouts/header.php");

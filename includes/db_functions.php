@@ -45,4 +45,20 @@
 			}
 		}
 	}
+
+	function get_an_ID_from_the_database($id, $table, $column, $reference) {
+		global $connection;
+		$query = "SELECT {$id} FROM {$table} WHERE {$column} LIKE '{$reference}'";
+		echo $query;
+		$result = @mysqli_query($connection, $query);
+		$num_rows = mysqli_num_rows($result);
+		if ($result) {
+			if ($num_rows == 1) {
+				while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+					$requestedID = $row[$id];
+				}
+			}
+		}
+		return $requestedID;
+	}
 ?>

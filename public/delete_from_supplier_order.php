@@ -19,11 +19,8 @@
 	/* Get the model number from POST
 	 If the user somehow arrives at this page without clicking on the 
 	 delete button in the cart, they are redirected to the products page */
-	if (isset($_POST['prModelNo'])) {
-		$modelNo = $_POST['prModelNo'];	
-	} else {
-		redirect_to("supplierProducts.php");
-	}
+	$modelNo = get_SESSION_value_or_redirect("prModelNo", "supplierProducts.php");
+
 
 	echo '<p>You clicked on ' . $modelNo . '</p>';
 

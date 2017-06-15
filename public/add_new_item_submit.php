@@ -2,6 +2,7 @@
 	require_once ("../includes/session.php");
 	require_once ("../includes/db_connection.php");
 	require_once ("../includes/functions.php");
+	require_once ("../includes/db_functions.php");
 
 	/* If the user somehow tries to load this page when not logged in as staff
 	 they are redirected to the products page */
@@ -14,8 +15,8 @@
 	$name 			= $_POST['name'];
 	$description 	= $_POST['description'];
 	$price 			= $_POST['price'];
-	$category 		= $_POST['category'];
-	$manufacturer 	= $_POST['manufacturer'];
+	$category 		= $_POST['prCategory'];
+	$manufacturer 	= $_POST['maName'];
 	$minStock 		= $_POST['minStock'];
 
 	$page_title = $modelNo . ' added to the database! | HyperAV';
@@ -34,24 +35,7 @@
 	// echo '<p>' . $minStock . '</p>';
 	
 	// First get the manufacturer ID from the manufacturer table
-	$query1 = 'SELECT manufacturerID FROM hyperAV_manufacturer WHERE maName = "' . $manufacturer . '"';
-	$result1 = @mysqli_query($connection, $query1);
-	$num_rows = mysqli_num_rows($result1);
-
-	// Put the manufacturer ID into a variable so we can use it in the next query
-	if ($result1) {
-		if ($num_rows == 1) {
-			while ($row = mysqli_fetch_array($result1, MYSQLI_ASSOC)) {
-				$manufacturerID = $row['manufacturerID'];
-			}
-		} else {
-			echo '<p>There was an error with the results</p>';
-			echo '<p>' . mysqli_error($connection) . '</p>';
-		}
-	} else {
-		echo '<p>There was an error with the database connection</p>';
-		echo '<p>' . mysqli_error($connection) . '</p>';		
-	}
+	$manufacturerID = get_an_ID_from_the_database("manufacturerID", "hyperAV_manufacturer", "maName", $manufacturer);
 
 	// Create the INSERT statement using Prepared Statement to protect from SQL injection
 	$query2 = mysqli_prepare($connection, 'INSERT INTO hyperAV_products (prModelNo, prName, prDescription, prPrice, prCategory, manufacturerID, minStockLevel) VALUES (?,?,?,?,?,?,?)');

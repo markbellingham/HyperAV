@@ -23,18 +23,7 @@ if (!isset($_SESSION['staff']) && ($_POST['loName']) == "Select") {
 } else {
 	$location = $_POST['loName'];
 	// Get the locationID from the location name
-	$query3 = 'SELECT locationID from hyperAV_location WHERE loName = "' . $location . '"';
-	$results3 = @mysqli_query($connection, $query3);
-	$num_rows3 = mysqli_num_rows($results3);
-	if ($results3) {
-		if ($num_rows3 == 1) {
-			while ($row = mysqli_fetch_array($results3, MYSQLI_ASSOC)) {
-				$locationID = $row['locationID'];
-			}
-		}
-
-		mysqli_free_result($results3);
-	}
+	$locationID = get_an_ID_from_the_database("locationID", "hyperAV_location", "loName", $location);
 }
 
 /* If the customer created the order, their email is present in the SESSION.
@@ -136,7 +125,7 @@ for ($i = 0; $i < count($cart); $i++) {
 			}
 		}
 
-		mysqli_free_result($results4);
+		// mysqli_free_result($results4);
 	}
 
 	// Create an INSERT statement for each item in the cart

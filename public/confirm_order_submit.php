@@ -2,7 +2,6 @@
 require_once ("../includes/session.php");
 require_once ("../includes/db_connection.php");
 require_once ("../includes/functions.php");
-require_once ("../includes/db_functions.php");
 
 $page_title = 'Order confirmed | HyperAV';
 include ("../includes/layouts/header.php");
@@ -54,9 +53,6 @@ $orTotal = $_SESSION['grandTotal'];
 $orPaymentMethod = $_POST['payment'];
 
 // Get the customer ID from the database
-$customerID = get_an_ID_from_the_database("customerID", "hyperAV_customer", "cuEmail", $email);
-
-/*
 $query1 = 'SELECT customerID FROM hyperAV_customer WHERE cuEmail = "' . $email . '"';
 $results1 = @mysqli_query($connection, $query1);
 $num_rows1 = mysqli_num_rows($results1);
@@ -77,7 +73,6 @@ if ($results1) {
 	//DEBUGGING	 echo '<p class="error">Query:'. $query . '</p>';
 	exit;
 }
-*/
 
 // Get the staff ID if it exists or give it a NULL value
 if (isset($_SESSION['staff'])) {

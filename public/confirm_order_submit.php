@@ -52,27 +52,10 @@ $orTotal = $_SESSION['grandTotal'];
 // Set the payment method
 $orPaymentMethod = $_POST['payment'];
 
-// Get the customer ID from the database
-$query1 = 'SELECT customerID FROM hyperAV_customer WHERE cuEmail = "' . $email . '"';
-$results1 = @mysqli_query($connection, $query1);
-$num_rows1 = mysqli_num_rows($results1);
-if ($results1) {
-	if ($num_rows1 == 1) {
-		while ($row = mysqli_fetch_array($results1, MYSQLI_ASSOC)) {
-			$customerID = $row['customerID'];
-		}
-	} else {
-		echo '<p>Error: There was a problem with the data</p>';
-		exit;
-	}
 
-	mysqli_free_result($results1);
-} else {
-	echo '<p>Error: There was a problem with the database connection';
-	//DEBUGGING	 echo '<p class="error">'.mysqli_error($connection).'</p>';
-	//DEBUGGING	 echo '<p class="error">Query:'. $query . '</p>';
-	exit;
-}
+// Get the customer ID from the database
+$customerID = get_an_ID_from_the_database("customerID", "hyperAV_customer", "cuEmail", $email);
+
 
 // Get the staff ID if it exists or give it a NULL value
 if (isset($_SESSION['staff'])) {

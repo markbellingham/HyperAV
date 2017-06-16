@@ -26,4 +26,13 @@
 		}
 	}
 
+	function get_GET_value_or_redirect($key, $page) {
+		if (isset($_GET[$key])) {
+			$get_value = htmlspecialchars($_GET[$key]);
+			return $get_value;
+		} else {
+			redirect_to($page);
+		}
+	}
+
 ?>

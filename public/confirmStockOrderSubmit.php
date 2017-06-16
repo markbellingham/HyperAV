@@ -8,11 +8,7 @@ include ("../includes/layouts/header.php");
 
 // If the user somehow got here without being logged 
 // in as a staff member, redirect them to the index page
-if (!isset($_SESSION['staff'])) {
-	redirect_to("index.php");
-} else {
-	$staffID = $_SESSION['staffID'];
-}
+$staffID = get_SESSION_value_or_redirect("staff", "index.php");
 
 // Gets the cart from the SESSION
 $stockcart = get_SESSION_value_or_redirect("stockcart", "supplierProducts.php");

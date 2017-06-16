@@ -14,15 +14,10 @@ if (!isset($_SESSION['staff'])) {
 if (isset($_POST['prModelNo'])) {
 
 	$modelNo = $_POST['prModelNo'];
-
-	if (isset($_SESSION['stockcart'])) {
-		$stockcart = $_SESSION['stockcart'];
-		$stockcart[$modelNo] = 1;
-		$_SESSION['stockcart'] = $stockcart;
-	} else {
-		$stockcart[$modelNo] = 1;
-		$_SESSION['stockcart'] = $stockcart;
-	}
+	$stockcart = get_or_create_cart("stockcart");
+	$stockcart[$modelNo] = 1;
+	$_SESSION['stockcart'] = $stockcart;
+}
 
 	echo '<p>The following item was added to your order:</p>';
 

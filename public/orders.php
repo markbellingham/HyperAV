@@ -7,13 +7,7 @@ $page_title = 'My Orders | HyperAV';
 include ("../includes/layouts/header.php");
 
 // Gets the cart from the SESSION or initialises it if it is not there
-if (isset($_SESSION['cart'])) {
-	$cart = $_SESSION['cart'];
-} else {
-	$cart = array();
-}
-
-//print_r($_SESSION['cart']);
+$cart = get_or_create_cart("cart");
 
 // Create SQL statement from the $cart array
 if (count($cart) > 0) {

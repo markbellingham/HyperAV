@@ -11,11 +11,7 @@ if (!isset($_SESSION['staff'])) {
 }
 
 // Gets the cart from the SESSION or initialises it if it is not there
-if (isset($_SESSION['stockcart'])) {
-	$stockcart = $_SESSION['stockcart'];
-} else {
-	$stockcart = array();
-}
+$stockcart = get_or_create_cart("stockcart");
 
 // Create SQL statement from the $cart array
 if (count($stockcart) > 0) {

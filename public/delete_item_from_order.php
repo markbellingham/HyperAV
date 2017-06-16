@@ -6,11 +6,7 @@
 	$page_title = 'My Orders | HyperAV';
 	include ("../includes/layouts/header.php");
 
-	if (isset($_SESSION['cart'])) {
-		$cart = $_SESSION['cart'];
-	} else {
-		$cart = array();
-	}
+	$cart = get_or_create_cart("cart");
 
 	/* Get the model number from POST
 	 If the user somehow arrives at this page without clicking on the 

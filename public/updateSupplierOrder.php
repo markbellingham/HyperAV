@@ -11,11 +11,7 @@
 	}
 
 	// Check the SESSION for a cart and create one if it is not there
-	if (isset($_SESSION['stockcart'])) {
-		$stockcart = $_SESSION['stockcart'];
-	} else {
-		$stockcart = array();
-	}
+	$stockcart = get_or_create_cart("stockcart");
 
 	/* If the POST contains parameters for the model number and quantity (and it should do!) the item quantity is updated and the user is 
 	redirected back to the supplierOrders page. If there are somehow no parameters, the user is redirected back to the supplierOrders page anyway */

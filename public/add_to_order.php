@@ -7,7 +7,9 @@
 	include ("../includes/layouts/header.php");
 ?>
 
+
 <div id="main">
+
 
 <?php
 	/* Check if the cart already exists and add the item clicked into it.
@@ -51,6 +53,7 @@
 	mysqli_close($connection);
 ?>
 
+
 <p><a href="orders.php">Show all items on my order</a></p>
 <p><a href="products.php">Show all products</a></p>
 </div> <!-- ends main -->
@@ -58,7 +61,6 @@
 <!-- <?php
 	print_r($cart);
 ?> -->
-
 
 
 <?php

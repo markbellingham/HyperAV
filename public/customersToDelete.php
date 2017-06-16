@@ -21,8 +21,10 @@
 	}
 ?>
 
+
 <div id="main">
 <h3>Customers</h3>
+
 
 <?php 
 	
@@ -75,7 +77,10 @@
 	//mysqli_free_result($results1);
 	mysqli_close($connection);
 ?>
+
+
 </div> <!-- ends main -->
+
 
 <?php
 	include ("../includes/layouts/footer.php");

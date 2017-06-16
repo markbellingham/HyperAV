@@ -1,8 +1,8 @@
 <?php
-require_once("../includes/session.php");
-require_once("../includes/functions.php");
-$page_title='Login';
-include('../includes/layouts/header.php');
+	require_once("../includes/session.php");
+	require_once("../includes/functions.php");
+	$page_title='Login';
+	include('../includes/layouts/header.php');
 		
 	if(!empty($errors))
 	{
@@ -12,9 +12,9 @@ include('../includes/layouts/header.php');
 			echo "<p class='error'>$message</p>";
 		}
 	echo '<p>Please try again.</p>';
-	} 
-
+	}
 ?>
+
 
 <div id="login page" style="margin-left: 40px;">
 	<h3>Login</h3>

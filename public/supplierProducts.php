@@ -18,6 +18,7 @@
 	}
 ?>
 
+
 <h3>Supplier Products</h3>
 
 
@@ -29,7 +30,8 @@
 
 	// Checks if we have come from the supplier drop down selector
 	if(isset($_GET['suName']) && ($_GET['suName'] != "Select Supplier")) {
-		$query = 'SELECT DISTINCT pr.prModelNo, pr.prName, pr.prDescription, pr.prPrice, pr.prCategory, su.suName FROM hyperAV_products pr 
+		$query = 'SELECT DISTINCT pr.prModelNo, pr.prName, pr.prDescription, pr.prPrice, pr.prCategory, su.suName 
+		FROM hyperAV_products pr 
 		JOIN hyperAV_stock st  ON pr.prModelNo = st.prModelNo 
 		JOIN hyperAV_stockOrderDetails stor ON st.stockID =stor.stockID 
 		JOIN hyperAV_supplier su ON su.supplierID=stor.supplierID 
@@ -37,7 +39,8 @@
 		ORDER BY pr.prName';
 		
 	} else {
-		$query = 'SELECT DISTINCT pr.prModelNo, pr.prName, pr.prDescription, pr.prPrice, pr.prCategory, su.suName FROM hyperAV_products pr 
+		$query = 'SELECT DISTINCT pr.prModelNo, pr.prName, pr.prDescription, pr.prPrice, pr.prCategory, su.suName 
+		FROM hyperAV_products pr 
 		JOIN hyperAV_stock st  ON pr.prModelNo = st.prModelNo 
 		JOIN hyperAV_stockOrderDetails stor ON st.stockID =stor.stockID 
 		JOIN hyperAV_supplier su ON su.supplierID=stor.supplierID 

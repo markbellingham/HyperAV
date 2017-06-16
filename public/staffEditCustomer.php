@@ -14,11 +14,10 @@
 	$post = htmlspecialchars($_GET['postcode']);
 	
 	// check that firstname/lastname fields are both filled in
- if ($last == '' || $post == '')
- {
-	// generate error message
-	$error = 'ERROR: Please fill in all required fields!';
- }
+	if ($last == '' || $post == '') {
+		// generate error message
+		$error = 'ERROR: Please fill in all required fields!';
+	}
  
 	$query = 'SELECT * FROM hyperAV_customer WHERE cuLName = "' . $last . '" AND cuPostcode="' . $post . '";';
 	$results=@mysqli_query($connection,$query);
@@ -28,7 +27,10 @@
 	//echo "Query: ". $query;
 ?>
 
+
 <div id="main">
+
+
 <?php	
 	if ($results) {
 		if ($num_rows > 0) {
@@ -80,7 +82,11 @@
 	mysqli_free_result($results);
 	mysqli_close($connection);
 ?>
+
+
 </div> <!--ends main-->
+
+
 <?php
 	include ("../includes/layouts/footer.php");
 ?>

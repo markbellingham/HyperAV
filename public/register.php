@@ -21,7 +21,7 @@
 
 		$errors = array();
 
-		if (empty($_POST['first_name']))	{
+		if (empty($_POST['first_name'])) {
 			$errors[] = 'You forgot to enter your first name. ';
 		} else {	
 			$cuFName = mysqli_real_escape_string($connection,trim($_POST['first_name']));
@@ -99,6 +99,7 @@
 	}
 ?>
 
+
 <div id = "main">
 	<h3 style="margin-left: 150px">Customer Registration</h3>
 	<form action = "register.php" method = "post">
@@ -137,6 +138,7 @@
 		</table>
 	</form>
 </div> <!-- ends main -->
+
 
 <?php
 	include ("../includes/layouts/footer.php");

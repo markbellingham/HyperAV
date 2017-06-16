@@ -19,7 +19,12 @@
 	if (count($stockcart) > 0) {
 		// First get the productIDs from the array
 		$cart_keys = array_keys($stockcart);
-		$query = 'SELECT * FROM hyperAV_products pr JOIN hyperAV_stock st ON pr.prModelNo = st.prModelNo JOIN hyperAV_stockOrderDetails sod ON st.stockID = sod.stockID JOIN hyperAV_supplier su ON sod.supplierID = su.supplierID WHERE ';
+		$query = 'SELECT * 
+			FROM hyperAV_products pr 
+			JOIN hyperAV_stock st ON pr.prModelNo = st.prModelNo 
+			JOIN hyperAV_stockOrderDetails sod ON st.stockID = sod.stockID 
+			JOIN hyperAV_supplier su ON sod.supplierID = su.supplierID 
+			WHERE ';
 		// Build up a SELECT  statement from all the items in the array
 		for ($i = 0; $i < count($stockcart); $i++) {
 			if ($i != 0) {
@@ -90,12 +95,9 @@
 
 
 <?php
-// mysqli_free_result($results);
-// mysqli_free_result($results2);
-// mysqli_close($connection);
-?>
+	// mysqli_free_result($results);
+	// mysqli_free_result($results2);
+	// mysqli_close($connection);
 
-
-<?php
 	include ("../includes/layouts/footer.php");
 ?>

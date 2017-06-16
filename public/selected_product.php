@@ -13,8 +13,11 @@
 	include ("../includes/layouts/header.php");
 ?>
 
+
 <!-- <h3>Product Information for <?php echo $ModelNo ?></h3> -->
 <div id="main">
+
+
 <?php
 	$query = 'SELECT * FROM hyperAV_products WHERE prModelNo = "' . $ModelNo . '"';
 	$results = @mysqli_query($connection, $query);
@@ -108,9 +111,6 @@
 	mysqli_free_result($results);
 	mysqli_free_result($results2);
 	mysqli_close($connection);
-?>
 
-
-<?php
 	include ("../includes/layouts/footer.php");
 ?>

@@ -25,6 +25,7 @@
 
 <h3>You have submitted a new product to the database</h3>
 
+
 <?php
 	// echo '<p>' . $modelNo . '</p>';
 	// echo '<p>' . $name . '</p>';
@@ -60,9 +61,6 @@
 
 	mysqli_free_result($result1);
 	mysqli_close($connection);	
-?>
 
-
-<?php
 	include ("../includes/layouts/footer.php");
 ?>

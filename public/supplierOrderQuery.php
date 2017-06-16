@@ -3,20 +3,20 @@
 	require_once ("../includes/db_connection.php");
 	require_once ("../includes/functions.php");
 
-	
-	
 	$page_title = 'Reports';
 	include ("../includes/layouts/header.php");
 
 	if (!isset($_SESSION['staff'])) {
 	redirect_to("index.php");
-}
+	}
 
-$query= 'SELECT * 
-FROM 	hyperAV_stockorderdetails sod JOIN hyperAV_stock st ON sod.stockID = st.stockID JOIN hyperAV_products pr ON st.prModelNo = pr.prModelNo JOIN hyperAV_supplier su ON sod.supplierID = su.supplierID
-WHERE 	sod.stDeliveryDate IS NULL';
+	$query= 'SELECT * FROM 	hyperAV_stockorderdetails sod 
+		JOIN hyperAV_stock st ON sod.stockID = st.stockID 
+		JOIN hyperAV_products pr ON st.prModelNo = pr.prModelNo 
+		JOIN hyperAV_supplier su ON sod.supplierID = su.supplierID
+		WHERE 	sod.stDeliveryDate IS NULL';
 
-$results = @mysqli_query($connection, $query);
+	$results = @mysqli_query($connection, $query);
 	$num_rows = mysqli_num_rows($results);
 	
 	if ($results) {
@@ -39,8 +39,7 @@ $results = @mysqli_query($connection, $query);
 		<p class="error">Report could not be retrieved.</p>';
 		
 	}
-	mysqli_close($connection);
-		
+	mysqli_close($connection);		
 
 	include ("../includes/layouts/footer.php");
 ?>

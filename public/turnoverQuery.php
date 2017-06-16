@@ -9,11 +9,13 @@
 	include ("../includes/layouts/header.php");
 
 
-$query= 'SELECT SUM(orTotal) AS $total, lo.loName 
-FROM 	hyperAV_orders o JOIN hyperAV_staff st ON o.staffID = st.staffID JOIN hyperAV_location lo ON st.locationID = lo.locationID 
-GROUP BY lo.locationID';
+	$query= 'SELECT SUM(orTotal) AS $total, lo.loName 
+		FROM hyperAV_orders o 
+		JOIN hyperAV_staff st ON o.staffID = st.staffID 
+		JOIN hyperAV_location lo ON st.locationID = lo.locationID 
+		GROUP BY lo.locationID';
 
-$results = @mysqli_query($connection, $query);
+	$results = @mysqli_query($connection, $query);
 	$num_rows = mysqli_num_rows($results);
 	
 	if ($results) {

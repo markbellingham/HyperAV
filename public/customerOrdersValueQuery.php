@@ -1,20 +1,20 @@
 <?php
-require_once ("../includes/session.php");
-require_once ("../includes/db_connection.php");
-require_once ("../includes/functions.php");
+	require_once ("../includes/session.php");
+	require_once ("../includes/db_connection.php");
+	require_once ("../includes/functions.php");
 
 
+	$page_title = 'Reports';
+	include ("../includes/layouts/header.php");
 
-$page_title = 'Reports';
-include ("../includes/layouts/header.php");
+	$total = $_POST['totalValue'];
 
-$total = $_POST['totalValue'];
+	$query= 'SELECT * 
+		FROM hyperAV_orders o 
+		JOIN hyperAV_customer cu ON o.customerID = cu.customerID 
+		WHERE o.ortotal BETWEEN ' . $total;
 
-$query= 'SELECT *
-FROM 	hyperAV_orders o  JOIN hyperAV_customer cu ON o.customerID = cu.customerID 
-WHERE 	o.ortotal BETWEEN ' . $total;
-
-$results = @mysqli_query($connection, $query);
+	$results = @mysqli_query($connection, $query);
 	$num_rows = mysqli_num_rows($results);
 	
 	if ($results) {
@@ -40,9 +40,7 @@ $results = @mysqli_query($connection, $query);
 		echo $query;
 	}
 
-mysqli_close($connection);		
-?>
-	
-<?php
+	mysqli_close($connection);		
+
 	include ("../includes/layouts/footer.php");
 ?>

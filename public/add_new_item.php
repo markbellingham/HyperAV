@@ -14,6 +14,7 @@
 	include ("../includes/layouts/header.php");
 ?>
 
+
 <h3>Add a new product to the database</h3>
 
 <div id="add_new_item">
@@ -38,6 +39,7 @@
 		</form>
 	</table>
 </div> <!-- Ends "add_new_item" -->
+
 
 <?php
 	include ("../includes/layouts/footer.php");

@@ -8,7 +8,7 @@
 
 	if (!isset($_SESSION['staff'])) {
 	redirect_to("index.php");
-}
+	}
 
 	$id				= (int)$_POST['customerID'];
 	$fname			= $_POST['cuFName'];

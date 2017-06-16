@@ -1,23 +1,23 @@
 <?php
-require_once ("../includes/session.php");
-require_once ("../includes/db_connection.php");
-require_once ("../includes/functions.php");
+	require_once ("../includes/session.php");
+	require_once ("../includes/db_connection.php");
+	require_once ("../includes/functions.php");
 
-$page_title = 'Stock added to your order | HyperAV';
-include ("../includes/layouts/header.php");
+	$page_title = 'Stock added to your order | HyperAV';
+	include ("../includes/layouts/header.php");
 
-if (!isset($_SESSION['staff'])) {
-	redirect_to("index.php");
-}
+	if (!isset($_SESSION['staff'])) {
+		redirect_to("index.php");
+	}
 
 
-if (isset($_POST['prModelNo'])) {
+	if (isset($_POST['prModelNo'])) {
 
-	$modelNo = $_POST['prModelNo'];
-	$stockcart = get_or_create_cart("stockcart");
-	$stockcart[$modelNo] = 1;
-	$_SESSION['stockcart'] = $stockcart;
-}
+		$modelNo = $_POST['prModelNo'];
+		$stockcart = get_or_create_cart("stockcart");
+		$stockcart[$modelNo] = 1;
+		$_SESSION['stockcart'] = $stockcart;
+	}
 
 	echo '<p>The following item was added to your order:</p>';
 
@@ -37,11 +37,12 @@ if (isset($_POST['prModelNo'])) {
 			echo '</table>';
 		}
 	}
-}
 
-mysqli_free_result($results);
-mysqli_close($connection);
+
+	mysqli_free_result($results);
+	mysqli_close($connection);
 ?>
+
 
 <p><a href="supplierOrders.php">Show my order</a></p>
 <p><a href="supplierProducts.php">Show all products</a></p>

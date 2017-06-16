@@ -15,16 +15,20 @@
 	// If for some reason there is nothing in the GET request, the user is redirected to the products page
 	$ModelNo = get_GET_value_or_redirect("prModelNo", "products.php");
 
-
 	$page_title = $ModelNo . ' | HyperAV';
 	include ("../includes/layouts/header.php");
 ?>
 
+
 <h3>Edit the Product Information for <?php echo $ModelNo ?></h3>
+
 
 <?php
 	// To find all the relevant details for the item, two tables need to be joined together
-	$query = 'SELECT * FROM hyperAV_products pr JOIN hyperAV_manufacturer ma ON pr.manufacturerID = ma.manufacturerID WHERE pr.prModelNo = "' . $ModelNo . '"';
+	$query = 'SELECT * 
+		FROM hyperAV_products pr 
+		JOIN hyperAV_manufacturer ma ON pr.manufacturerID = ma.manufacturerID 
+		WHERE pr.prModelNo = "' . $ModelNo . '"';
 	$results = @mysqli_query($connection, $query);
 	$num_rows = mysqli_num_rows($results);
 
@@ -73,9 +77,6 @@
 		//DEBUGGING <p class="error">Query:'. $query . '</p>';
 	}
 	mysqli_close($connection);
-?>
 
-
-<?php
 	include ("../includes/layouts/footer.php");
 ?>

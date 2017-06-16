@@ -26,8 +26,10 @@
 	}
 ?>
 
+
 <div id="main">
 <h3>Products</h3>
+
 
 <!-- Populates the drop-down box where the customer can select from the different categories
 	if one of the categories is selected, it reloads the page with the selected option as a GET request
@@ -36,7 +38,9 @@
 	dropdown_js_reload("prCategory", "hyperAV_products");
 ?>
 
+
 <!-- <noscript><INPUT type="submit" value="Select" name=category></noscript> -->
+
 
 <?php 
 	// if a staff member is logged in, a link is provided to add a new product to the database
@@ -88,7 +92,10 @@
 	// mysqli_free_result($results1);
 	mysqli_close($connection);
 ?>
+
+
 </div><!-- ends main -->
+
 
 <?php
 	include ("../includes/layouts/footer.php");

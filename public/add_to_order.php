@@ -1,27 +1,24 @@
 <?php
-require_once ("../includes/session.php");
-require_once ("../includes/db_connection.php");
-require_once ("../includes/functions.php");
+	require_once ("../includes/session.php");
+	require_once ("../includes/db_connection.php");
+	require_once ("../includes/functions.php");
 
-$page_title = 'Added to your order | HyperAV';
-include ("../includes/layouts/header.php");
+	$page_title = 'Added to your order | HyperAV';
+	include ("../includes/layouts/header.php");
 ?>
 
 <div id="main">
 
 <?php
-/* Check if the cart already exists and add the item clicked into it.
- If the cart does not already exist, create a new one. */
-if (isset($_POST['prModelNo'])) {
-	$modelNo = $_POST['prModelNo'];
-	if (isset($_SESSION['cart'])) {
-		$cart = $_SESSION['cart'];
-		$cart[$modelNo] = 1;
-		$_SESSION['cart'] = $cart;
-	} else {
+	/* Check if the cart already exists and add the item clicked into it.
+	 If the cart does not already exist, create a new one. */
+	if (isset($_POST['prModelNo'])) {
+		$modelNo = $_POST['prModelNo'];
+		$cart = get_or_create_cart("cart");
 		$cart[$modelNo] = 1;
 		$_SESSION['cart'] = $cart;
 	}
+
 
 	// The user is shown a message with details of the item they just clicked on
 	echo '<p>The following item was added to your order:</p>';
@@ -48,10 +45,10 @@ if (isset($_POST['prModelNo'])) {
 			redirect_to("products.php");
 		}
 	}
-}
 
-mysqli_free_result($results);
-mysqli_close($connection);
+
+	mysqli_free_result($results);
+	mysqli_close($connection);
 ?>
 
 <p><a href="orders.php">Show all items on my order</a></p>

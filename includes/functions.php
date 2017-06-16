@@ -35,4 +35,13 @@
 		}
 	}
 
+	function get_or_create_cart($cart) {
+		if (isset($_SESSION[$cart])) {
+			$session_cart = $_SESSION[$cart];
+		} else {
+			$session_cart = array();
+		}
+		return $session_cart;
+	}
+
 ?>

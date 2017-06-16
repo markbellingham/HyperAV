@@ -10,16 +10,12 @@
 		redirect_to("index.php");
 	}
 
-	if (isset($_SESSION['stockcart'])) {
-		$stockcart = $_SESSION['stockcart'];
-	} else {
-		$stockcart = array();
-	}
+	$stockcart = get_or_create_cart("stockcart");
 
 	/* Get the model number from POST
 	 If the user somehow arrives at this page without clicking on the 
 	 delete button in the cart, they are redirected to the products page */
-	$modelNo = get_SESSION_value_or_redirect("prModelNo", "supplierProducts.php");
+	$modelNo = get_POST_value_or_redirect("prModelNo", "supplierProducts.php");
 
 
 	echo '<p>You clicked on ' . $modelNo . '</p>';

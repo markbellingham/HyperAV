@@ -13,11 +13,8 @@
 	// Get the product model number from the GET request
 	// Using htmlspecialchars because this is data coming from the browser and it should be sanitised before being used in our SELECT query
 	// If for some reason there is nothing in the GET request, the user is redirected to the products page
-	if (isset($_GET['prModelNo'])) {
-		$ModelNo = htmlspecialchars($_GET['prModelNo']);
-	} else {
-		redirect_to("products.php");
-	}
+	$ModelNo = get_GET_value_or_redirect("prModelNo", "products.php");
+
 
 	$page_title = $ModelNo . ' | HyperAV';
 	include ("../includes/layouts/header.php");

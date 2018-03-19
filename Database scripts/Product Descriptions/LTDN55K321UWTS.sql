@@ -14,7 +14,7 @@ SET prDescr_long = "<p>A big screen beauty with fabulous 4K for less than you mi
 <p>It might be some way behind 4K, but Freeview HD is still a huge step-up on regular Freeview TV. If you're not using Sky, Virgin, BT or another digital TV provider, Freeview HD is the way to go for free-to-access digital TV through your existing aerial. Compared to standard Freeview, images are far more detailed, with rich colour and enhanced realism.</p>
 
 <p><b>PVR USB</b></p>
-<p>One of the USB sockets lets you connect up a USB memory stick to use as a PVR. PVR stands for Personal Video Recorder and lets you record TV programmes via the set's Electronic Programme Guide. It can also pause live TV - just like a subscription based set-top box.</p>
+<p>One of the USB sockets lets you connect up a USB memory stick to use as a PVR. PVR stands for Personal Video Recorder and lets you record TV programmes via the set's Electronic Programme portfolio. It can also pause live TV - just like a subscription based set-top box.</p>
 
 <p>Redefining 4K TV value, the Hisense LTDN55K321UWTSEU simply can't be matched at this price.</p>" 
 WHERE prModelNo = "LTDN55K321UWTS";

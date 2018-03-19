@@ -11,7 +11,7 @@ SET prDescr_Long = "<p>With its built-in DVD player, the Sharp LC32DHE4041K is t
 <p>This Sharp 32' TV also comes equipped with a built-in Freeview HD tuner. If you don't use a subscription service such as Sky, Virgin or BT then this tuner gets you access to HD TV via your aerial with no subscription fees. Perfect for a second room or where you can't access TV by any means other than an aerial, the LC32DHE4041K brings you High Definition TV at no extra cost.</p>
 
 <p><b>Record your favourite programmes via USB</b></p>
-<p>This well-equipped budget TV also comes with a PVR USB socket. PVR (Personal Video Recorder) means that you can hook up a USB recording device, such as hard drive or memory stick and record TV programmes using the EPG (Electronic Programme Guide). The system even lets you pause live TV; just as you can with premium subscription services.</p>
+<p>This well-equipped budget TV also comes with a PVR USB socket. PVR (Personal Video Recorder) means that you can hook up a USB recording device, such as hard drive or memory stick and record TV programmes using the EPG (Electronic Programme portfolio). The system even lets you pause live TV; just as you can with premium subscription services.</p>
 
 <p><b>USB Digital Media Player</b></p>
 <p>Featuring not one but two USB connections, the Sharp lets you plug in both recording and playback devices. The intuitive Media Player makes playing back photos, music and videos an easy and hassle-free process.</p>

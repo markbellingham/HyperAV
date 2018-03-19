@@ -1,6 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115626803-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-115626803-1');
+  </script>
+
+    <!-- Google Analytics -->
+  <script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', 'UA-115626803-1', 'auto');
+  ga('send', 'pageview');
+  </script>
+  <script async src='https://www.google-analytics.com/analytics.js'></script>
+  <!-- End Google Analytics -->
+
 	<title><?php echo $page_title; ?></title>
 	<link rel="stylesheet" href="stylesheets/style.css" type="text/css" />
 	<script src="../includes/sorttable.js"></script>
@@ -22,17 +41,17 @@
 		<h1>HyperAV Home Cinema</h1>
 		<h2>for all your home entertainment needs</h2>
 	</header>
-<div id="menu">		
+<div id="menu">
 	<div class="dropdown">
 		<ul>
 			<button class="dropbtn">Home</button>
 			<div class="dropdown-content">
-				<ul>				
+				<ul>
 					<li><a href="index.php">Home Page</a></li>
-				</ul>		
+				</ul>
 			</div>
 	</div>
-	<div class="dropdown">		
+	<div class="dropdown">
 			<button class="dropbtn">Staff</button>
 			<div class="dropdown-content">
 			<?php if (isset($_SESSION['staff'])) { ?>
@@ -45,9 +64,9 @@
 				</ul> <?php
 			} ?>
 			</div>
-	</div>		
-	<div class="dropdown">				
-					
+	</div>
+	<div class="dropdown">
+
 			<button class="dropbtn">Customer</button>
 			<div class="dropdown-content">
 				<ul>
@@ -57,18 +76,18 @@
 				</ul>
 			</div>
 	</div>
-	<div class="dropdown">				
+	<div class="dropdown">
 			<button class="dropbtn">Account</button>
 			<div class="dropdown-content">
 				<ul>
 					<li><a href="register.php">Sign Up</a></li>
 					<li><a href="password.php">Change Password</a></li>
 					<li><?php
-						if ((isset($_SESSION['first_name'])) && (!strpos($_SERVER['PHP_SELF'], 'logout.php')) ) 
+						if ((isset($_SESSION['first_name'])) && (!strpos($_SERVER['PHP_SELF'], 'logout.php')) )
 						{
 							echo '<a href="logout.php">Logout</a>';
-						} 
-						else 
+						}
+						else
 						{
 							echo '<a href="login.php">Login</a>';
 						}
@@ -77,12 +96,12 @@
 				</ul>
 			</div>
 	</div>
-	<div class="dropdown">		
+	<div class="dropdown">
 			<button class="dropbtn">Reports</button>
 			<div class="dropdown-content">
 			<?php if(isset($_SESSION['staff'])) { ?>
 				<ul>
-					<li><a href="reports.php">View Reports</a></li>					
+					<li><a href="reports.php">View Reports</a></li>
 				</ul> <?php
 			} ?>
 			</div>

@@ -21,26 +21,33 @@
 		$_SESSION['cart'] = $cart;
 	}
 
+?>
 
-	// The user is shown a message with details of the item they just clicked on
-	echo '<p>The following item was added to your order:</p>';
 
+	<!--The user is shown a message with details of the item they just clicked on-->
+	<p>The following item was added to your order:</p>
+
+
+<?php
 	$query = 'SELECT * FROM hyperAV_products WHERE prModelNo = "' . $modelNo . '"';
 	$results = @mysqli_query($connection, $query);
 	$num_rows = mysqli_num_rows($results);
 
 	if ($results) {
-		if ($num_rows > 0) {
-			echo '<table><tr><th></th><th>Name</th><th>Price</th></tr>';
+		if ($num_rows > 0) { 
+?>
+			<table><tr><th></th><th>Name</th><th>Price</th></tr> 
+<?php
 			while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
-				echo '<p><tr>
-					<td><img src="images/' . $row['prName'] . '.jpg" id="product_images"></td>
-					<td>' . $row['prName'] . '</td><td>&pound' . $row['prPrice'] . '</td></tr></p>';
-					$name = $row['prName'];
+?>
+				<p><tr>
+					<td><img src="images/"<?php echo $row['prName'] . '.jpg' ?> id="product_images"></td>
+					<td><?php echo $row['prName'] ?></td><td>&pound <?php echo $row['prPrice'] ?></td></tr></p>
+					<?php echo $name = $row['prName'];
 			}
-
-			echo '</table>';
-
+?>
+			</table>
+<?php
 			// Set message in the SESSION of what was added to the order and redirect back to products.php
 			$_SESSION['message'] 	= "added";
 			$_SESSION['prName']		= $name;

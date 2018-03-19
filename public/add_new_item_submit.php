@@ -11,12 +11,12 @@
 	}
 
 	// Get all the parameters from the form on the previous page using POST
-	$modelNo 		= $_POST['modelNo'];
-	$name 			= $_POST['name'];
+	$modelNo 			= $_POST['modelNo'];
+	$name 				= $_POST['name'];
 	$description 	= $_POST['description'];
-	$price 			= $_POST['price'];
+	$price 				= $_POST['price'];
 	$category 		= $_POST['prCategory'];
-	$manufacturer 	= $_POST['maName'];
+	$manufacturer = $_POST['maName'];
 	$minStock 		= $_POST['minStock'];
 
 	$page_title = $modelNo . ' added to the database! | HyperAV';
@@ -34,7 +34,7 @@
 	// echo '<p>' . $category . '</p>';
 	// echo '<p>' . $manufacturer . '</p>';
 	// echo '<p>' . $minStock . '</p>';
-	
+
 	// First get the manufacturer ID from the manufacturer table
 	$manufacturerID = get_an_ID_from_the_database("manufacturerID", "hyperAV_manufacturer", "maName", $manufacturer);
 
@@ -60,7 +60,7 @@
 	}
 
 	mysqli_free_result($result1);
-	mysqli_close($connection);	
+	mysqli_close($connection);
 
 	include ("../includes/layouts/footer.php");
 ?>

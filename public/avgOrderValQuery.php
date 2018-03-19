@@ -20,22 +20,28 @@
 	
 	if ($results) {
 		if ($num_rows > 0) {
-				echo '<table>
-				<tr> <th> <b>Location</b> </th> <th> <b>Average Sales</b> </th> </tr>';
-
-				while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
-					echo '<tr> <td>' . $location .  '</td><td>'  . number_format($row['$total'],2)  . '</td><td>';
+?>
+			<table>
+				<tr> <th> <b>Location</b> </th> <th> <b>Average Sales</b> </th> </tr>
+<?php 				
+					while ($row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {
+						echo '<tr> <td>' . $location .  '</td><td>'  . number_format($row['$total'],2)  . '</td><td>';
 						
-				}
-			echo '</table>';
-
+					} 
+?>
+			</table>
+<?php
 			mysqli_free_result($results);
 		} else {
-			echo '<p class="error">There are no results.</p>';
+?>
+			<p class="error">There are no results.</p>
+<?php
 		}
 	} else {
-		echo '<h3 class="error">System Error</h3>
-		<p class="error">Report could not be retrieved.</p>';
+?>
+		<h3 class="error">System Error</h3>
+		<p class="error">Report could not be retrieved.</p>
+<?php
 	}
 	mysqli_close($connection);
 		

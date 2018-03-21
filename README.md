@@ -6,3 +6,7 @@ This is a project that started life as a 2nd Year group project for Information 
 If you want to recreate the project for yourself, you will need to create a file called db_connection.php and place it in the 'includes' folder. I removed this file because it contains username and password information to my university's server.
 
 Inside the Database scripts folder you will find a file to create the tables and another to populate the database with some basic data. Also in this folder are two files giving you the usernames and passwords so that you can log in as either a staff member or a customer.
+
+You can see a working demonstration of this project here:
+
+https://markbellingham.me/hyperav/products.php

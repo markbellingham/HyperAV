@@ -10,3 +10,6 @@ Inside the Database scripts folder you will find a file to create the tables and
 You can see a working demonstration of this project here:
 
 https://markbellingham.me/hyperav/products.php
+
+## Screenshot
+!["Product list](/Screenshots/product-list.png "Product List")
